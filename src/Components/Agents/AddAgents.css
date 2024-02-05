@@ -1,0 +1,255 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap");
+
+.Header {
+  position: relative;
+  width: 100vw;
+  height: 18vw;
+  padding: 0px 24px;
+  margin: auto;
+  /* border: 1px solid red; */
+  display: flex;
+  /* justify-content: start; */
+  align-items: center;
+  background: linear-gradient(180deg, #023B77 -26.67%, #022C58 130%);
+
+}
+.Header_name_div {
+  display: flex;
+  justify-content: center;
+  width: 85vw;
+  /* border: 1px solid rgba(2, 44, 88, 0.1); */
+}
+
+.agentadd_datas {
+  z-index: 1;
+  /* background-color: white; */
+  position: relative;
+
+  width: 90vw;
+  height: 72vh;
+  margin: auto;
+  overflow-y: scroll;
+  /* border: 1px solid red; */
+  /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
+}
+.addAgent_datapoints {
+  margin-bottom: 10px;
+}
+.agentadd_datas label {
+  font-family: Lato;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
+}
+.addAgent_datapoints input {
+  background-color: rgba(2, 44, 88, 0.1);
+  font-family: Lato;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.03em;
+  text-align: left;
+}
+.addAgent_datapointsdropdown{
+    width: 100%;
+    border: none;
+    background-color: rgba(2, 44, 88, 0.1);
+    padding: 20px 19px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 400;
+ border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.8);
+    /* margin-bottom: 10px; */
+}
+
+ .dropdown-menu.show{
+    width: 100%;
+}
+.Header_name {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  /* color: rgba(47, 47, 47, 1); */
+  color: white;
+}
+
+
+.submit_btn{
+    background-color: rgba(204, 55, 91, 1);
+    color: white;
+    /* font-family: Lato; */
+font-size: 18px;
+font-weight: 500;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: center;
+padding: 14px  24px;
+display: flex;
+justify-content: center;
+width: 90%;
+margin: auto;
+border: none;
+border-radius: 6px;
+margin-bottom: 20px;
+
+
+}
+
+
+
+
+
+
+/* SEARCH AGENT  */
+
+.search_agent{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    width: 90vw;
+    margin: auto;
+
+}
+.search_agent_inside{
+    display: flex;
+    border: 1px solid rgba(2, 44, 88, 1);
+    border-radius: 6px;
+    width: 100vw;
+}
+.searchagentinput{
+    border: none;
+    width: 75vw;
+    height: 60px;
+  
+}
+.search_agent_btn{
+    background-color: rgba(2, 44, 88, 1);
+    border: none;
+    width: 61px;
+    height: 61px;
+    padding: 0px;
+    border-radius: 0px 4px 4px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchagentform{
+    flex-basis: 80%;
+}
+
+
+
+
+.searchedcardHead{
+    /* border: 1px solid red; */
+    height: 70vh;
+    overflow-y: scroll;
+    margin: 10px;
+}
+
+.searchedimg{
+    width: 35px;
+    margin-right: 20px;
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+}
+
+.searchedAgentName{
+    font-family: Lato;
+font-size: 12px;
+font-weight: 700;
+line-height: 15px;
+letter-spacing: 0.03em;
+text-align: left;
+color: rgba(2, 44, 88, 1);
+text-transform: uppercase;
+}
+.searched_data{
+    /* display: grid;
+    grid-template-columns: auto auto auto; */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.searchedTitle{
+    font-family: Lato;
+font-size: 10px;
+font-weight: 500;
+line-height: 15px;
+letter-spacing: 0em;
+text-align: left;
+color: rgba(128, 128, 128, 1);
+}
+.searchedData{
+    font-family: Lato;
+font-size: 12px;
+font-weight: 600;
+line-height: 15px;
+letter-spacing: 0em;
+text-align: left;
+color: rgba(51, 51, 51, 1);
+}
+
+.searched_status{
+    font-family: Lato;
+font-size: 10px;
+font-weight: 600;
+line-height: 15px;
+letter-spacing: 0.03em;
+text-align: left;
+color: rgba(204, 55, 91, 1);
+text-transform: uppercase;
+background-color: rgba(204, 55, 91, 0.27);
+padding: 10px;
+border: none;
+border-radius: 4px;
+text-align: center;
+flex-basis: 30%;
+margin: 10px;
+}
+
+.saerched_dataCard{
+width: 90vw;
+margin: auto;
+margin-bottom: 24px;
+/* margin-right: 24px; */
+}
+.coll_width{
+    z-index: 1;
+    width: 100%;
+}
+
+
+@media (min-width: 600px) and (max-width: 900px) {
+.scroll_cards{
+    display: grid;
+    grid-template-columns: auto auto ;
+}
+.saerched_dataCard{
+    width: 60vw;
+    margin: auto;
+    margin-bottom: 24px;
+    margin-right: 24px;
+    }
+}

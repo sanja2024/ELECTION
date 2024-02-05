@@ -1,0 +1,71 @@
+.header_genz{
+    background-color:rgba(172, 24, 59, 1) ;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 24px;
+}
+
+
+.logoandheader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header_right_side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header_style{
+    /* font-family: Poppins; */
+    font-size: 18px !important;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: white;
+    margin-left: 24px;
+}
+
+
+
+
+
+
+
+
+
+/************** Profile ************/
+
+.genz_profile{
+    padding: 0px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile_name{
+    font-family: Poppins;
+font-size: 12px !important;
+font-weight: 400 !important;
+line-height: 24px !important;
+letter-spacing: 0em !important;
+text-align: left !important;
+color: rgba(255, 255, 255, 1) !important;
+}
+
+
+
+/************** Profile IMAGE ************/
+
+.profile_image{
+  padding: 8px 8px;
+  width: 50px;
+height: 50px;
+border-radius: 24px;
+ 
+  
+} 
+
+
+
+

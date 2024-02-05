@@ -1,0 +1,54 @@
+.LBg{
+  min-height: 100vh;
+    /* background: url(../images/LoginBg.png); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.logH {
+  height: calc(100vh + 0px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.LogForm{
+  min-width: 375px;
+  text-align: left;
+}
+.pageHeader {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 24px 24px 18px;
+  margin: 0;
+}
+.congrats {
+  height: calc(100vh + -70px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.LogForm .form-label {
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.LogForm .form-control{
+  background-color: rgba(255,255,255,0.075);
+  color: var(--bs-white);
+}
+.has-icon {
+  position: relative;
+}
+.has-icon .form-control {
+  padding: 14px 30px 14px 16px;
+}
+.has-icon i {
+  position: absolute;
+  z-index: 4;
+  right: 12px;
+  top: 15px;
+  font-size: 20px;
+  color: var(--bs-white);
+}
+

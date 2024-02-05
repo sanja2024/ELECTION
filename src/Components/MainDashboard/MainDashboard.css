@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800&display=swap");
+
+.dashboard_data {
+  position: relative;
+  top: 15%;
+  padding-bottom: 24px !important;
+}
+.agentc_name {
+  font-family: Lato;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 15px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.agents_img {
+  border-radius: 0px 0px 0px 6px;
+  /* width: 70px; */
+  height: 100%;
+}
+.agents_detail_scroll {
+  overflow-x: scroll;
+  display: flex;
+  margin-top: 10px;
+}
+
+.agents_detail {
+  width: 280px;
+  margin-right: 24px;
+}
+.agents_data_head {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 100vw;
+  padding: 4px 24px 4px 24px;
+}
+.agents_data {
+  font-family: Lato;
+  font-size: 6px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(51, 51, 51, 0.74);
+}
+.agents_val {
+  font-family: Lato;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(51, 51, 51, 1);
+}
+
+.KeyfeatureIcons {
+  width: 48px;
+}
+
+.KeyfeatureVal {
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 12px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding: 6px 0px;
+}
+
+.KeyfeatureBoxTop {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 90vw;
+}
+
+.KeyFeature_detail {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.KeyfeatureBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 10px 0px 10px;
+}
+.AddAgentIcons {
+  width: 24px;
+}
+
+/* AGENT  */
+
+.Agent_detail {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-evenly;
+}
+.Agent_detailBoxTop {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+width: 100%;
+
+}
+
+.welcomebackmd {
+  z-index: 1;
+  /* background-color: white; */
+  position: absolute;
+  top: 42%;
+  width: 100vw;
+  height: 48vh;
+  overflow-y: scroll;
+  /* border: 1px solid red; */
+  /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
+}
+
+
+.blog_sctoll{
+    /* display: flex; */
+    display: flex;
+    overflow-x: scroll;
+    /* height: 20vh; */
+    /* position: relative; */
+  
+
+}
+
+.bgImgMD {
+    background-image: url(../../Common/asset/images/voteimg/login_background.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    background-color: (0, 0, 0, 1);
+    /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
+    /* clip-path: circle(50% at 50% 0); */
+    clip-path: circle(50% at 50% 2%);
+    display: flex;
+  }
+  .bgImgMD::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2, 44, 88, .4); /* Adjust the color and transparency as needed */
+  }
+.md_ballot {
+    position: absolute;
+top: 10%;
+z-index: 1;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  /* -webkit-backdrop-filter: blur(20px) !important; */
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 280px !important;
+  height: 100px;
+  padding: 12px;
+  margin: 24px;
+  
+}
+.blogHeading{
+    font-family: Raleway;
+font-size: 16px;
+font-weight: 700;
+line-height: 19px;
+letter-spacing: 0.03em;
+text-align: left;
+color: rgba(255, 255, 255, 1);
+}
+.blog_content{
+    font-family: Raleway;
+font-size: 10px;
+font-weight: 400;
+line-height: 15px;
+letter-spacing: 0.02em;
+text-align: left;
+color: rgba(255, 255, 255, 0.8);
+
+}
