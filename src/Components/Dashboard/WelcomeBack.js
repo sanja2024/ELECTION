@@ -135,7 +135,7 @@ const WelcomeBack = () => {
           </div>
         </div>
 
-        <div className="d-flex justify-content-end pe-4 mb-5 pb-5">
+        <div className="d-flex justify-content-end pe-4  pb-5">
           <span className="forgotpass">Forgot your password?</span>
         </div>
 
