@@ -273,7 +273,7 @@ const Dashboard = () => {
             <span className="slow">Your Voice, Your Future</span>
           </div>
           <div className="sign_btn">
-<button className="signbtn ">Sign in -> </button>
+<button className="signbtn ">Sign in - </button>
 <span className="register">Register For an account</span>
           </div>
         </div>

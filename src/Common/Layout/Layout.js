@@ -12,7 +12,9 @@ import {
   SearchAgent_ROUTE,
   Survey_ROUTE,
   SurveyForm_ROUTE,
-  CompleteSurvey_ROUTE
+  CompleteSurvey_ROUTE,
+  Assign_ROUTE,
+  Assign2_ROUTE,
 } from "../Route/Routes";
 import Dashboard from "../../Components/Dashboard/Dashboard";
 
@@ -24,9 +26,12 @@ import MainDashboard from "../../Components/MainDashboard/MainDashboard";
 import AddAgents from "../../Components/Agents/AddAgents";
 import RoleMapping from "../../Components/Agents/RoleMapping";
 import SearchAgent from "../../Components/Agents/SearchAgents";
+import Assign from "../../Components/Agents/Assign";
+import Assign2 from "../../Components/Agents/Assign2";
 import Survey from "../../Components/Survey/Survey";
 import SurveyForm from "../../Components/Survey/SurveyForm";
 import CompleteSurvey from "../../Components/Survey/CompleteSurvey";
+
 
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
@@ -48,6 +53,8 @@ const Layout = () => {
         <Route path={Survey_ROUTE} element={<Survey />} />
         <Route path={SurveyForm_ROUTE} element={<SurveyForm />} />
         <Route path={CompleteSurvey_ROUTE} element={<CompleteSurvey />} />
+        <Route path={Assign_ROUTE} element={<Assign />} />
+        <Route path={Assign2_ROUTE} element={<Assign2 />} />
 
         {/* <Route path={'/CongratsPage'} element={<CongratsPage />} /> */}
 
