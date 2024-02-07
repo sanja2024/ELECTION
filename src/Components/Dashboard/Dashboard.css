@@ -67,7 +67,7 @@
   height: 100px;
   position: absolute;
   left: 40%;
-  top: 40%;
+  top: 30%;
   display: flex;
   flex-direction: column;
 }
@@ -89,7 +89,7 @@
 .center_slogan {
   position: relative;
   /* left: 40%; */
-  top: 56%;
+  top: 50%;
   display: flex;
   flex-direction: column;
   color: rgba(255, 255, 255, 1);
