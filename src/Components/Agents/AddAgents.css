@@ -32,6 +32,7 @@
   margin: auto;
   overflow-y: scroll;
   /* border: 1px solid red; */
+  margin: 10px 16px;
   /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
 }
 .addAgent_datapoints {
@@ -130,11 +131,11 @@ margin-bottom: 20px;
     display: flex;
     border: 1px solid rgba(2, 44, 88, 1);
     border-radius: 6px;
-    width: 100vw;
+    width: 90vw;
 }
 .searchagentinput{
     border: none;
-    width: 75vw;
+    /* width: 70vw; */
     height: 60px;
   
 }
@@ -150,7 +151,7 @@ margin-bottom: 20px;
     align-items: center;
 }
 .searchagentform{
-    flex-basis: 80%;
+    width: 100%;
 }
 
 
@@ -181,13 +182,13 @@ color: rgba(2, 44, 88, 1);
 text-transform: uppercase;
 }
 .searched_data{
-    /* display: grid;
-    grid-template-columns: auto auto auto; */
+    display: grid;
+    grid-template-columns: auto auto auto;
 
-    display: flex;
+    /* display: flex;
     justify-content: space-between;
     align-items: start;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     width: 100%;
     padding: 10px 0px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);

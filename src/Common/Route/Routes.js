@@ -43,6 +43,11 @@ export const MainDashboard_ROUTE = "/MainDashboard";
 export const AddAgents_ROUTE = "/Add_Agents";
 export const RoleMapping_ROUTE = "/RoleMapping";
 export const SearchAgent_ROUTE = "/SearchAgent";
+export const Assign_ROUTE = "/Assign";
+export const Assign2_ROUTE = "/Assign2";
+
+
+
 export const Survey_ROUTE = "/Survey";
 export const SurveyForm_ROUTE = "/SurveyForm";
 export const CompleteSurvey_ROUTE = "/CompleteSurvey";

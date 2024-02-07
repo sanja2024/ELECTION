@@ -262,8 +262,8 @@ const Dashboard = () => {
   return (
     <>
       <ToastContainer />
-      <div className="container p-0">
-        <div className="bgImg">
+      <div className=" p-0">
+        <div className="bgImgdash">
           <div className="center_logo">
             <span className="center_content">Ballot Spot</span>
           </div>
@@ -274,6 +274,7 @@ const Dashboard = () => {
           </div>
           <div className="sign_btn">
 <button className="signbtn ">Sign in -> </button>
+<button className="signbtn2 ">Guest Signin -> </button>
 <span className="register">Register For an account</span>
           </div>
         </div>

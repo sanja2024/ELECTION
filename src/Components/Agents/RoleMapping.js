@@ -3,19 +3,13 @@ import "./AddAgents.css";
 import BackButton from "../../Common/asset/images/voteimg/BackButton.svg";
 import Footer from "../Footer/Footer";
 import { useNavigate } from "react-router-dom";
+import Header from "../Header/Header";
 
 const RoleMapping = () => {
   const navigate = useNavigate();
   return (
     <div className="container p-0">
-      <div className="Header">
-        <div>
-          <img className="" onClick={() => navigate(-1)} src={BackButton}></img>
-        </div>
-        <div className="Header_name_div ">
-          <span className="Header_name">Role Mapping </span>
-        </div>
-      </div>
+      <Header/>
 
       <div className="agentadd_datas">
         <div className="addAgent_datapoints">
