@@ -27,7 +27,7 @@ import { useNavigate } from "react-router-dom";
 const MainDashboard = () => {
   const navigate = useNavigate();
   return (
-    <div className="container p-0">
+    <div className="container p-0 m-0">
       
       <div className="bgImgMD">
       <div className="d-flex justify-content-between align-items-top p-2" style={{width:"100%"}}>
@@ -74,8 +74,8 @@ const MainDashboard = () => {
         </div>
       </div>
 
-      <div className="welcomebackmd pt-5">
-        <div className="wb_logo">{/* <img src={logo}></img> */}</div>
+      <div className="welcomebackmd">
+        {/* <div className="wb_logo"><img src={logo}></img></div> */}
 
         <div className="row m-0 dashboard_data">
           <div>
