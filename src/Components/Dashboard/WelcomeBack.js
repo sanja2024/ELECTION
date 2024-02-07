@@ -81,7 +81,7 @@ const WelcomeBack = () => {
         <div className=" loginname_div">
           <span className=" p-2">
             <div className="Login_total d-flex">
-              <img className="ps-3 p-2" src={sms}></img>
+              <img className="ps-3 p-2 sms" src={sms}></img>
 
               <div className=" inputL" role="search">
                 <input
@@ -135,7 +135,7 @@ const WelcomeBack = () => {
           </div>
         </div>
 
-        <div className="d-flex justify-content-end pe-4  pb-5">
+        <div className="d-flex justify-content-end pe-4  pb-4">
           <span className="forgotpass">Forgot your password?</span>
         </div>
 
