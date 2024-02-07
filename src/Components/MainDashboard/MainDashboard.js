@@ -3,7 +3,7 @@ import "./MainDashboard.css";
 
 // IMAGE
 import agents_img from "../../Common/asset/images/voteimg/agents_img.svg";
-
+import logo from "../../Common/asset/images/voteimg/admin_icon.svg";
 // ICON
 import VoteSearch from "../../Common/asset/images/voteimg/VoteSearch.svg";
 import AddAgent from "../../Common/asset/images/voteimg/AddAgent.svg";
@@ -18,6 +18,7 @@ import NonVoters from "../../Common/asset/images/voteimg/NonVoters.svg";
 import BoothStatus from "../../Common/asset/images/voteimg/BoothStatus.svg";
 import Report from "../../Common/asset/images/voteimg/Report.svg";
 import PollStatus from "../../Common/asset/images/voteimg/PollStatus.svg";
+import menu from "../../Common/asset/images/voteimg/menu.svg";
 
 import Footer from "../Footer/Footer";
 import { AddAgents_ROUTE, RoleMapping_ROUTE } from "../../Common/Route/Routes";
@@ -27,17 +28,48 @@ const MainDashboard = () => {
   const navigate = useNavigate();
   return (
     <div className="container p-0">
+      
       <div className="bgImgMD">
-        <div className="blog_sctoll">
-          <div className="" style={{ overflowX: "scroll" }}>
-            <div className="md_ballot">
-              <p className="blogHeading">Right To Vote</p>
-              <p className="blog_content">
-                Cornerstone of our democracy, allowing citizens to have a say in
-                who governs them and how they are governed. The ability to vote
-                is not only....
-              </p>
-            </div>
+      <div className="d-flex justify-content-between align-items-top p-2" style={{width:"100%"}}>
+          <div className="mt-1 ">
+            <img className="logot" src={logo}></img>
+          </div>
+          <div className="mt-3 me-4">
+            <img  className="logot1" src={menu}></img>
+          </div>
+        </div>
+        <div className="blog_scroll">
+          <div className="blog">
+            <p className="blogHeading">Right To Vote</p>
+            <p className="blog_content">
+              Cornerstone of our democracy, allowing citizens to have a say in
+              who governs them and how they are governed. The ability to vote
+              is not only....
+            </p>
+          </div>
+          <div className="blog">
+            <p className="blogHeading">Right To Vote</p>
+            <p className="blog_content">
+              Cornerstone of our democracy, allowing citizens to have a say in
+              who governs them and how they are governed. The ability to vote
+              is not only....
+            </p>
+          </div>
+          <div className="blog">
+            <p className="blogHeading">Right To Vote</p>
+            <p className="blog_content">
+              Cornerstone of our democracy, allowing citizens to have a say in
+              who governs them and how they are governed. The ability to vote
+              is not only....
+            </p>
+          </div>
+          <div className="blog">
+            <p className="blogHeading">Right To Vote</p>
+            <p className="blog_content">
+              Cornerstone of our democracy, allowing citizens to have a say in
+              who governs them and how they are governed. The ability to vote
+              is not only....
+            </p>
           </div>
         </div>
       </div>
@@ -205,7 +237,7 @@ const MainDashboard = () => {
                     </span>
                   </div>
                   <div className="KeyfeatureBox">
-                    <img className="AddAgentIcons" src={Mapping}></img>
+                    <img className="AddAgentIcons" src={NonVoters}></img>
                     <span
                       className="KeyfeatureVal"
                       onClick={() => {

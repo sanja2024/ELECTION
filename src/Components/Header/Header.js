@@ -23,6 +23,11 @@ const Header = () => {
     "/SurveyForm": "Survey",
     "/SurveyQuestionaire": "Survey",
     "/CompleteSurvey": "Survey",
+    "/Add_Agents": "Add Agent",
+    "/SearchAgent": "Search Agent",
+    "/RoleMapping": "Role Mapping",
+    "/Assign": " Assign",
+    "/Assign2": " Assign",
   };
 
   return (
