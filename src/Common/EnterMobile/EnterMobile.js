@@ -12,12 +12,12 @@ import { toast } from "react-toastify";
 import { LOGIN_AUTH_URL } from "../Url/ServerConfig";
 import { createAgent } from "../redux/slices/geoSlice";
 import { createUser } from "../redux/slices/usersSlice";
-import { OTP_ROUTE } from "../Route/Routes";
+import { LOGIN_ROUTE, OTP_ROUTE } from "../Route/Routes";
 const EnterMobile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const initialValues = {
-        type:"mobile",
+        type: "mobile",
         mobile_no: "",
     };
     const [formValues, setFormValues] = useState(initialValues);
@@ -51,43 +51,61 @@ const EnterMobile = () => {
             const mobile_no = parseInt(values.mobile_no, 10);
             // navigate('');
             const ProductPayload = {
-            //   ...values,
-            type:"mobile",
-            mobile_no
+                //   ...values,
+                type: "mobile",
+                mobile_no
             };
             const userData = {
-              payload: ProductPayload,
-              endPoint: LOGIN_AUTH_URL,
+                payload: ProductPayload,
+                endPoint: LOGIN_AUTH_URL,
             };
             // dispatch(createUser(userData));
             dispatch(createUser(userData)).then((res) => {
-             
+
                 if (res?.payload?.message == "success") {
-                //   toast.success(res?.payload?.message, {
-                //     position: "top-right",
-        
-                //   });
-                console.log(res?.payload?.data?.list,'resres2323')
-                  setTimeout(() => {
-                    // navigate(OTP_ROUTE)
-                    // navigate(OTP_ROUTE, {
-                    //     state: {
-                    //       list: res?.payload?.data?.list,
-                    //       mobile_no:mobile_no
-                    //     },
+                    //   toast.success(res?.payload?.message, {
+                    //     position: "top-right",
+
                     //   });
-                    // dispatch(clearUserData())
-                  }, 100);
-        
+                    // console.log(res?.payload?.data?.list,'resres2323')
+                    if (res?.payload?.data?.message == 'Enter password') {
+                        toast.error('Already Registered', {
+                            position: "top-right",
+
+                        });
+                        setTimeout(() => {
+                            // navigate(OTP_ROUTE)
+                            navigate(LOGIN_ROUTE, {
+                                state: {
+                                    mobile_no: mobile_no
+                                },
+                            });
+
+                        }, 100);
+                     
+                    } else {
+                        setTimeout(() => {
+                            // navigate(OTP_ROUTE)
+                            navigate(OTP_ROUTE, {
+                                state: {
+                                    list: res?.payload?.data?.list,
+                                    mobile_no: mobile_no
+                                },
+                            });
+                            // dispatch(clearUserData())
+                        }, 100);
+                    }
+
+
                 } else {
-                    console.log(res.payload.message,'ssdsd')
-                //   toast.error(res?.payload?.message, {
-                //     position: "top-right",
-        
-                //   });
+                    console.log(res.payload.message, 'ssdsd')
+                    //   toast.error(res?.payload?.message, {
+                    //     position: "top-right",
+
+                    //   });
                 }
-        
-              })
+
+            })
         }
     });
 

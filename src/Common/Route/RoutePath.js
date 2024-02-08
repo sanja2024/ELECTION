@@ -6,52 +6,70 @@ import {
   Navigate,
 } from "react-router-dom";
 import { getProduct, PrivateRoute, PublicRoute } from "./ConfigRoute";
-import Login from "../../Login/Login";
+
 // import User from "../../Components/Master/User/User";
 import {
   DASHBOARD_ROUTE,
   LOGIN_ROUTE,
   LoginPage_ROUTE,
   LoginPage2_ROUTE,
+  MainDashboard_ROUTE,
+  EnterMobile_ROUTE,
+  OTP_ROUTE,
+  Page5_ROUTE,
 } from "./Routes";
 import Layout from "../../Common/Layout/Layout";
 // import LoginPage0 from "../../Components/First Page/LoginPage0";
-import LoginPage from "../../Login/Login";
+import Login from "../../Login/Login";
 import AddAgents from "../../Components/Agents/AddAgents";
+import Dashboard from "../../Components/Dashboard/Dashboard";
+import EnterMobile from "../EnterMobile/EnterMobile";
+import OTPverify from "../EnterMobile/OTPverify";
+import Page5 from "../../Components/Dashboard/Page5";
 
 function RoutePath() {
   const token = localStorage.getItem("CUSTOMTOKEN");
   const productsCode = localStorage.getItem("product_code");
-  const [ProCode, setProCode] = useState("MIS");
+  const [ProCode, setProCode] = useState("EL");
   return (
     <div>
       <Router>
         <Routes>
-          {/* <Route
+          <Route
             index
             path="/"
             element={
-              token && ProCode === "MIS" ? (
-                <Navigate to={'/'} />
+              token && ProCode === "EL" ? (
+                <Navigate to={MainDashboard_ROUTE} />
               ) : (
-                <Navigate to={LOGIN_ROUTE} />
+                <Navigate to={DASHBOARD_ROUTE} />
               )
             }
-          /> */}
-
-          {/* <Route
+          />
+          <Route path={DASHBOARD_ROUTE} element={<PublicRoute><Dashboard /></PublicRoute>} />
+          <Route
             path={LOGIN_ROUTE}
             element={
               <PublicRoute>
-                
-                <LoginPage0/>
-               
+                <Login />
               </PublicRoute>
             }
-          /> */}
+          />
 
-          <Route path="/*" index element={<Layout />} />
+          <Route
+            path="/*"
+            index
+            element={
+              <PrivateRoute>
+                <Layout />
+              </PrivateRoute>
+            }
+          />
 
+          <Route path={EnterMobile_ROUTE} element={<PublicRoute><EnterMobile /></PublicRoute>} />
+
+          <Route path={OTP_ROUTE} element={<PublicRoute><OTPverify /></PublicRoute>} />
+          <Route path={Page5_ROUTE} element={<PublicRoute><Page5 /></PublicRoute>} />
           {/* <Route path={"/Add_Agents"} element={<AddAgents />} /> */}
         </Routes>
       </Router>

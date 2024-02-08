@@ -62,8 +62,7 @@ export const COMMON_URL =
     ? ""
     : "";
 // "d2cportal/1.0.0/";
-export const LOGIN_API =
-  "";
+
 
 export const USER_GET_URL =
   BASE_API_URL + COMMON_URL + "/ADMIN/Master/User/SelectAll";
@@ -87,3 +86,5 @@ export const LOGIN_AUTH_URL = BASE_API_URL + "auth/login";
 export const VERIFY_AUTH_URL = BASE_API_URL + "auth/verify/otp";
 
 export const SAVEPASSWORD_AUTH_URL = BASE_API_URL + "auth/save/password";
+
+export const LOGIN_API =BASE_API_URL + "auth/login";

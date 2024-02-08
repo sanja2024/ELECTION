@@ -40,16 +40,16 @@ const WelcomeBack = () => {
     },
 
     validationSchema: Yup.object({
-      username: Yup.string()
-        .required("Username is required")
-        .equals(["admin"], "Invalid username"),
-      password: Yup.string()
-        .required("Password is required")
-        .equals(["admin"], "Invalid password"),
+      // username: Yup.string()
+      //   .required("Username is required")
+      //   .equals(["admin"], "Invalid username"),
+      // password: Yup.string()
+      //   .required("Password is required")
+      //   .equals(["admin"], "Invalid password"),
     }),
     onSubmit: (values) => {
       console.log(values, "checkedValue");
-      navigate(MainDashboard_ROUTE);
+      // navigate(MainDashboard_ROUTE);
       // const ProductPayload = {
       //   ...values,
       // };

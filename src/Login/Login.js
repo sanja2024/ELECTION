@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from "react";
+import sms from "../Common/asset/images/voteimg/sms.svg";
+import hand from "../Common/asset/images/voteimg/wb_hand.svg";
+import logo from "../Common/asset/images/voteimg/admin_icon.svg";
 import { LOGIN_API } from "../Common/Url/ServerConfig";
 import Crypt from "../Common/Crypt";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../Common/redux/slices/usersSlice";
+import "react-toastify/dist/ReactToastify.css";
+
 // import "./Login.css";
 // import "./login2.css";
 // import chola from "../Common/asset/images/Cholamandalam_logo.svg"
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Common/asset/css/index.css';
 import '../Common/asset/css/app.css';
 // import img1 from "../Common/asset/images/Cholamandalam_logo.svg"
 // import field_visit from "../Common/asset/images/field_visit.svg"
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import { MainDashboard_ROUTE } from "../Common/Route/Routes";
 const LoginPage = () => {
-
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -32,207 +43,272 @@ const LoginPage = () => {
     // credentialValue.password = Crypt.encryptText(credentialValue.password);
 
     const ProductPayload = {
-      username: username,
+      mobile_no: parseInt(username, 10),
       password: password,
-      // product: "All",
-    };
-
-    const userData = {
-      payload: ProductPayload,
-      endPoint: LOGIN_API,
-    };
-    dispatch(createUser(userData));
-    // const token = await loginUser({
-    //   username,
-    //   password
-    // });
-    // setToken(token);
+      type: 'password'
+     
   };
 
-  // const LoginSucess = () => {
-  //   const { status, message, token, data } = posts;
-  //   if (token) {
-  //     const decoded = jwtDecode(token);
+  const userData = {
+    payload: ProductPayload,
+    endPoint: LOGIN_API,
+  };
+  // dispatch(createUser(userData));
+  dispatch(createUser(userData)).then((res) => {
+    if (res?.payload?.message == 'success') {
 
-  //     console.log("decoded");
-  //     localStorage.setItem("CUSTOMTOKEN", token);
-  //     localStorage.setItem("Code", decoded.employee_code);
-
-  //     toast.success("Login Successful!", {
-  //       position: "top-right",
-  //       // theme: "dark",
-  //     });
-
-  //     setTimeout(() => {
-  //       window.location.replace("/");
-  //     }, 1000);
-  //   } else {
-  //     toast.error(message, {
-  //       position: toast.POSITION.TOP_RIGHT,
-  //     });
-  //   }
-
-  //   if (status === false) {
-  //     toast.error(message, {
-  //       position: toast.POSITION.TOP_RIGHT,
-  //     });
-  //   }
-  // };
-
-  const LoginSucess = (posts) => {
-    // const { status, message, Token, Employee_Details, Product, MENU, Role } =
-    //   posts;
-    // const { DATA } = posts;
-    if (posts.status == true) {
-      // console.log(posts?.DATA?.access_token,'posts.DATA?.access_token')
-      localStorage.setItem("CUSTOMTOKEN", posts.DATA?.access_token);
-      // const Token = localStorage.setItem("CUSTOMTOKEN", posts?.DATA?.access_token);
-      localStorage.setItem("emp_code", posts?.DATA?.emp_code)
-      // const decoded = jwtDecode(Token);
-
-      // console.log("decoded");
-      // localStorage.setItem("CUSTOMTOKEN", Token);
-      // localStorage.setItem("Code", decoded.employee_code);
-
+      localStorage.setItem("CUSTOMTOKEN", 'coSkKDoSS70Cu6RUsDRKnKQUlXvmzyvoSEBS3WpRd6/4gEtZ39STlENqKRjDRFKew69PE6RyGN');
+      localStorage.setItem("product_code", 'EL');
       toast.success("Login Successful!", {
         position: "top-right",
         // theme: "dark",
       });
-
       setTimeout(() => {
-        window.location.replace("/dashboard");
+        navigate('/')
+        // dispatch(clearUserData())
       }, 1000);
     } else {
-      // toast.error("message", {
-      //   position: toast.POSITION.TOP_RIGHT,
-      // });
+      toast.error(res?.payload?.message, {
+        position: "top-right",
+
+      });
     }
 
-    // const jsonArray = JSON?.stringify(Employee_Details[0]);
-    // localStorage.setItem("userData", jsonArray);
-    // Employee_Details?.map((item) => {
-    //   const { emp_name, emp_code, emp_title, ad_code, mail, mobile } = item;
-    //   return (
-    //     localStorage.setItem("ad_code", ad_code),
-    //     localStorage.setItem("emp_name", emp_name),
-    // localStorage.setItem("emp_code", DATA.emp_code),
-    //     localStorage.setItem("emp_title", emp_title),
-    //     localStorage.setItem("mail", mail),
-    // localStorage.setItem("mobile", DATA.)
+  })
+  // const token = await loginUser({
+  //   username,
+  //   password
+  // });
+  // setToken(token);
+};
 
-    //   );
+// const LoginSucess = () => {
+//   const { status, message, token, data } = posts;
+//   if (token) {
+//     const decoded = jwtDecode(token);
+
+//     console.log("decoded");
+//     localStorage.setItem("CUSTOMTOKEN", token);
+//     localStorage.setItem("Code", decoded.employee_code);
+
+//     toast.success("Login Successful!", {
+//       position: "top-right",
+//       // theme: "dark",
+//     });
+
+//     setTimeout(() => {
+//       window.location.replace("/");
+//     }, 1000);
+//   } else {
+//     toast.error(message, {
+//       position: toast.POSITION.TOP_RIGHT,
+//     });
+//   }
+
+//   if (status === false) {
+//     toast.error(message, {
+//       position: toast.POSITION.TOP_RIGHT,
+//     });
+//   }
+// };
+
+const LoginSucess = (posts) => {
+  // const { status, message, Token, Employee_Details, Product, MENU, Role } =
+  //   posts;
+  // const { DATA } = posts;
+  if (posts.message == 'success') {
+    // console.log(posts?.DATA?.access_token,'posts.DATA?.access_token')
+    //  localStorage.setItem("CUSTOMTOKEN", posts.DATA?.access_token);
+    localStorage.setItem("CUSTOMTOKEN", 'coSkKDoSS70Cu6RUsDRKnKQUlXvmzyvoSEBS3WpRd6/4gEtZ39STlENqKRjDRFKew69PE6RyGN');
+    localStorage.setItem("product_code", 'EL');
+    // const Token = localStorage.setItem("CUSTOMTOKEN", posts?.DATA?.access_token);
+    // localStorage.setItem("emp_code", posts?.DATA?.emp_code)
+    // const decoded = jwtDecode(Token);
+
+    // console.log("decoded");
+    // localStorage.setItem("CUSTOMTOKEN", Token);
+    // localStorage.setItem("Code", decoded.employee_code);
+
+    toast.success("Login Successful!", {
+      position: "top-right",
+      // theme: "dark",
+    });
+
+    setTimeout(() => {
+      window.location.replace(MainDashboard_ROUTE);
+    }, 1000);
+  } else {
+    // toast.error("message", {
+    //   position: toast.POSITION.TOP_RIGHT,
     // });
-    // console.log(Token, "TokenToken");
-    // if (Token) {
-    //   toast.success("Login Successful!", { position: "top-right", theme: "dark", })
+  }
 
-    //   // setTimeout(() => {
-    //     //   setChooseProduct(false);
-    //     // localStorage.setItem("ProductList", JSON.stringify(Product));
-    //     // localStorage.setItem("Ac", JSON.stringify(Role));
-    //     // localStorage.setItem("MENU", JSON.stringify(MENU));
-    //   // }, 1000);
+  // const jsonArray = JSON?.stringify(Employee_Details[0]);
+  // localStorage.setItem("userData", jsonArray);
+  // Employee_Details?.map((item) => {
+  //   const { emp_name, emp_code, emp_title, ad_code, mail, mobile } = item;
+  //   return (
+  //     localStorage.setItem("ad_code", ad_code),
+  //     localStorage.setItem("emp_name", emp_name),
+  // localStorage.setItem("emp_code", DATA.emp_code),
+  //     localStorage.setItem("emp_title", emp_title),
+  //     localStorage.setItem("mail", mail),
+  // localStorage.setItem("mobile", DATA.)
 
-    //   // setTimeout(() => {
-    //   //   window.location.reload();
-    //   // }, 1000);
+  //   );
+  // });
+  // console.log(Token, "TokenToken");
+  // if (Token) {
+  //   toast.success("Login Successful!", { position: "top-right", theme: "dark", })
 
-    // } else {
-    //   // toast.error("The login credentials are invalid....", {
-    //   //   position: toast.POSITION.TOP_RIGHT,
-    //   // });
-    // }
+  //   // setTimeout(() => {
+  //     //   setChooseProduct(false);
+  //     // localStorage.setItem("ProductList", JSON.stringify(Product));
+  //     // localStorage.setItem("Ac", JSON.stringify(Role));
+  //     // localStorage.setItem("MENU", JSON.stringify(MENU));
+  //   // }, 1000);
 
-    // if (posts.status === false) {
-    //   toast.error("The login credentials are invalid...", {
-    //     position: toast.POSITION.TOP_RIGHT,
-    //   });
-    // }else{
-    //   setTimeout(() => {
-    //     window.location.reload();
-    //   }, 1000);
-    // }
-  };
-  useEffect(() => {
-    if (posts !== "") {
-      LoginSucess(posts);
-    }
-  }, [posts]);
-  return (
-    <div className="">
+  //   // setTimeout(() => {
+  //   //   window.location.reload();
+  //   // }, 1000);
 
-      <div className="Bg2">
-        <div className="container-fluid p-0">
-          <div className="row">
-            <div className="col-md-12 ">
-              <div className="Top-Menu fixed-top d-flex justify-content-start align-items-center">
-                <img src={''} className="logo img-fluid" />
-                {/* <span className='Header_name ms-5'>Comments</span> */}
+  // } else {
+  //   // toast.error("The login credentials are invalid....", {
+  //   //   position: toast.POSITION.TOP_RIGHT,
+  //   // });
+  // }
 
-              </div>
-            </div>
-          </div>
-
-
-          <div className="row m-0 AppCont">
-            <div className="col-md-12 mb-5 pad-20">
-              <div className="Register-tab">
-                <p className="txt">
-                  Chola <br /> <span className="fw-semibold">Field Visit</span> Check-In
-                  <span className="fw-semibold"> Portal</span>
-
-                </p>
-                <img
-                  // src={field_visit}
-                  className="ico img-fluid Moneyimg"
-                />
-              </div>
-              <div className="enter-otp">
-                <p className="fw-medium mt-5  mb-">Login</p>
-                <label for="exampleFormControlInput1" class="form-label text-white">Username</label>
-                <div className="mobile-number mb-4">
-                  <div className="input-group">
-
-                    <input type="text" placeholder="Username" className="form-control" onChange={(e) =>
-                      setUserName(e.target.value)
-                    } />
-                    {/* <button className="btn btn-primary" type="button" id="">Continue</button> */}
-                  </div>
-                </div>
-                <label for="exampleFormControlInput1" class="form-label text-white">Password</label>
-                <div className="mobile-number mb-5">
-                  <div className="input-group">
-                    <input type="Password" placeholder="Password" className="form-control" onChange={(e) =>
-                      setPassword(e.target.value)
-                    } />
-                    {/* <button className="btn btn-primary" type="button" id="">Continue</button> */}
-                  </div>
-                </div>
-                <p className="fs-7 fw-light mt-2">
-                  {/* Don't worry, your information is safe with us By clicking “Continue” you agree
-            to
-            the terms & conditions */}
-                </p>
-              </div>
-              <div className="thebtn"> <button className="next2" onClick={handleSubmit}>Login</button></div>
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-
-
-
-
-
-
-
+  // if (posts.status === false) {
+  //   toast.error("The login credentials are invalid...", {
+  //     position: toast.POSITION.TOP_RIGHT,
+  //   });
+  // }else{
+  //   setTimeout(() => {
+  //     window.location.reload();
+  //   }, 1000);
+  // }
+};
+// useEffect(() => {
+//   if (posts !== "") {
+//     LoginSucess(posts);
+//   }
+// }, [posts]);
+return (
+  
+  <>
+  <ToastContainer />
+  <div className="container p-0">
+    <div className="bgImg2">
+      <div className="wb_ballot">
+        <span>Ballot Spot</span>
+        <span className="wb_ballot_text">
+          Vote as if your choices today will pave the path for a brighter and
+          stronger tomorrow.
+        </span>
       </div>
     </div>
-  );
+
+    <div className="welcomeback pt-5">
+      <div className="wb_logo">
+        <img src={logo}></img>
+      </div>
+      <div className="wb_head">
+        <span>Welcome Back!</span>
+        <span className="loginPlease">Login to your account</span>
+      </div>
+      <div className=" loginname_div">
+        <span className=" p-2">
+          <div className="Login_total d-flex">
+            <img className="ps-3 p-2 sms" src={sms}></img>
+
+            <div className=" inputL" role="search">
+              <input
+                className="form-control "
+                type="number"
+                name="username"
+                placeholder="Enter your Mobile Number"
+                aria-label="Search"
+                // onChange={handleChange}
+                // value={values?.username}
+                onChange={(e) =>
+                  setUserName(e.target.value)
+                }
+
+              // value={searchQuery}
+              // onChange={handleSearchChange}
+              />
+            </div>
+          </div>
+          {/* {errors.username ? (
+            <div style={{ marginLeft: "20px" }} className="text-danger">
+              {errors.username}
+            </div>
+          ) : null} */}
+        </span>
+      </div>
+      <div className="">
+        <span>
+          <div className="Login_total d-flex">
+            <img className="ps-3 p-2" src={sms}></img>
+
+            <div className=" inputL" role="search">
+              <input
+                className="form-control "
+                type="password"
+                // name="password"
+                placeholder="Enter your password"
+                aria-label="Search"
+                // type={checked ? "password" : "text"}
+                name="password"
+                // placeholder=" "
+                onChange={(e) =>
+                  setPassword(e.target.value)
+                }
+                autoComplete="new-password"
+              // onChange={handleChange}
+              // value={values?.password}
+              // value={searchQuery}
+              // onChange={handleSearchChange}
+              />
+            </div>
+          </div>
+          {/* {errors.password ? (
+            <div style={{ marginLeft: "20px" }} className="text-danger">
+              {errors.password}
+            </div>
+          ) : null} */}
+        </span>
+        <div className="hand">
+          <img src={hand}></img>
+        </div>
+      </div>
+
+      <div className="d-flex justify-content-end pe-4  pb-4">
+        <span className="forgotpass">Forgot your password?</span>
+      </div>
+
+      <div className="wblogin_div">
+        <button
+          className="wb_login"
+          // onClick={() =>
+          //   navigate(MainDashboard_ROUTE, {
+          //     state: "",
+          //   })
+          // }
+
+          onClick={handleSubmit}
+        >
+          Login
+        </button>
+        <div className="d-flex justify-content-center">
+          <span className="noaccount">Don’t have an account?</span>
+          <span className=" ps-1 reg_now" onClick={() => { navigate('/EnterMobile'); }}>Register Now</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </>
+);
 };
 
 export default LoginPage;

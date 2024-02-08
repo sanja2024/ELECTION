@@ -8,6 +8,7 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import { DASHBOARD_ROUTE, MainDashboard_ROUTE } from "./Routes";
 
 export function authHeader() {
   const token = localStorage.getItem("CUSTOMTOKEN");
@@ -33,22 +34,50 @@ export function employeeCode() {
   const name = localStorage.getItem("emp_code");
   return name;
 }
+// export function PublicRoute({ children }) {
+//   const token = localStorage.getItem("custom_token");
+//   // const location = useLocation();
+//   const employeeTitle = localStorage.getItem("emp_title");
+//   const product = employeeCode();
+//   return !product ? children : <Navigate to={'/'} />;
+//   return !token ? children : <Navigate to={'/homepage'} />;
+// }
+
+// export function PrivateRoute({ children }) {
+//   const token = localStorage.getItem("custom_token");
+//   const employeeTitle = localStorage.getItem("emp_title");
+//   const product = employeeCode();
+
+//   return product ? children : <Navigate to={MainDashboard_ROUTE} />;
+//   return token ? children : <Navigate to={'/login'} />;
+// }
+
+
+
+// // const PrivateRoute = ({ auth: { isAuthenticated }, children }) => {
+// //   return isAuthenticated ? children : <Navigate to="/login" />;
+// // };
+
+// const PrivateWrapper = ({ auth: { isAuthenticated } }) => {
+//   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+// };
+
 export function PublicRoute({ children }) {
-  const token = localStorage.getItem("custom_token");
+  const token = localStorage.getItem("CUSTOMTOKEN");
   // const location = useLocation();
-  const employeeTitle = localStorage.getItem("emp_title");
-  const product = employeeCode();
-  return !product ? children : <Navigate to={'/'} />;
-  return !token ? children : <Navigate to={'/homepage'} />;
+  // const employeeTitle = localStorage.getItem("emp_title");
+  // const product = employeeCode();
+  return !token ? children : <Navigate to={MainDashboard_ROUTE} />;
+  // return !token ? children : <Navigate to={'/homepage'} />;
 }
 
 export function PrivateRoute({ children }) {
-  const token = localStorage.getItem("custom_token");
-  const employeeTitle = localStorage.getItem("emp_title");
-  const product = employeeCode();
+  const token = localStorage.getItem("CUSTOMTOKEN");
+  // const employeeTitle = localStorage.getItem("emp_title");
+  // const product = employeeCode();
 
-  return product ? children : <Navigate to={'/Add_Agents'} />;
-  return token ? children : <Navigate to={'/login'} />;
+  return token ? children : <Navigate to={DASHBOARD_ROUTE} />;
+  // return token ? children : <Navigate to={'/login'} />;
 }
 
 

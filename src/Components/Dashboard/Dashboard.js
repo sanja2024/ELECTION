@@ -20,6 +20,7 @@ import {
 // import chola from "../../Common/asset/images/Cholamandalam_logo.svg";
 import "../../Common/asset/css/index.css";
 import "../../Common/asset/css/app.css";
+import { EnterMobile_ROUTE, LOGIN_ROUTE } from "../../Common/Route/Routes";
 // MOBILE_GET_URL
 const Dashboard = () => {
   const [location, setLocation] = useState("");
@@ -273,13 +274,13 @@ const Dashboard = () => {
             <span className="slow">Your Voice, Your Future</span>
           </div>
           <div className="sign_btn">
-<button className="signbtn ">Sign in -> </button>
-<button className="signbtn2 ">Guest Signin -> </button>
-<span className="register">Register For an account</span>
+            <button className="signbtn " onClick={() => { navigate(LOGIN_ROUTE); }}>Sign in - </button>
+            <button className="signbtn2 " onClick={() => { navigate(LOGIN_ROUTE); }}>Guest Signin - </button>
+            <span className="register" onClick={() => { navigate(EnterMobile_ROUTE); }}>Register For an account</span>
           </div>
         </div>
       </div>x
-      
+
     </>
   );
 };

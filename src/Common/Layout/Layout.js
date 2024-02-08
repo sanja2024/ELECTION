@@ -43,13 +43,13 @@ const Layout = () => {
     <>
       {/* <Header /> */}
       <Routes>
-        {/* Dashboard Path Start */}
-        <Route path={DASHBOARD_ROUTE} element={<Dashboard />} />
+        {/* Dashboard Path Start /main*/}
+        {/* <Route path={DASHBOARD_ROUTE} element={<Dashboard />} /> */}
         <Route path={WelcomeBack_ROUTE} element={<WelcomeBack />} />
-        <Route path={EnterMobile_ROUTE} element={<EnterMobile />} />
+        {/* <Route path={EnterMobile_ROUTE} element={<EnterMobile />} /> */}
         
-        <Route path={OTP_ROUTE} element={<OTPverify />} />
-        <Route path={Page5_ROUTE} element={<Page5 />} />
+        {/* <Route path={OTP_ROUTE} element={<OTPverify />} /> */}
+
         <Route path={MainDashboard_ROUTE} element={<MainDashboard />} />
         <Route path={AddAgents_ROUTE} element={<AddAgents />} />
         <Route path={RoleMapping_ROUTE} element={<RoleMapping />} />
