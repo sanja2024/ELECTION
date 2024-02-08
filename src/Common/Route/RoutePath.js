@@ -17,15 +17,17 @@ import {
   EnterMobile_ROUTE,
   OTP_ROUTE,
   Page5_ROUTE,
+  Forgot_ROUTE,
 } from "./Routes";
 import Layout from "../../Common/Layout/Layout";
 // import LoginPage0 from "../../Components/First Page/LoginPage0";
 import Login from "../../Login/Login";
 import AddAgents from "../../Components/Agents/AddAgents";
 import Dashboard from "../../Components/Dashboard/Dashboard";
-import EnterMobile from "../EnterMobile/EnterMobile";
+import EnterMobile from "../../Components/Dashboard/EnterMobile";
 import OTPverify from "../EnterMobile/OTPverify";
 import Page5 from "../../Components/Dashboard/Page5";
+import Forgot from "../../Components/Dashboard/Forgot";
 
 function RoutePath() {
   const token = localStorage.getItem("CUSTOMTOKEN");
@@ -70,6 +72,8 @@ function RoutePath() {
 
           <Route path={OTP_ROUTE} element={<PublicRoute><OTPverify /></PublicRoute>} />
           <Route path={Page5_ROUTE} element={<PublicRoute><Page5 /></PublicRoute>} />
+          <Route path={Forgot_ROUTE} element={<PublicRoute><Forgot /></PublicRoute>} />
+          
           {/* <Route path={"/Add_Agents"} element={<AddAgents />} /> */}
         </Routes>
       </Router>

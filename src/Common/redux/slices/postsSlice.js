@@ -26,7 +26,7 @@ export const fetchPosts = createAsyncThunk(
         }
 
         if (user) {
-          return user.DATA;
+          return user;
         }
 
         if (response.data.error === "authError") {

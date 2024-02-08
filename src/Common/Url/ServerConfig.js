@@ -88,3 +88,7 @@ export const VERIFY_AUTH_URL = BASE_API_URL + "auth/verify/otp";
 export const SAVEPASSWORD_AUTH_URL = BASE_API_URL + "auth/save/password";
 
 export const LOGIN_API =BASE_API_URL + "auth/login";
+
+export const BOOTH_API = BASE_API_URL + "booth/search/level";
+
+export const ROLE_SEARCH_API = BASE_API_URL + "role/search";

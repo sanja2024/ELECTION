@@ -23,7 +23,7 @@ import '../Common/asset/css/app.css';
 // import img1 from "../Common/asset/images/Cholamandalam_logo.svg"
 // import field_visit from "../Common/asset/images/field_visit.svg"
 import { ToastContainer, toast } from "react-toastify";
-import { MainDashboard_ROUTE } from "../Common/Route/Routes";
+import { Forgot_ROUTE, MainDashboard_ROUTE } from "../Common/Route/Routes";
 const LoginPage = () => {
   const navigate = useNavigate();
 
@@ -284,7 +284,7 @@ return (
       </div>
 
       <div className="d-flex justify-content-end pe-4  pb-4">
-        <span className="forgotpass">Forgot your password?</span>
+        <span className="forgotpass" onClick={() => { navigate(Forgot_ROUTE); }}>Forgot your password?</span>
       </div>
 
       <div className="wblogin_div">
