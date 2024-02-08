@@ -35,7 +35,7 @@ export const LoginPage7_ROUTE = "/LoginPage7";
 
 export const WelcomeBack_ROUTE = "/";
 export const EnterMobile_ROUTE = "/EnterMobile";
-export const Page4_ROUTE = "/Page4";
+export const OTP_ROUTE = "/OTPverify";
 export const Page5_ROUTE = "/Page5";
 
 export const MainDashboard_ROUTE = "/MainDashboard";

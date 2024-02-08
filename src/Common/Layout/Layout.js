@@ -4,7 +4,7 @@ import {
   DASHBOARD_ROUTE,
   WelcomeBack_ROUTE,
   EnterMobile_ROUTE,
-  Page4_ROUTE,
+  OTP_ROUTE,
   Page5_ROUTE,
   MainDashboard_ROUTE,
   AddAgents_ROUTE,
@@ -19,7 +19,8 @@ import {
 import Dashboard from "../../Components/Dashboard/Dashboard";
 
 import WelcomeBack from "../../Components/Dashboard/WelcomeBack";
-import EnterMobile from "../../Components/Dashboard/EnterMobile";
+// import EnterMobile from "../../Components/Dashboard/EnterMobile";
+import EnterMobile from "../../Common/EnterMobile/EnterMobile";
 import Page4 from "../../Components/Dashboard/Page4";
 import Page5 from "../../Components/Dashboard/Page5";
 import MainDashboard from "../../Components/MainDashboard/MainDashboard";
@@ -35,6 +36,7 @@ import CompleteSurvey from "../../Components/Survey/CompleteSurvey";
 
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+import OTPverify from "../EnterMobile/OTPverify";
 
 const Layout = () => {
   return (
@@ -45,6 +47,8 @@ const Layout = () => {
         <Route path={DASHBOARD_ROUTE} element={<Dashboard />} />
         <Route path={WelcomeBack_ROUTE} element={<WelcomeBack />} />
         <Route path={EnterMobile_ROUTE} element={<EnterMobile />} />
+        
+        <Route path={OTP_ROUTE} element={<OTPverify />} />
         <Route path={Page5_ROUTE} element={<Page5 />} />
         <Route path={MainDashboard_ROUTE} element={<MainDashboard />} />
         <Route path={AddAgents_ROUTE} element={<AddAgents />} />
@@ -79,7 +83,7 @@ const Layout = () => {
 
         {/* <Route path={LoginPage2_ROUTE} element={<LoginPage2 />} />
         <Route path={LoginPage3_ROUTE} element={<LoginPage3 />} />
-        <Route path={LoginPage4_ROUTE} element={<LoginPage4 />} />
+        <Route path={LoginOTP_ROUTE} element={<LoginPage4 />} />
         <Route path={LoginPage5_ROUTE} element={<LoginPage5 />} />
         <Route path={LoginPage6_ROUTE} element={<LoginPage6 />} />
         <Route path={LoginPage7_ROUTE} element={<LoginPage7 />} />

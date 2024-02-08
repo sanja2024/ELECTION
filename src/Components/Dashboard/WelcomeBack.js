@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import sms from "../../Common/asset/images/voteimg/sms.svg";
 import hand from "../../Common/asset/images/voteimg/wb_hand.svg";
 import logo from "../../Common/asset/images/voteimg/admin_icon.svg";
+import { useDispatch, useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,6 +13,7 @@ import * as Yup from "yup";
 import { MainDashboard_ROUTE } from "../../Common/Route/Routes";
 import { useFormik } from "formik";
 const WelcomeBack = () => {
+  const dispatch = useDispatch();
   const initialValues = {
     username: "",
     password: "",
@@ -93,8 +95,8 @@ const WelcomeBack = () => {
                   onChange={handleChange}
                   value={values?.username}
 
-                  // value={searchQuery}
-                  // onChange={handleSearchChange}
+                // value={searchQuery}
+                // onChange={handleSearchChange}
                 />
               </div>
             </div>
@@ -119,8 +121,8 @@ const WelcomeBack = () => {
                   aria-label="Search"
                   onChange={handleChange}
                   value={values?.password}
-                  // value={searchQuery}
-                  // onChange={handleSearchChange}
+                // value={searchQuery}
+                // onChange={handleSearchChange}
                 />
               </div>
             </div>
@@ -154,7 +156,7 @@ const WelcomeBack = () => {
           </button>
           <div className="d-flex justify-content-center">
             <span className="noaccount">Don’t have an account?</span>
-            <span className=" ps-1 reg_now">Register Now</span>
+            <span className=" ps-1 reg_now" onClick={() => { navigate('/EnterMobile');}}>Register Now</span>
           </div>
         </div>
       </div>

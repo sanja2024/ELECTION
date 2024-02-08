@@ -14,8 +14,8 @@ export const BASE_API_URL =
     ? ""
     : ENV_FILE === "DEVELOPMENT_DIRECT"
     ? ""
-    : ENV_FILE === "PRODUCTION_DIRECT"
-    ? ""
+    : ENV_FILE === "IP_URL"
+    ? "http://votertrends.tech:3001/"
     : "";
 
 //based on condition Token Will  change
@@ -32,7 +32,7 @@ export const TOKEN =
     ? ""
     : ENV_FILE === "DEVELOPMENT_DIRECT"
     ? ""
-    : ENV_FILE === "PRODUCTION_DIRECT"
+    : ENV_FILE === "IP_URL"
     ? ""
     : "";
 
@@ -58,7 +58,7 @@ export const COMMON_URL =
     ? "HRAPI/1.0.0/api/v1/"
     : ENV_FILE === "DEVELOPMENT_DIRECT"
     ? ""
-    : ENV_FILE === "PRODUCTION_DIRECT"
+    : ENV_FILE === "IP_URL"
     ? ""
     : "";
 // "d2cportal/1.0.0/";
@@ -81,3 +81,9 @@ const BASE_EL_API_URL = "";
 export const ADD_AGENT_URL = BASE_EL_API_URL + "agent/user/create";
 
 export const ADD_AGENT_SEARCH_URL = BASE_EL_API_URL + "agent/user/search";
+
+export const LOGIN_AUTH_URL = BASE_API_URL + "auth/login";
+
+export const VERIFY_AUTH_URL = BASE_API_URL + "auth/verify/otp";
+
+export const SAVEPASSWORD_AUTH_URL = BASE_API_URL + "auth/save/password";
