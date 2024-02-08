@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./AddAgents.css";
-
+import { ToastContainer, toast } from "react-toastify";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import { useFormik } from "formik";
@@ -10,8 +10,11 @@ import {
 } from "../../Common/Url/ServerConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { agentSearch, createAgent } from "../../Common/redux/slices/agentSlice";
+import { useNavigate } from "react-router-dom";
+
 
 const AddAgents = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.agent.agentCreateData);
   const searchData = useSelector((state) => state.agent.agentSearchData);
@@ -48,13 +51,11 @@ const AddAgents = () => {
 
     // validationSchema,
 
-    onChange: (values) => {
-      console.log(values, "Sdsdsvalues");
-    },
-    onSubmit: (values) => {
-      
 
-    
+    onSubmit: (values) => {
+
+
+
 
       // const UserPayload = {
       //   ...values,
@@ -70,14 +71,25 @@ const AddAgents = () => {
 
       const basePayload = {
         ...values,
+        mobile_no: parseInt(values?.mobile_no),
+        alternate_no: parseInt(values?.alternate_no)
       };
 
       const userData = {
-        payload:basePayload,
+        payload: basePayload,
         endPoint: ADD_AGENT_URL,
       };
-      console.log("Afaedasd",userData);
-      dispatch(createAgent(userData));
+
+      dispatch(createAgent(userData)).then((res) => {
+        if (res?.payload?.message == "success") {
+
+          toast.success(res?.payload?.data?.message, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
+          navigate("/MainDashboard")
+        }
+
+      })
     },
   });
 
