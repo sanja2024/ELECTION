@@ -52,35 +52,31 @@ const AddAgents = () => {
       console.log(values, "Sdsdsvalues");
     },
     onSubmit: (values) => {
-      // console.log(values, "checkedValue");
+      
 
-      const ProductPayload = {
-        ...values,
-      };
+    
 
-      const UserPayload = {
-        ...values,
-        voter_id: searchData?.data?.list?.[0]?.voter_id,
-        name: searchData?.data?.list?.[0]?.name,
-        father_name: searchData?.data?.list?.[0]?.father_name,
-        gender: searchData?.data?.list?.[0]?.gender,
-        address: searchData?.data?.list?.[0]?.address,
-        mobile_no: searchData?.data?.list?.[0]?.mobile_no,
-        alternate_no: searchData?.data?.list?.[0]?.alternate_no,
-        mail_id: searchData?.data?.list?.[0]?.mail_id,
-      };
+      // const UserPayload = {
+      //   ...values,
+      //   voter_id: searchData?.data?.list?.[0]?.voter_id,
+      //   name: searchData?.data?.list?.[0]?.name,
+      //   father_name: searchData?.data?.list?.[0]?.father_name,
+      //   gender: searchData?.data?.list?.[0]?.gender,
+      //   address: searchData?.data?.list?.[0]?.address,
+      //   mobile_no: searchData?.data?.list?.[0]?.mobile_no,
+      //   alternate_no: searchData?.data?.list?.[0]?.alternate_no,
+      //   mail_id: searchData?.data?.list?.[0]?.mail_id,
+      // };
 
       const basePayload = {
         ...values,
       };
 
       const userData = {
-        payload:
-          Object.keys(searchData?.data?.list)?.length === 0
-            ? basePayload
-            : UserPayload,
+        payload:basePayload,
         endPoint: ADD_AGENT_URL,
       };
+      console.log("Afaedasd",userData);
       dispatch(createAgent(userData));
     },
   });
