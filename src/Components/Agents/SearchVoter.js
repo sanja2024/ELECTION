@@ -8,7 +8,7 @@ import { ADD_AGENT_SEARCH_URL } from "../../Common/Url/ServerConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { createRegion } from "../../Common/redux/slices/geoSlice";
 import { agentSearch } from "../../Common/redux/slices/agentSlice";
-const SearchAgent = () => {
+const SearchVoter = () => {
   const dispatch = useDispatch();
   const [searchList, setSearchList] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,7 +24,7 @@ const SearchAgent = () => {
     // setSearchList(true);
     const userData = {
       payload: {
-        mobile_no: parseInt(searchQuery, 10),
+        voterId: parseInt(searchQuery, 10),
       },
       endPoint: ADD_AGENT_SEARCH_URL,
     };
@@ -219,4 +219,4 @@ const SearchAgent = () => {
   );
 };
 
-export default SearchAgent;
+export default SearchVoter;

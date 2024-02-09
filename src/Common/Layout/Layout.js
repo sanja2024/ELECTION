@@ -16,6 +16,7 @@ import {
   Assign_ROUTE,
   Assign2_ROUTE,
   BoothStatus_ROUTE,
+  VoterSearch_ROUTE,
         
 } from "../Route/Routes";
 import Dashboard from "../../Components/Dashboard/Dashboard";
@@ -40,6 +41,7 @@ import BoothStatus from "../../Components/BoothStatus/BoothStatus";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import OTPverify from "../EnterMobile/OTPverify";
+import SearchVoter from "../../Components/Agents/SearchVoter";
 
 const Layout = () => {
   return (
@@ -63,6 +65,9 @@ const Layout = () => {
         <Route path={Assign_ROUTE} element={<Assign />} />
         <Route path={Assign2_ROUTE} element={<Assign2 />} />
         <Route path={BoothStatus_ROUTE} element={<BoothStatus />} />
+
+        <Route path={VoterSearch_ROUTE} element={<SearchVoter />} />
+        
 
         {/* <Route path={'/CongratsPage'} element={<CongratsPage />} /> */}
 
