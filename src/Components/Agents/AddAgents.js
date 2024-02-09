@@ -96,8 +96,12 @@ const AddAgents = () => {
   useEffect(() => {
     // Check if the phone number has 10 digits before making the API call
     if (phoneNumber.length === 10) {
+
+      console.log("dsads",)
       const userData = {
-        payload: phoneNumber,
+        payload: {
+          name: phoneNumber,
+        },
         endPoint: ADD_AGENT_SEARCH_URL,
       };
       dispatch(agentSearch(userData));

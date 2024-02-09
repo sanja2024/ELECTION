@@ -10,9 +10,11 @@
   /* border: 1px solid red; */
   height: 78vh;
 }
+
 .survey_img {
   position: relative;
 }
+
 .card-survey {
   position: absolute;
   left: 5%;
@@ -25,6 +27,7 @@
   letter-spacing: 0.03em;
   text-align: left;
 }
+
 .surveybtn {
   color: rgba(2, 44, 88, 1);
   font-family: Lato;
@@ -34,6 +37,7 @@
   letter-spacing: 0em;
   text-align: center;
 }
+
 .card-footer {
   border: none;
   padding: 12px;
@@ -46,11 +50,12 @@
   margin: auto;
   margin-top: 24px;
   /* border: 1px solid red; */
-  height: 78vh;
+  /* height: 78vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
 .QuestoinHead {
   color: var(--text-blue-clr);
   font-family: Lato;
@@ -60,6 +65,7 @@
   letter-spacing: 0.03em;
   text-align: left;
 }
+
 .QuestoinnaireQues {
   color: var(--text-blue-grey);
   font-family: Lato;
@@ -80,26 +86,32 @@
   align-items: center;
   margin-bottom: 12px;
 }
-.survey_btns{
-    margin: 0px !important;
+
+.survey_btns {
+  margin: 0px !important;
 }
+
 .form-check .form-check-input {
   float: left;
   margin-left: 0px !important;
 }
+
 .form-check {
-    padding-left: 0px !important;
+  padding-left: 0px !important;
 }
+
 .survey_btns input:checked {
   background-color: var(--text-blue-clr) !important;
   /* color: deeppink; */
   border-color: var(--text-blue-clr) !important;
 }
-.form-check  input:checked  .survey_btns{
+
+.form-check input:checked .survey_btns {
   background-color: var(--text-blue-clr) !important;
   /* color: deeppink; */
   border-color: var(--text-blue-clr) !important;
 }
-.form-check-input:checked + .survey_btn{
-    border: 1px solid var(--text-blue-clr) !important;
+
+.form-check-input:checked+.survey_btn {
+  border: 1px solid var(--text-blue-clr) !important;
 }

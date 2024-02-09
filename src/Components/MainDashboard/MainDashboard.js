@@ -21,21 +21,21 @@ import PollStatus from "../../Common/asset/images/voteimg/PollStatus.svg";
 import menu from "../../Common/asset/images/voteimg/menu.svg";
 
 import Footer from "../Footer/Footer";
-import { AddAgents_ROUTE, RoleMapping_ROUTE } from "../../Common/Route/Routes";
+import { AddAgents_ROUTE, RoleMapping_ROUTE, Survey_ROUTE } from "../../Common/Route/Routes";
 import { useNavigate } from "react-router-dom";
 
 const MainDashboard = () => {
   const navigate = useNavigate();
   return (
     <div className="container p-0 m-0">
-      
+
       <div className="bgImgMD">
-      <div className="d-flex justify-content-between align-items-top p-2" style={{width:"100%"}}>
+        <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%" }}>
           <div className="mt-1 ">
             <img className="logot" src={logo}></img>
           </div>
           <div className="mt-3 me-4">
-            <img  className="logot1" src={menu}></img>
+            <img className="logot1" src={menu}></img>
           </div>
         </div>
         <div className="blog_scroll">
@@ -216,7 +216,9 @@ const MainDashboard = () => {
                   </div>
                   <div className="KeyfeatureBox">
                     <img className="AddAgentIcons" src={Survey}></img>
-                    <span className="KeyfeatureVal">Survey</span>
+                    <span onClick={() => {
+                      navigate(Survey_ROUTE);
+                    }} className="KeyfeatureVal">Survey</span>
                   </div>
                 </div>
               </div>

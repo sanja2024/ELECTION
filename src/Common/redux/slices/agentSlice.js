@@ -66,9 +66,7 @@ export const agentSearch = createAsyncThunk(
 
       const objString =
         "?" +
-        new URLSearchParams({
-          name: end?.payload,
-        }).toString();
+        new URLSearchParams(end?.payload).toString();
       getApiUrl += objString;
 
       const response = await axios.get(getApiUrl);
