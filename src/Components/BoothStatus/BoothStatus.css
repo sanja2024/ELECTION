@@ -9,7 +9,13 @@
     position: relative;
     height: 90%;
     overflow-y: scroll;
+    margin: 10px 0px;
 }
+.boothdatanew::-webkit-scrollbar {
+    height: 1px;             
+    width: 1px;                
+    color: transparent;
+  }
 .boothscroll{
     position: relative;
   
