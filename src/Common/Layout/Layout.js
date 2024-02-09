@@ -17,6 +17,7 @@ import {
   Assign2_ROUTE,
   BoothStatus_ROUTE,
   VoterSearch_ROUTE,
+  ComingSoon_ROUTE
         
 } from "../Route/Routes";
 import Dashboard from "../../Components/Dashboard/Dashboard";
@@ -36,6 +37,7 @@ import Survey from "../../Components/Survey/Survey";
 import SurveyForm from "../../Components/Survey/SurveyForm";
 import CompleteSurvey from "../../Components/Survey/CompleteSurvey";
 import BoothStatus from "../../Components/BoothStatus/BoothStatus";
+import ComingSoon from "../../Components/Survey/ComingSoon";
 
 
 import Header from "../../Components/Header/Header";
@@ -67,6 +69,7 @@ const Layout = () => {
         <Route path={BoothStatus_ROUTE} element={<BoothStatus />} />
 
         <Route path={VoterSearch_ROUTE} element={<SearchVoter />} />
+        <Route path={ComingSoon_ROUTE} element={<ComingSoon />} />
         
 
         {/* <Route path={'/CongratsPage'} element={<CongratsPage />} /> */}
