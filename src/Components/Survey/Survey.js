@@ -146,7 +146,7 @@ const Survey = () => {
       ) : (
         <div className="survey_body">
           {topics?.data?.list?.map((topic) => (
-            <div key={topic.topicCode} className="card" onClick={() => handleTopicSelect(topic.topicCode)}>
+            <div key={topic.topicCode} className="survey_card card" onClick={() => handleTopicSelect(topic.topicCode)}>
               <div className="survey_img">
                 <h5 className="card-survey">{topic.topicCode}</h5>
                 <img src={Survey_img} className="card-img-top" alt="..." />

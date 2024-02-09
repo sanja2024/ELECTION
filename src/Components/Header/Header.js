@@ -20,6 +20,7 @@ const Header = () => {
     "/homepage": "Dashboard",
     "/dashboard": "Dashboard",
     "/Survey": "Survey",
+    "/survey": "Survey",
     "/SurveyForm": "Survey",
     "/SurveyQuestionaire": "Survey",
     "/CompleteSurvey": "Survey",
