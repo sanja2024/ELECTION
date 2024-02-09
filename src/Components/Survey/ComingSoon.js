@@ -36,7 +36,7 @@ const ComingSoon = () => {
         {/* <Survey finalResp={true} /> */}
       </div>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

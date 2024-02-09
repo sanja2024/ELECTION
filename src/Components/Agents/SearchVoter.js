@@ -10,7 +10,9 @@ import { createRegion } from "../../Common/redux/slices/geoSlice";
 import { agentSearch } from "../../Common/redux/slices/agentSlice";
 import { createUser } from "../../Common/redux/slices/usersSlice";
 import { useNavigate } from "react-router-dom";
+import { AgentAccessCode } from "../../Common/Route/ConfigRoute";
 const SearchVoter = () => {
+  const AccessCode = AgentAccessCode()
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchList, setSearchList] = useState(false);
@@ -153,7 +155,7 @@ const SearchVoter = () => {
                 </div>
                 <div className="">
                   <div>
-                    <div className="d-flex justify-content-evenly">
+                 { AccessCode !="GUEST" ?(<div className="d-flex justify-content-evenly">
                       <div>
                         <button
                           onClick={() => { navigate("/Survey") }}
@@ -183,7 +185,7 @@ const SearchVoter = () => {
                           Visit Status
                         </button>
                       </div>
-                    </div>
+                    </div>):<></>}
                     <div className="collapse coll_width" id={`collapseExample${index}`}>
                       <div className="card card-body">
                         <div className="d-flex justify-content-between align-items-center">

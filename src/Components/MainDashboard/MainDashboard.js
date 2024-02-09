@@ -24,9 +24,11 @@ import Footer from "../Footer/Footer";
 import { AddAgents_ROUTE, Assign2_ROUTE, ComingSoon_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
 import { useNavigate } from "react-router-dom";
 import SearchVoter from "../Agents/SearchVoter";
+import { AgentAccessCode } from "../../Common/Route/ConfigRoute";
 
 const MainDashboard = () => {
   const navigate = useNavigate();
+  const AccessCode = AgentAccessCode()
   return (
     <div className="">
 
@@ -91,8 +93,8 @@ const MainDashboard = () => {
 
         <div className="row m-0 dashboard_data">
           <div>
-            <span className="">Agents</span>
-            <div className="agents_detail_scroll">
+          {AccessCode != "GUEST" ? ( <span className="">Agents</span>):(<></>)}
+            {AccessCode != "GUEST" ? (<div className="agents_detail_scroll">
               <div className="agents_detail">
                 <div className="card p-0">
                   <div className="card-header p-0">
@@ -164,40 +166,39 @@ const MainDashboard = () => {
                 </div>
               </div>
             </div>
-
-            <div className="mt-3">
+            ) : (<></>)}
+            {AccessCode == "GUEST" ? (<div className="mt-3">
               <span>Key Features</span>
               <div className="KeyFeature_detail">
                 <div className="KeyfeatureBoxTop">
-                  <div className="KeyfeatureBox " onClick={() => {navigate(SearchVoter);}}>
+                  <div className="KeyfeatureBox " onClick={() => { navigate(VoterSearch_ROUTE); }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal">Vote Search</span>
                   </div>
-                  <div className="KeyfeatureBox"  onClick={() => {navigate(ComingSoon_ROUTE);}}>
+                  <div className="KeyfeatureBox" onClick={() => { navigate(ComingSoon_ROUTE); }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
-                    <span className="KeyfeatureVal"  
-                   >Constituencies</span>
+                    <span className="KeyfeatureVal"
+                    >Constituencies</span>
                   </div>
-                  <div className="KeyfeatureBox"  onClick={() => {navigate(ComingSoon_ROUTE);}}>
+                  <div className="KeyfeatureBox" onClick={() => { navigate(ComingSoon_ROUTE); }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal"
                     >Candidate info</span>
                   </div>
-                  <div className="KeyfeatureBox"  onClick={() => {navigate(ComingSoon_ROUTE);}}>
+                  <div className="KeyfeatureBox" onClick={() => { navigate(ComingSoon_ROUTE); }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal"
                     >Election info</span>
                   </div>
-                  <div className="KeyfeatureBox"  onClick={() => {
-                      navigate(Survey_ROUTE);
-                    }}>
+                  <div className="KeyfeatureBox" onClick={() => {
+                    navigate(Survey_ROUTE);
+                  }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal">Survey</span>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="mt-3">
+            </div>) : (<> <div className="mt-3">
               <span>Agent</span>
               <div className="Agent_detail">
                 <div className="Agent_detailBoxTop">
@@ -244,47 +245,50 @@ const MainDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-3 mb-5">
-              <span>My Status</span>
-              <div className="Agent_detail">
-                <div className="Agent_detailBoxTop">
-                  <div className="KeyfeatureBox ">
-                    <img className="AddAgentIcons" src={Voters}></img>
-                    <span
-                      className="KeyfeatureVal"
-                      onClick={() => {
-                        navigate(AddAgents_ROUTE);
-                      }}
-                    >
-                      Voters
-                    </span>
-                  </div>
-                  <div className="KeyfeatureBox">
-                    <img className="AddAgentIcons" src={NonVoters}></img>
-                    <span
-                      className="KeyfeatureVal"
-                      onClick={() => {
-                        navigate(RoleMapping_ROUTE);
-                      }}
-                    >
-                      Non-Voters
-                    </span>
-                  </div>
-                  <div className="KeyfeatureBox">
-                    <img className="AddAgentIcons" src={BoothStatus}></img>
-                    <span className="KeyfeatureVal">Booth Status</span>
-                  </div>
-                  <div className="KeyfeatureBox">
-                    <img className="AddAgentIcons" src={Report}></img>
-                    <span className="KeyfeatureVal">Report</span>
-                  </div>
-                  <div className="KeyfeatureBox">
-                    <img className="AddAgentIcons" src={PollStatus}></img>
-                    <span className="KeyfeatureVal">Poll Status</span>
+              <div className="mt-3 mb-5">
+                <span>My Status</span>
+                <div className="Agent_detail">
+                  <div className="Agent_detailBoxTop">
+                    <div className="KeyfeatureBox ">
+                      <img className="AddAgentIcons" src={Voters}></img>
+                      <span
+                        className="KeyfeatureVal"
+                        onClick={() => {
+                          navigate(AddAgents_ROUTE);
+                        }}
+                      >
+                        Voters
+                      </span>
+                    </div>
+                    <div className="KeyfeatureBox">
+                      <img className="AddAgentIcons" src={NonVoters}></img>
+                      <span
+                        className="KeyfeatureVal"
+                        onClick={() => {
+                          navigate(RoleMapping_ROUTE);
+                        }}
+                      >
+                        Non-Voters
+                      </span>
+                    </div>
+                    <div className="KeyfeatureBox">
+                      <img className="AddAgentIcons" src={BoothStatus}></img>
+                      <span className="KeyfeatureVal">Booth Status</span>
+                    </div>
+                    <div className="KeyfeatureBox">
+                      <img className="AddAgentIcons" src={Report}></img>
+                      <span className="KeyfeatureVal">Report</span>
+                    </div>
+                    <div className="KeyfeatureBox">
+                      <img className="AddAgentIcons" src={PollStatus}></img>
+                      <span className="KeyfeatureVal">Poll Status</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div></>)
+            }
+
+
           </div>
         </div>
       </div>
