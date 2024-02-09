@@ -9,7 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { createRegion } from "../../Common/redux/slices/geoSlice";
 import { agentSearch } from "../../Common/redux/slices/agentSlice";
 import { createUser } from "../../Common/redux/slices/usersSlice";
+import { useNavigate } from "react-router-dom";
 const SearchVoter = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchList, setSearchList] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -100,17 +102,17 @@ const SearchVoter = () => {
                 <div className="d-flex justify-content-between border-bottom pb-2">
                   <div className="name_img">
 
-                 
-                  <div>
-                    <img className="searchedimg" src={profile_img} alt="profile"></img>
-                  </div>
-                  <div className="d-flex flex-column">
-                    <span className="searchedAgentName">{item.fmNameEn}</span>
-                    <span className="searchedAgentName">{item.fmNameV1}</span>
-                  </div> </div>
+
+                    <div>
+                      <img className="searchedimg" src={profile_img} alt="profile"></img>
+                    </div>
+                    <div className="d-flex flex-column">
+                      <span className="searchedAgentName">{item.fmNameEn}</span>
+                      <span className="searchedAgentName">{item.fmNameV1}</span>
+                    </div> </div>
 
                   <div className='VoteNo1'>
-                
+
                     <span className='noVote1'>200</span>
                   </div>
                 </div>
@@ -153,7 +155,9 @@ const SearchVoter = () => {
                   <div>
                     <div className="d-flex justify-content-evenly">
                       <div>
-                        <button className="searched_status">SURVEY</button>
+                        <button
+                          onClick={() => { navigate("/Survey") }}
+                          className="searched_status">SURVEY</button>
                       </div>
                       <div>
                         <button
