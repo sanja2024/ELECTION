@@ -4,10 +4,11 @@ import "./AddAgents.css";
 import profile_img from "../../Common/asset/images/voteimg/agents_img.svg";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import { ADD_AGENT_SEARCH_URL } from "../../Common/Url/ServerConfig";
+import { ADD_AGENT_SEARCH_URL, VOTER_SEARCH_URL } from "../../Common/Url/ServerConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { createRegion } from "../../Common/redux/slices/geoSlice";
 import { agentSearch } from "../../Common/redux/slices/agentSlice";
+import { createUser } from "../../Common/redux/slices/usersSlice";
 const SearchVoter = () => {
   const dispatch = useDispatch();
   const [searchList, setSearchList] = useState(false);
@@ -22,13 +23,19 @@ const SearchVoter = () => {
   const handleAgentSearch = () => {
     console.log(searchQuery,'searchdddk')
     // setSearchList(true);
+    // const userData = {
+    //   payload: {
+    //     name: searchQuery,
+    //   },
+    //   endPoint: VOTER_SEARCH_URL,
+    // };
     const userData = {
       payload: {
-        voterId: parseInt(searchQuery, 10),
+        voter_id:searchQuery
       },
-      endPoint: ADD_AGENT_SEARCH_URL,
+      endPoint: VOTER_SEARCH_URL,
     };
-    dispatch(agentSearch(userData)).then((res) => {
+    dispatch(createUser(userData)).then((res) => {
       if (res?.payload?.message === "success") {
          setCardList(res?.payload?.data.list);
         console.log(res?.payload?.data.list,'wwewewe')
@@ -95,14 +102,15 @@ const SearchVoter = () => {
           <img className="searchedimg" src={profile_img} alt="profile"></img>
         </div>
         <div className="d-flex flex-column">
-          <span className="searchedAgentName">{item.name}</span>
-          <span className="searchedAgentName">{item.name}</span>
+          <span className="searchedAgentName">{item.fmNameEn}</span>
+          <span className="searchedAgentName">{item.fmNameV1}</span>
         </div>
       </div>
       <div className="searched_data">
         <div className="d-flex flex-column">
           <span className="searchedTitle">S/O</span>
-          <span className="searchedData">{item.fatherName}</span>
+          <span className="searchedData">{item.rlnFmNmEn}</span>
+          <span className="searchedData">{item.rlnFmNmV1}</span>
         </div>
         <div className="d-flex flex-column">
           <span className="searchedTitle">Gender</span>
@@ -110,20 +118,20 @@ const SearchVoter = () => {
         </div>
         <div className="d-flex flex-column">
           <span className="searchedTitle">Age</span>
-          <span className="searchedData">30</span> {/* Age is not provided in the data */}
+          <span className="searchedData">{item.age}</span>
         </div>
         <div className="d-flex flex-column">
           <span className="searchedTitle">Address</span>
-          <span className="searchedData">{item.address}</span>
+          <span className="searchedData">{item.cHouseNo}, {item.sectionNo}</span>
         </div>
       </div>
       <div className="searched_data border-0">
         <div className="d-flex flex-column">
           <span className="searchedTitle">Voter Id</span>
-          <span className="searchedData">{item.voterId}</span>
+          <span className="searchedData">{item.epicNo}</span>
         </div>
         <div className="d-flex flex-column">
-          <span className="searchedTitle">Voter No.</span>
+          <span className="searchedTitle">Mobile No.</span>
           <span className="searchedData">{item.mobileNo}</span>
         </div>
       </div>
@@ -208,6 +216,7 @@ const SearchVoter = () => {
     </div>
   </div>
 ))}
+
 
   
 

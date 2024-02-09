@@ -5,12 +5,15 @@ import Profile_icon from "../../Common/asset/images/voteimg/Profile_icon.svg";
 import setting_icon from "../../Common/asset/images/voteimg/setting_icon.svg";
 import Helpline_icon from "../../Common/asset/images/voteimg/Helpline_icon.svg";
 import center_icon from "../../Common/asset/images/voteimg/center_icon.svg";
-
+import { useNavigate } from "react-router-dom";
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <div className="footer">
       <div className="footer_tag">
-        <div className="d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center"   onClick={() => {
+                        navigate('/');
+                      }}>
           <img className="Footer_icon" src={Home_icon}></img>
           <span className="footer_text">Home</span>
         </div>

@@ -24,7 +24,7 @@ const SearchAgent = () => {
     // setSearchList(true);
     const userData = {
       payload: {
-        mobile_no: parseInt(searchQuery, 10),
+        name: parseInt(searchQuery, 10),
       },
       endPoint: ADD_AGENT_SEARCH_URL,
     };
