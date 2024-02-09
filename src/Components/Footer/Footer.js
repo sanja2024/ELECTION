@@ -21,11 +21,16 @@ const Footer = () => {
           <img className="Footer_icon" src={Profile_icon}></img>
           <span className="footer_text">Profile</span>
         </div>
-        <div className="d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center"  onClick={() => {
+                        navigate('/');
+                      }}>
           <img className="Footer_iconS" src={center_icon}></img>
           {/* <span>Home</span> */}
         </div>
-        <div className="d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center" onClick={() => {
+                                localStorage.clear();
+                                window.location.reload();
+                              }}>
           <img className="Footer_icon " src={setting_icon}></img>
           <span className="footer_text">Setting</span>
         </div>
