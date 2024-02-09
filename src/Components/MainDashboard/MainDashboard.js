@@ -30,12 +30,23 @@ const MainDashboard = () => {
     <div className="">
 
       <div className="bgImgMD">
-        <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%" }}>
+        <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%" ,zIndex:"2 !important"}}>
           <div className="mt-1 ">
             <img className="logot" src={logo}></img>
           </div>
-          <div className="mt-3 me-4">
-            <img className="logot1" src={menu}></img>
+          <div className="mt-3 me-4" >
+
+            <button class="btn p-1 border rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{}} >  <img className="logot1" src={menu}></img></button>
+
+            <div class="offcanvas zindex offcanvas-end" tabindex="1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                ...
+              </div>
+            </div>
           </div>
         </div>
         <div className="blog_scroll">
@@ -206,11 +217,11 @@ const MainDashboard = () => {
                       Role Mapping
                     </span>
                   </div>
-                  <div className="KeyfeatureBox" onClick={() => { navigate(SearchAgent_ROUTE);}}>
+                  <div className="KeyfeatureBox" onClick={() => { navigate(SearchAgent_ROUTE); }}>
                     <img className="AddAgentIcons" src={searchstatus}></img>
                     <span className="KeyfeatureVal">Agent Search</span>
                   </div>
-                  <div className="KeyfeatureBox" onClick={() => { navigate(VoterSearch_ROUTE);}}>
+                  <div className="KeyfeatureBox" onClick={() => { navigate(VoterSearch_ROUTE); }}>
                     <img className="AddAgentIcons" src={searchstatus}></img>
                     <span className="KeyfeatureVal">Vote Search</span>
                   </div>
