@@ -21,7 +21,7 @@ import PollStatus from "../../Common/asset/images/voteimg/PollStatus.svg";
 import menu from "../../Common/asset/images/voteimg/menu.svg";
 
 import Footer from "../Footer/Footer";
-import { AddAgents_ROUTE, Assign2_ROUTE, ComingSoon_ROUTE, NonVoterPage_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterPage_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
+import { AddAgents_ROUTE, Assign2_ROUTE, BoothStatus_ROUTE, ComingSoon_ROUTE, NonVoterPage_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterPage_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
 import { useNavigate } from "react-router-dom";
 import SearchVoter from "../Agents/SearchVoter";
 import { AgentAccessCode } from "../../Common/Route/ConfigRoute";
@@ -273,15 +273,21 @@ const MainDashboard = () => {
                     </div>
                     <div className="KeyfeatureBox">
                       <img className="AddAgentIcons" src={BoothStatus}></img>
-                      <span className="KeyfeatureVal">Booth Status</span>
+                      <span onClick={() => {
+                        navigate(BoothStatus_ROUTE);
+                      }} className="KeyfeatureVal">Booth Status</span>
                     </div>
                     <div className="KeyfeatureBox">
                       <img className="AddAgentIcons" src={Report}></img>
-                      <span className="KeyfeatureVal">Report</span>
+                      <span onClick={() => {
+                        navigate(ComingSoon_ROUTE);
+                      }} className="KeyfeatureVal">Report</span>
                     </div>
                     <div className="KeyfeatureBox">
                       <img className="AddAgentIcons" src={PollStatus}></img>
-                      <span className="KeyfeatureVal">Poll Status</span>
+                      <span onClick={() => {
+                        navigate(ComingSoon_ROUTE);
+                      }} className="KeyfeatureVal">Poll Status</span>
                     </div>
                   </div>
                 </div>
