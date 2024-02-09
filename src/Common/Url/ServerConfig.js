@@ -100,6 +100,9 @@ export const VOTER_SEARCH_URL = BASE_API_URL + "voter/search";
 export const GET_TOPIC_URL = BASE_API_URL + "topic/search?is_active=true&type=group";
 export const GET_SAVE_ANSWER_URL = BASE_API_URL + "topic/answer/save";
 
+export const GET_BOOTH_STATUS_URL = BASE_API_URL + "dashboard/dashboard1";
+
+
 
 
 
