@@ -193,11 +193,12 @@ const Survey = ({ finalResp }) => {
                   Participate in our Parliament Survey to make your voice heard! This brief and insightful survey aims to
                   gather your opinions on crucial matters affecting our society.
                 </p>
-              </div>
-              <div className="card-footer text-center" style={{ backgroundColor: "rgba(3, 52, 104, 0.2)" }}>
                 <span className="surveybtn" onClick={() => finalResp === true && navigate("/Survey")}
-                >Start Survey -&gt;</span>
+                >Start Survey &gt;</span>
               </div>
+              {/* <div className="card-footer text-center" style={{ backgroundColor: "rgba(3, 52, 104, 0.2)" }}>
+                
+              </div> */}
             </div>
           ))}
         </div>
