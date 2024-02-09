@@ -8,22 +8,13 @@ import { useFormik } from "formik";
 import "./Survey.css";
 import Survey_img from "../../Common/asset/images/voteimg/Survey_img.svg";
 
-const SurveyForm = ({ questions }) => {
+const SurveyForm = ({ questions, onSubmit }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [error, setError] = useState("");
 
-  const handleSubmit = () => {
-    // Your submission logic here
-  };
-
-  const formik = useFormik({
-    initialValues: {},
-    onSubmit: handleSubmit,
-  });
-
   const handleNextPage = () => {
-    if (!selectedOptions[questions[currentPage]._id]) {
+    if (!selectedOptions[questions[currentPage].topicCode]) {
       setError("Please select an option before moving to the next question.");
       return;
     }
@@ -38,7 +29,11 @@ const SurveyForm = ({ questions }) => {
 
   const handleOptionSelect = (questionId, option) => {
     setSelectedOptions({ ...selectedOptions, [questionId]: option });
-    formik.setFieldValue(questionId, option);
+  };
+
+  const handleSubmit = () => {
+    // Handle form submission logic here
+    onSubmit(selectedOptions);
   };
 
   const renderCurrentPage = () => {
@@ -63,10 +58,10 @@ const SurveyForm = ({ questions }) => {
                       id={option}
                       className="form-check-input"
                       type="radio"
-                      name={question._id}
-                      checked={selectedOptions[question._id] === option}
+                      name={question.topicCode}
+                      checked={selectedOptions[question.topicCode] === option}
                       value={option}
-                      onChange={() => handleOptionSelect(question._id, option)}
+                      onChange={() => handleOptionSelect(question.topicCode, option)}
                     />
                     <label className="form-check-label" htmlFor={option}>
                       {option}
@@ -77,11 +72,11 @@ const SurveyForm = ({ questions }) => {
             ) : (
               <div className="form-text-input1">
                 <input
-                  id={question._id}
+                  id={question.topicCode}
                   type="text"
-                  name={question._id}
-                  onChange={formik.handleChange}
-                  value={formik.values[question._id] || ""}
+                  name={question.topicCode}
+                  value={selectedOptions[question.topicCode] || ""}
+                  onChange={(e) => handleOptionSelect(question.topicCode, e.target.value)}
                 />
               </div>
             )}
@@ -93,7 +88,6 @@ const SurveyForm = ({ questions }) => {
             Previous
           </button>
         )}
-        {console.log(questions, "scdas", currentPage)}
         {currentPage < questions.length - 1 && (
           <button className="submit_btn" type="button" onClick={handleNextPage}>
             Next
@@ -101,7 +95,7 @@ const SurveyForm = ({ questions }) => {
         )}
 
         {currentPage === questions.length - 1 && (
-          <button className="submit_btn" type="submit">
+          <button className="submit_btn" type="button" onClick={handleSubmit}>
             Submit
           </button>
         )}
@@ -117,7 +111,6 @@ const Survey = () => {
   const [selectedTopic, setSelectedTopic] = useState(null);
   const topics = useSelector((state) => state.survey.topicData);
 
-
   useEffect(() => {
     const reqParamData = {
       payload: "",
@@ -130,21 +123,32 @@ const Survey = () => {
     setSelectedTopic(topicCode);
   };
 
-  console.log("Selected Topic:", selectedTopic); // Check if the selected topic is updated correctly
-  console.log("Topics:", topics); // Check the topics data
+  const handleFormSubmit = (selectedOptions) => {
+
+
+    const voterData = {
+      voter_id: "",
+      name: "",
+      mobile_no: "",
+      question: Object.entries(selectedOptions).map(([topicCode, answer]) => ({ topicCode, answer })),
+    };
+    console.log("check final resp", voterData);
+  };
 
   return (
     <div className="container p-0">
-      {console.log("DSFafas", topics?.data?.list)}
       <Header />
       {selectedTopic ? (
-        <SurveyForm questions={topics[selectedTopic]?.topicList} />
+        <SurveyForm
+          questions={(topics?.data?.list?.find((topic) => topic.topicCode === selectedTopic)?.topicList || [])}
+          onSubmit={handleFormSubmit}
+        />
       ) : (
         <div className="survey_body">
-          {Array.isArray(topics?.data?.list) && topics.data.list.map((topic) => (
-            <div key={topic._id} className="card" onClick={() => handleTopicSelect(topic.topicCode)}>
+          {topics?.data?.list?.map((topic) => (
+            <div key={topic.topicCode} className="card" onClick={() => handleTopicSelect(topic.topicCode)}>
               <div className="survey_img">
-                <h5 className="card-survey">{topic.topicName}</h5>
+                <h5 className="card-survey">{topic.topicCode}</h5>
                 <img src={Survey_img} className="card-img-top" alt="..." />
               </div>
               <div className="card-body">
