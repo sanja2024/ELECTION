@@ -8,7 +8,8 @@ import { useFormik } from "formik";
 import "./Survey.css";
 import Survey_img from "../../Common/asset/images/voteimg/Survey_img.svg";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import SurveyDetail from "./SurveyDetail";
 
 const SurveyForm = ({ questions, onSubmit }) => {
 
@@ -57,18 +58,18 @@ const SurveyForm = ({ questions, onSubmit }) => {
               question.option.split(",").map((option) => (
                 <div key={option} className="survey_btn">
                   {/* <div className="survey_btns"> */}
-                    <input
-                      id={option}
-                      className="form-check-input survey_input1"
-                      type="radio"
-                      name={question.topicCode}
-                      checked={selectedOptions[question.topicCode] === option}
-                      value={option}
-                      onChange={() => handleOptionSelect(question.topicCode, option)}
-                    />
-                    <label className="form-check-label newbtn" htmlFor={option}>
-                      {option}
-                    </label>
+                  <input
+                    id={option}
+                    className="form-check-input survey_input1"
+                    type="radio"
+                    name={question.topicCode}
+                    checked={selectedOptions[question.topicCode] === option}
+                    value={option}
+                    onChange={() => handleOptionSelect(question.topicCode, option)}
+                  />
+                  <label className="form-check-label newbtn" htmlFor={option}>
+                    {option}
+                  </label>
                   {/* </div> */}
                 </div>
               ))
@@ -132,11 +133,12 @@ const Survey = ({ finalResp }) => {
 
   const handleFormSubmit = (selectedOptions) => {
 
+    console.log("dfsafasf", location?.state);
 
     const voterData = {
-      voter_id: "12",
-      name: "asd",
-      mobile_no: 123123,
+      voter_id: location?.state?.data?.voter_id,
+      name: location?.state?.data?.name,
+      mobile_no: parseInt(location?.state?.data?.mobile_no),
       question: Object.entries(selectedOptions).map(([topicCode, answer]) => ({ topicCode, answer })),
     };
 
@@ -154,19 +156,30 @@ const Survey = ({ finalResp }) => {
           position: toast.POSITION.TOP_RIGHT,
         });
         navigate("/CompleteSurvey")
+      } else {
+        toast.error(res?.payload?.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
       }
     })
   };
-
+  const location = useLocation();
   return (
     <div className="container p-0">
 
       {finalResp == true ? "" : <Header />}
       {selectedTopic ? (
-        <SurveyForm
+        // <SurveyForm
+        //   questions={(topics?.data?.list?.find((topic) => topic.topicCode === selectedTopic)?.topicList || [])}
+        //   onSubmit={handleFormSubmit}
+        // />
+
+        selectedTopic && location?.state?.data ? <SurveyForm
           questions={(topics?.data?.list?.find((topic) => topic.topicCode === selectedTopic)?.topicList || [])}
           onSubmit={handleFormSubmit}
-        />
+        /> :
+          <SurveyDetail />
+
       ) : (
         <div className="survey_body">
           {topics?.data?.list?.map((topic) => (
@@ -182,7 +195,8 @@ const Survey = ({ finalResp }) => {
                 </p>
               </div>
               <div className="card-footer text-center" style={{ backgroundColor: "rgba(3, 52, 104, 0.2)" }}>
-                <span className="surveybtn">Start Survey -&gt;</span>
+                <span className="surveybtn" onClick={() => finalResp === true && navigate("/Survey")}
+                >Start Survey -&gt;</span>
               </div>
             </div>
           ))}
