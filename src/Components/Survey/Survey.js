@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_TOPIC_URL } from "../../Common/Url/ServerConfig";
-import { getTopic } from "../../Common/redux/slices/surveySlice";
+import { GET_SAVE_ANSWER_URL, GET_TOPIC_URL } from "../../Common/Url/ServerConfig";
+import { getTopic, saveAnswer } from "../../Common/redux/slices/surveySlice";
 import { useFormik } from "formik";
 import "./Survey.css";
 import Survey_img from "../../Common/asset/images/voteimg/Survey_img.svg";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const SurveyForm = ({ questions, onSubmit }) => {
+
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [error, setError] = useState("");
@@ -107,9 +110,13 @@ const SurveyForm = ({ questions, onSubmit }) => {
 };
 
 const Survey = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [selectedTopic, setSelectedTopic] = useState(null);
   const topics = useSelector((state) => state.survey.topicData);
+  const answerResp = useSelector((state) => state.survey.answerRespData);
+
+
 
   useEffect(() => {
     const reqParamData = {
@@ -127,12 +134,28 @@ const Survey = () => {
 
 
     const voterData = {
-      voter_id: "",
-      name: "",
-      mobile_no: "",
+      voter_id: "12",
+      name: "asd",
+      mobile_no: 123123,
       question: Object.entries(selectedOptions).map(([topicCode, answer]) => ({ topicCode, answer })),
     };
-    console.log("check final resp", voterData);
+
+    const reqParam = {
+      payload: voterData,
+      endpoint: GET_SAVE_ANSWER_URL
+
+    }
+
+    dispatch(saveAnswer(reqParam)).then((res) => {
+
+      if (res?.payload?.message == "success") {
+
+        toast.success(res?.payload?.data?.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        navigate("/MainDashboard")
+      }
+    })
   };
 
   return (
