@@ -86,10 +86,10 @@ const Assign = () => {
                         type="button"
                         data-bs-toggle="collapse"
                         // data-bs-target={`#collapseExample${index}`}
-                        data-bs-target="collapseExample"
+                        data-bs-target="#assignpage"
                         aria-expanded="false"
                         // aria-controls={`collapseExample${index}`}
-                        aria-controls='collapseExample'
+                        aria-controls='assignpage'
                       >
                         Poll Status
                       </button>
@@ -107,7 +107,7 @@ const Assign = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="collapse coll_width" id="collapseExample">
+                  <div className="collapse coll_width" id="assignpage">
                     <div className="card card-body">
                       <div className="d-flex justify-content-between align-items-center">
                         <div>
@@ -155,7 +155,7 @@ const Assign = () => {
                   </div>
                   <div className="collapse coll_width2" id="visitStatus">
                     <div className="card card-body p-0">
-
+okok
                     </div>
                   </div>
                 </div>
