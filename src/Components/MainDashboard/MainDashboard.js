@@ -23,6 +23,7 @@ import menu from "../../Common/asset/images/voteimg/menu.svg";
 import Footer from "../Footer/Footer";
 import { AddAgents_ROUTE, Assign2_ROUTE, ComingSoon_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
 import { useNavigate } from "react-router-dom";
+import SearchVoter from "../Agents/SearchVoter";
 
 const MainDashboard = () => {
   const navigate = useNavigate();
@@ -168,7 +169,7 @@ const MainDashboard = () => {
               <span>Key Features</span>
               <div className="KeyFeature_detail">
                 <div className="KeyfeatureBoxTop">
-                  <div className="KeyfeatureBox " >
+                  <div className="KeyfeatureBox " onClick={() => {navigate(SearchVoter);}}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal">Vote Search</span>
                   </div>
@@ -187,11 +188,11 @@ const MainDashboard = () => {
                     <span className="KeyfeatureVal"
                     >Election info</span>
                   </div>
-                  <div className="KeyfeatureBox">
-                    <img className="KeyfeatureIcons" src={VoteSearch}></img>
-                    <span onClick={() => {
+                  <div className="KeyfeatureBox"  onClick={() => {
                       navigate(Survey_ROUTE);
-                    }} className="KeyfeatureVal">Survey</span>
+                    }}>
+                    <img className="KeyfeatureIcons" src={VoteSearch}></img>
+                    <span className="KeyfeatureVal">Survey</span>
                   </div>
                 </div>
               </div>
