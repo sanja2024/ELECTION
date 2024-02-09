@@ -254,3 +254,20 @@ margin-bottom: 24px;
     margin-right: 24px;
     }
 }
+
+.coll_width2{
+    width: 40% !important;
+}
+.scrollvisit_status{
+    height: 80px !important;
+    overflow-x: scroll;
+    width: 70px !important;
+    
+}
+
+
+.scrollvisit_status li {
+    /* border: 1px solid red; */
+    padding: 2px 2px;
+    text-align: center;
+}

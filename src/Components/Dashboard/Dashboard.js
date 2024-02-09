@@ -279,7 +279,7 @@ const Dashboard = () => {
             <span className="register" onClick={() => { navigate(EnterMobile_ROUTE); }}>Register For an account</span>
           </div>
         </div>
-      </div>x
+      </div>
 
     </>
   );
