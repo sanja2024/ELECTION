@@ -7,8 +7,9 @@ import Header from "../Header/Header";
 import { fetchPosts } from "../../Common/redux/slices/postsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../Common/redux/slices/usersSlice";
-import { BOOTH_API, ROLE_SEARCH_API } from "../../Common/Url/ServerConfig";
+import { BOOTH_API, MAPPING_CREATE_API, ROLE_SEARCH_API } from "../../Common/Url/ServerConfig";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 const RoleMapping = () => {
   const initialValues = {
     // barCode: "",
@@ -19,118 +20,48 @@ const RoleMapping = () => {
   // const data = useSelector((state) => state.users.data);
   const [selectedElection, setSelectedElection] = useState([]);
   const [selectedstate, setSelectedstate] = useState([]);
-  
+
   const [state, setState] = useState([]);
   const [constituency, setConstituency] = useState([]);
   const [booth, setBooth] = useState([]);
   const [division, setDivision] = useState([]);
 
 
-  // const [selectedElection, setSelectedElection] = useState("");
-  const [selectedState, setSelectedState] = useState("");
+  const [mobile_no, setSelectedMobile] = useState("");
+  const [selectedRole, setSelectedRole] = useState("");
   const [selectedConstituency, setSelectedConstituency] = useState("");
   const [selectedDivision, setSelectedDivision] = useState("");
   const [selectedBooth, setSelectedBooth] = useState("");
 
-  // const [division, setDivision] = useState("");
-  // const handleSelectChange = (event) => {
-  //   setSelectedElection(event.target.value);
 
-  //   dispatch(fetchPosts(ROLE_SEARCH_API)).then((res) => {
-  //     // console.log(res.payload,'dddddwoeiwope')
-  //     if (res?.payload?.message == "success") {
-  //       setRole(res?.payload.data.list)
+  const [stateRole, setStateRole] = useState("Select State");
+  const [constituencyRole, setConstituencyRole] = useState("Select Constituency");
+  const [divisionRole, setDivisionRole] = useState("Select Division");
+  const [boothRole, setBoothRole] = useState("Select Booth");
 
-  //     } 
+  const [electionNames, setElectionNames] = useState([]);
+  const [role, setRole] = useState([]);
 
-  //   })
-
-
-  // };
-
-  // const handleSelectChange = async (event) => {
-  //   const selectedValue = event.target.value;
-  //   setSelectedElection(selectedValue);
-  
-  //   // Fetch the roles based on the selected value
-  //   await dispatch(fetchPosts(ROLE_SEARCH_API)).then((res) => {
-  //     if (res?.payload?.message === "success") {
-  //       setRole(res?.payload.data.list);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 
 
-  //     } else {
-  //       // Handle error if needed
-  //     }
-  //   });
-  
-  //   let queryType = "";
-  
-  //   // Determine the query type based on the selected value
-  //   // switch (selectedValue) {
-  //   //   case "election":
-  //   //     queryType = "state";
-  //   //     break;
-  //   //   case "state":
-  //   //     queryType = "constituency";
-  //   //     break;
-  //   //   case "constituency":
-  //   //     queryType = "division";
-  //   //     break;
-  //   //   case "division":
-  //   //     queryType = "booth";
-  //   //     break;
-  //   //   default:
-  //   //     queryType = "";
-  //   // }
-  
-  //   // if (queryType) {
-  //   //   const userData = {
-  //   //     payload: {
-  //   //       type: queryType,
-  //   //       election_code: selectedValue
-  //   //     },
-  //   //     endPoint: BOOTH_API,
-  //   //   };
-  
-  //   //   dispatch(createUser(userData)).then((res) => {
-  //   //     if (res?.payload?.message === "success") {
-  //   //       switch (queryType) {
-  //   //         case "state":
-  //   //           setState(res?.payload.data.list);
-  //   //           break;
-  //   //         case "constituency":
-  //   //           setConstituency(res?.payload.data.list);
-  //   //           break;
-  //   //         case "division":
-  //   //           setDivision(res?.payload.data.list);
-  //   //           break;
-  //   //         case "booth":
-  //   //           setBooth(res?.payload.data.list);
-  //   //           break;
-  //   //         default:
-  //   //           break;
-  //   //       }
-  //   //     } else {
-  //   //       // Handle error if needed
-  //   //     }
-  //   //   });
-  //   // }
-  // };
-  
+
   const handleSelectChange = async (event, selectedValue) => {
-    // console.log(selectedValue,'eventevent')
 
-    // Fetch the roles based on the selected value
-    if(selectedValue=='election'){
+    if (selectedValue === 'Mobile') {
+      setSelectedMobile(event.target.value);
+    }
+    else if (selectedValue === 'election') {
       setSelectedElection(event.target.value);
-      await dispatch(fetchPosts(ROLE_SEARCH_API)).then((res) => {
-        if (res?.payload?.message === "success") {
-          setRole(res?.payload.data.list);
-        } 
-      });
+      // await dispatch(fetchPosts(ROLE_SEARCH_API)).then((res) => {
+      //   if (res?.payload?.message === "success") {
+      //     setRole(res?.payload.data.list);
+      //   }
+      // });
 
-      const userData = {
+      const electionUserData = {
         payload: {
           type: 'state',
           election_code: event.target.value
@@ -138,160 +69,109 @@ const RoleMapping = () => {
         endPoint: BOOTH_API,
       };
 
-      dispatch(createUser(userData)).then((res) => {
-        if (res?.payload?.message == "success") {
-          setState(res?.payload.data.list)
-        } 
-      })
+      dispatch(createUser(electionUserData)).then((res) => {
+        if (res?.payload?.message === "success") {
+          setState(res?.payload.data.list);
+        }
+      });
+    } else if (selectedValue === 'Role') {
+      setSelectedRole(event.target.value);
+
+      // console.log(event.target.value, 'sdsdsddsdRole')
+      if (event.target.value == 'CPO') {
+        setSelectedstate("All")
+        setSelectedConstituency('All')
+        setSelectedDivision("All")
+        setSelectedBooth("All")
+      }
+      else if (event.target.value == 'SCO') {
+        setSelectedstate("")
+        setSelectedConstituency('All')
+        setSelectedDivision("All")
+        setSelectedBooth("All")
+      }
+      else if (event.target.value == 'CCO') {
+        setSelectedstate("")
+        setSelectedConstituency('')
+        setSelectedDivision("All")
+        setSelectedBooth("All")
+      }
+      else if (event.target.value == 'DCO') {
+        setSelectedstate("")
+        setSelectedConstituency('')
+        setSelectedDivision("")
+        setSelectedBooth("All")
+      }
+      else if (event.target.value == 'BLO') {
+        setSelectedstate("")
+        setSelectedConstituency('')
+        setSelectedDivision("")
+        setSelectedBooth("")
+      }
+      else {
+        setSelectedstate("")
+        setSelectedConstituency('')
+        setSelectedDivision("")
+        setSelectedBooth("")
+      }
     }
-    if(selectedValue=='state'){
+
+    else if (selectedValue === 'state') {
       setSelectedstate(event.target.value);
-      const userData = {
+      const stateUserData = {
         payload: {
-          type: 'constituency',
+          type: 'Constituency',
           state_code: event.target.value
         },
         endPoint: BOOTH_API,
       };
 
-      dispatch(createUser(userData)).then((res) => {
-        if (res?.payload?.message == "success") {
-          setConstituency(res?.payload.data.list)
-        } 
-      })
-    }
-
-  
-    // let queryType = "";
-
-    // switch (selectedValue) {
-    //   case "election":
-    //     queryType = "state";
-    //     break;
-    //   case "state":
-    //     queryType = "constituency";
-    //     break;
-    //   case "constituency":
-    //     queryType = "division";
-    //     break;
-    //   case "division":
-    //     queryType = "booth";
-    //     break;
-    //   default:
-    //     queryType = "";
-    // }
-  
-    // if (queryType) {
-    //   const userData = {
-    //     payload: {
-    //       type: queryType,
-    //       election_code: selectedValue
-    //     },
-    //     endPoint: BOOTH_API,
-    //   };
-  
-    //   dispatch(createUser(userData)).then((res) => {
-    //     if (res?.payload?.message === "success") {
-    //       switch (queryType) {
-    //         case "state":
-    //           setState(res?.payload.data.list);
-    //           break;
-    //         case "constituency":
-    //           setConstituency(res?.payload.data.list);
-    //           break;
-    //         case "division":
-    //           setDivision(res?.payload.data.list);
-    //           break;
-    //         case "booth":
-    //           setBooth(res?.payload.data.list);
-    //           break;
-    //         default:
-    //           break;
-    //       }
-    //     } else {
-    //       // Handle error if needed
-    //     }
-    //   });
-    // }
-  };
-  
-  // Then in your select element:
-  // <select
-  //   className="form-control"
-  //   onChange={(event) => handleSelectChange(event, selectedElection)}
-  //   value={selectedElection}
-  // >
-  //   {/* Options */}
-  // </select>
-  
-
-  const [electionNames, setElectionNames] = useState([]);
-  const [role, setRole] = useState([]);
-
-  const [formValues, setFormValues] = useState(initialValues);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const {
-    // handleSubmit,
-    handleChange,
-    setValues,
-    values,
-    handleBlur,
-    errors,
-    touched,
-    resetForm,
-    setFieldError,
-    setFieldValue,
-  } = useFormik({
-    initialValues: {
-      ...formValues,
-    },
-    // enableReinitialize: true,
-    // validationSchema,
-    onSubmit: (values) => {
-      const QueryPayload = {
-        ...values,
-
-      };
-
-      const userData = {
-        payload: QueryPayload,
+      dispatch(createUser(stateUserData)).then((res) => {
+        if (res?.payload?.message === "success") {
+          setConstituency(res?.payload.data.list);
+        }
+      });
+    } else if (selectedValue === 'Constituency') {
+      setSelectedConstituency(event.target.value);
+      const constituencyUserData = {
+        payload: {
+          type: 'Division',
+          division_code: event.target.value
+        },
         endPoint: BOOTH_API,
       };
 
-      // const transformedPayload = {
-      //   leadId: state.leadId,
-      //   document: docList?.map(({ document_code, copy, original }) => ({
-      //     document_code,
-      //     copy,
-      //     original
-      //   }))
-      // };
+      dispatch(createUser(constituencyUserData)).then((res) => {
+        if (res?.payload?.message === "success") {
+          setDivision(res?.payload.data.list);
+        }
+      });
+    } else if (selectedValue === 'Division') {
+      setSelectedDivision(event.target.value);
+      const divisionUserData = {
+        payload: {
+          type: 'Booth',
+          booth_code: event.target.value
+        },
+        endPoint: BOOTH_API,
+      };
 
-      // console.log(transformedPayload,'transformedPayload');
-      // dispatch(createUser(userData));
-      // dispatch(createUser(userData)).then((res) => {
-      //   if (res?.payload?.status == "success") {
-      //     toast.success(res?.payload?.message, {
-      //       position: "top-right",
+      dispatch(createUser(divisionUserData)).then((res) => {
+        if (res?.payload?.message === "success") {
+          setBooth(res?.payload.data.list);
+        }
+      });
+    } else if (selectedValue === 'Booth') {
+      setSelectedBooth(event.target.value);
+    }
+  };
 
-      //     });
-      //     setTimeout(() => {
-      //       navigate('/HHC')
-      //       dispatch(clearUserData())
-      //     }, 1000);
 
-      //   } else {
-      //     toast.error(res?.payload?.message, {
-      //       position: "top-right",
 
-      //     });
-      //   }
 
-      // })
 
-    },
-  });
+
+
 
   useEffect(() => {
     const QueryPayload = {
@@ -307,14 +187,17 @@ const RoleMapping = () => {
     dispatch(createUser(userData)).then((res) => {
       if (res?.payload?.message == "success") {
         setElectionNames(res?.payload.data.list)
-
       } else {
         // toast.error(res?.payload?.message, {
         //   position: "top-right",
         // });
       }
-
     })
+     dispatch(fetchPosts(ROLE_SEARCH_API)).then((res) => {
+      if (res?.payload?.message === "success") {
+        setRole(res?.payload.data.list);
+      }
+    });
 
     //  setElectionNames(data.data.list)
   }, []);
@@ -324,36 +207,55 @@ const RoleMapping = () => {
     // Check if all required parameters are selected
     if (
       selectedElection &&
-      selectedState &&
+      selectedstate &&
       selectedConstituency &&
       selectedDivision &&
-      selectedBooth
+      selectedBooth &&
+      selectedRole &&
+      mobile_no
     ) {
       const userData = {
         payload: {
-          agent_mobile_no: "agent_mobile_no_value",
-          role_code: "role_code_value",
+          agent_mobile_no: parseInt(mobile_no, 10),
+          role_code: selectedRole,
           election_code: selectedElection,
-          state_code: selectedState,
+          state_code: selectedstate,
           constituency_code: selectedConstituency,
           division_code: selectedDivision,
           booth_code: selectedBooth,
         },
-        // endPoint: YOUR_API_ENDPOINT_HERE, // Replace with your actual API endpoint
+        endPoint: MAPPING_CREATE_API,
       };
 
-      // Dispatch the action to submit the form data
       dispatch(createUser(userData)).then((res) => {
-        // Handle the response as needed
-        console.log(res);
+        if (res.payload.message == 'success') {
+          toast.success("Data Created Successfull", {
+            position: "top-right",
+          });
+          setSelectedMobile("")
+          setSelectedElection("");
+          setSelectedstate("");
+          setSelectedConstituency("");
+          setSelectedDivision("");
+          setSelectedBooth("");
+          setSelectedRole("");
+          setSelectedMobile("");
+        }else{
+          toast.error("Error", {
+            position: "top-right",
+    
+          });
+        }
+
       });
     } else {
-      // Display an error message or handle the lack of selection
-      console.error("Please select all required parameters");
+      toast.error("Enter Valid Field", {
+        position: "top-right",
+
+      });
     }
   };
 
-  console.log(role, 'rolee')
   return (
     <div className="container p-0">
       <Header />
@@ -368,7 +270,28 @@ const RoleMapping = () => {
             className="form-control"
             id="exampleFormControlInput1"
             placeholder="User ID"
+            onChange={(event) => handleSelectChange(event, 'Mobile')}
           />
+        </div>
+
+        <div className="addAgent_datapoints">
+          <label htmlFor="roleType" className="form-label">
+            Role Type
+          </label>
+          <select
+            id="roleType"
+            className="form-select"
+            aria-label="Role Type"
+            onChange={(event) => handleSelectChange(event, 'Role')}
+            value={selectedRole}
+          >
+            <option value="">Select Role</option>
+            {role.map((role, index) => (
+              <option key={index} value={role.roleCode}>
+                {role.roleName}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="addAgent_datapoints dropdown">
@@ -388,23 +311,7 @@ const RoleMapping = () => {
             ))}
           </select>
         </div>
-        <div className="addAgent_datapoints">
-          <label htmlFor="roleType" className="form-label">
-            Role Type
-          </label>
-          <select
-            id="roleType"
-            className="form-select"
-            aria-label="Role Type"
-          >
-            <option value="">Select Role</option>
-            {role.map((role, index) => (
-              <option key={index} value={role.roleCode}>
-                {role.roleName}
-              </option>
-            ))}
-          </select>
-        </div>
+        
         <div className="addAgent_datapoints dropdown">
           <label htmlFor="exampleFormControlInput1" className="form-label">
             State
@@ -413,8 +320,9 @@ const RoleMapping = () => {
             className="form-control"
             onChange={(event) => handleSelectChange(event, 'state')}
             value={selectedstate}
+            disabled={selectedstate == "All" ? true : false}
           >
-            <option value="">Select Election</option>
+            <option value="">{selectedstate == "All" ? selectedstate : stateRole}</option>
             {state?.map((state, index) => (
               <option key={index} value={state.stateCode}>
                 {state.stateName}
@@ -424,34 +332,36 @@ const RoleMapping = () => {
         </div>
         <div className="addAgent_datapoints dropdown">
           <label htmlFor="exampleFormControlInput1" className="form-label">
-          Constituency
+            Constituency
           </label>
           <select
             className="form-control"
-            onChange={(event) => handleSelectChange(event, 'constituency')}
-            value={selectedElection}
+            onChange={(event) => handleSelectChange(event, 'Constituency')}
+            value={selectedConstituency}
+            disabled={selectedConstituency == "All" ? true : false}
           >
-            <option value="">Select Election</option>
+            <option value="">{selectedConstituency == "All" ? selectedConstituency : constituencyRole}</option>
             {constituency.map((constituency, index) => (
-              <option key={index} value={constituency.constituencyCode}>
-                {constituency.constituencyName}
+              <option key={index} value={constituency?.constituencyCode}>
+                {constituency?.constituencyName}
               </option>
             ))}
           </select>
         </div>
         <div className="addAgent_datapoints dropdown">
           <label htmlFor="exampleFormControlInput1" className="form-label">
-          Division
+            Division
           </label>
           <select
             className="form-control"
-            onChange={(event) => handleSelectChange(event, 'division')}
-            value={selectedElection}
+            onChange={(event) => handleSelectChange(event, 'Division')}
+            value={selectedDivision}
+            disabled={selectedDivision == "All" ? true : false}
           >
-            <option value="">Select Election</option>
-            {electionNames.map((election, index) => (
-              <option key={index} value={election.electionCode}>
-                {election.electionName}
+            <option value="">{selectedDivision == "All" ? selectedDivision : divisionRole}</option>
+            {division.map((division, index) => (
+              <option key={index} value={division.divisionCode}>
+                {division.divisionName}
               </option>
             ))}
           </select>
@@ -459,23 +369,24 @@ const RoleMapping = () => {
 
         <div className="addAgent_datapoints dropdown">
           <label htmlFor="exampleFormControlInput1" className="form-label">
-          Booth
+            Booth
           </label>
           <select
             className="form-control"
-            onChange={(event) => handleSelectChange(event, 'booth')}
-            value={selectedElection}
+            onChange={(event) => handleSelectChange(event, 'Booth')}
+            value={selectedBooth}
+            disabled={selectedBooth == "All" ? true : false}
           >
-            <option value="">Select Election</option>
-            {electionNames.map((election, index) => (
-              <option key={index} value={election.electionCode}>
-                {election.electionName}
+            <option value="">{selectedBooth == "All" ? "All" : boothRole}</option>
+            {booth.map((booth, index) => (
+              <option key={index} value={booth.boothCode}>
+                {booth.boothName}
               </option>
             ))}
           </select>
         </div>
 
-     
+
 
         <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Submit</button>
       </div>

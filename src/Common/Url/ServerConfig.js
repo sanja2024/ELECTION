@@ -92,3 +92,8 @@ export const LOGIN_API =BASE_API_URL + "auth/login";
 export const BOOTH_API = BASE_API_URL + "booth/search/level";
 
 export const ROLE_SEARCH_API = BASE_API_URL + "role/search";
+
+export const MAPPING_CREATE_API = BASE_API_URL + "mapping/create";
+
+
+
