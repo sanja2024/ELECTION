@@ -1,11 +1,48 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./AddAgents.css";
 
 import profile_img from "../../Common/asset/images/voteimg/agents_img.svg";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-
+import { ADD_AGENT_SEARCH_URL } from "../../Common/Url/ServerConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { createRegion } from "../../Common/redux/slices/geoSlice";
+import { agentSearch } from "../../Common/redux/slices/agentSlice";
 const SearchAgent = () => {
+  const dispatch = useDispatch();
+  const [searchList, setSearchList] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+  };
+
+  const handleSearch = () => {
+    // console.log('searchdddk')
+    // setSearchList(true);
+    const userData = {
+      // payload: { mobileNo: parseInt(searchQuery, 10)},
+      endPoint: ADD_AGENT_SEARCH_URL+ `?mobileNo=${parseInt(searchQuery, 10)}`,
+    };
+    // fetchRegion(GET_BARCODE_BRANCH_ENDPOINT + `?productType=${e.yolo}&currentStage=${currentStage}`)
+    dispatch(agentSearch(userData))
+
+  //   dispatch(agentSearch(userData)).then((res) => {
+  //     if (res?.payload?.message === "success") {
+  // console.log(res?.payload?.data.list[0],'searchdddk')
+  //      if(res?.payload?.data.list[0]){
+  //       // setSelectedRole("AGENT")
+  //       // setRoleDisable(true)
+  //      }else{
+  //       // setRoleDisable(false)
+  //     }
+       
+  //     }
+  //   });
+  };
+
+
   return (
     <div className="container p-0">
       <Header />
@@ -13,21 +50,21 @@ const SearchAgent = () => {
         <div className="">
           <div className="search_agent_inside ">
             <div className="d-flex " style={{ flexBasis: "90%" }}>
-              <form className="searchagentform" role="search">
+              <div className="searchagentform" role="search">
                 <input
                   className="form-control searchagentinput "
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
-                // value={searchQuery}
-                // onChange={(e) => setBarCode(e.target.value)}
+                  value={searchQuery}
+                  onChange={handleSearchChange}
                 />
-              </form>
+              </div>
             </div>
             <div style={{ flexBasis: "10%" }}>
               <button
                 className="search_agent_btn  "
-              // onClick={() => handleClick(searchLeadID)}
+                onClick={handleSearch}
               >
                 {" "}
                 <h4
