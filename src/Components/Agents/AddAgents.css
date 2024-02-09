@@ -240,21 +240,6 @@ margin-bottom: 24px;
     z-index: 1;
     width: 100%;
 }
-
-
-@media (min-width: 600px) and (max-width: 900px) {
-.scroll_cards{
-    display: grid;
-    grid-template-columns: auto auto ;
-}
-.saerched_dataCard{
-    width: 60vw;
-    margin: auto;
-    margin-bottom: 24px;
-    margin-right: 24px;
-    }
-}
-
 .coll_width2{
     width: 40% !important;
 }
@@ -271,3 +256,17 @@ margin-bottom: 24px;
     padding: 2px 2px;
     text-align: center;
 }
+
+@media (min-width: 600px) and (max-width: 900px) {
+.scroll_cards{
+    display: grid;
+    grid-template-columns: auto auto ;
+}
+.saerched_dataCard{
+    width: 60vw;
+    margin: auto;
+    margin-bottom: 24px;
+    margin-right: 24px;
+    }
+}
+
