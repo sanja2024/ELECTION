@@ -36,17 +36,9 @@ const MainDashboard = () => {
           </div>
           <div className="mt-3 me-4" >
 
-            <button class="btn p-1 border rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{}} >  <img className="logot1" src={menu}></img></button>
+            <button class="btn  p-1 border rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{}} >  <img className="logot1" src={menu}></img></button>
 
-            <div class="offcanvas zindex offcanvas-end" tabindex="1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-              <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body">
-                ...
-              </div>
-            </div>
+           
           </div>
         </div>
         <div className="blog_scroll">
@@ -86,6 +78,14 @@ const MainDashboard = () => {
       </div>
 
       <div className="welcomebackmd">
+      <div class="offcanvas zindex offcanvas-end" tabindex="2" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+      <button type="button" class="btn-close close_btn" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              <div class="offcanvas-body" >
+                <div className="logout">
+                  <button className="btnLogout"> Logout</button>
+                  </div>             
+              </div>
+            </div>
         {/* <div className="wb_logo"><img src={logo}></img></div> */}
 
         <div className="row m-0 dashboard_data">
