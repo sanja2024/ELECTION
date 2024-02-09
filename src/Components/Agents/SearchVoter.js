@@ -186,41 +186,48 @@ const SearchVoter = () => {
                     </div>
                     <div className="collapse coll_width" id={`collapseExample${index}`}>
                       <div className="card card-body">
-                        <div className="form-check">
-                          <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                          <label className="form-check-label" htmlFor="flexCheckDefault1">
-                            Polled
-                          </label>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <div>
+                            <div className="form-group">
+                              <div>
+                                <label className="switch">
+                                  <input
+                                    type="checkbox"
+                                  // checked={row.lock}
+                                  // onChange={(e) => {
+                                  //   handleLockChange(row._id, row.lock);
+                                  //   // console.log(Row ${row._id} is active: ${row.lock});
+                                  // }}
+                                  />
+                                  <span className="slider round"></span>
+                                </label>
+                              </div>
+                            </div>
+                            <span className="searchedTitle p-1">Polled</span>
+                            <span className="searchedTitle p-1">Not-Polled</span>
+                          </div>
+
+                          <div className="btn-group dropdown">
+                            <button className="btn border rounded p-2 btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Time
+                            </button>
+                            <ul className="dropdown-menu scrollvisit_status">
+                              <li><a className="dropdown-item" href="#">07:00 AM</a></li>
+                              <li><a className="dropdown-item" href="#">08:00 AM</a></li>
+                              <li><a className="dropdown-item" href="#">09:00 AM</a></li>
+                              <li><a className="dropdown-item" href="#">10:00 AM</a></li>
+                              <li><a className="dropdown-item" href="#">11:00 AM</a></li>
+                              <li><a className="dropdown-item" href="#">12:00 PM</a></li>
+                              <li><a className="dropdown-item" href="#">01:00 PM</a></li>
+                              <li><a className="dropdown-item" href="#">02:00 PM</a></li>
+                              <li><a className="dropdown-item" href="#">03:00 PM</a></li>
+                              <li><a className="dropdown-item" href="#">04:00 PM</a></li>
+                              <li><a className="dropdown-item" href="#">05:00 PM</a></li>
+                              <li><a className="dropdown-item" href="#">06:00 PM</a></li>
+                            </ul>
+                          </div>
                         </div>
-                        <div className="form-check">
-                          <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                          <label className="form-check-label" htmlFor="flexCheckChecked2">
-                            Not Polled
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="collapse coll_width2" id="visitStatus">
-                      <div className="card card-body p-0">
-                        <div className="btn-group dropend">
-                          <button className="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Time
-                          </button>
-                          <ul className="dropdown-menu scrollvisit_status">
-                            <li><a className="dropdown-item" href="#">07:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">08:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">09:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">10:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">11:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">12:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">01:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">02:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">03:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">04:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">05:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">06:00 PM</a></li>
-                          </ul>
-                        </div>
+
                       </div>
                     </div>
                   </div>
