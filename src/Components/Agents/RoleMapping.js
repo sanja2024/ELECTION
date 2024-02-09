@@ -7,9 +7,10 @@ import Header from "../Header/Header";
 import { fetchPosts } from "../../Common/redux/slices/postsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../Common/redux/slices/usersSlice";
-import { BOOTH_API, MAPPING_CREATE_API, ROLE_SEARCH_API } from "../../Common/Url/ServerConfig";
+import { ADD_AGENT_SEARCH_URL, BOOTH_API, MAPPING_CREATE_API, ROLE_SEARCH_API } from "../../Common/Url/ServerConfig";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
+import { agentSearch } from "../../Common/redux/slices/agentSlice";
 const RoleMapping = () => {
   const initialValues = {
     // barCode: "",
@@ -25,8 +26,8 @@ const RoleMapping = () => {
   const [constituency, setConstituency] = useState([]);
   const [booth, setBooth] = useState([]);
   const [division, setDivision] = useState([]);
-
-
+  const [roleDisable, setRoleDisable] = useState(false);
+  
   const [mobile_no, setSelectedMobile] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedConstituency, setSelectedConstituency] = useState("");
@@ -52,6 +53,27 @@ const RoleMapping = () => {
 
     if (selectedValue === 'Mobile') {
       setSelectedMobile(event.target.value);
+      if(event.target.value.length==10){
+  
+          const userData = {
+            payload: event.target.value,
+            endPoint: ADD_AGENT_SEARCH_URL,
+          };
+          dispatch(agentSearch(userData)).then((res) => {
+            if (res?.payload?.message === "success") {
+              // setState(res?.payload.data.list);
+            //  console.log(res?.payload?.data.list[0].agentType,'wwewewe')
+             if(res?.payload?.data.list[0]?.agentType=='AGENT'){
+              setSelectedRole("AGENT")
+              setRoleDisable(true)
+             }else{
+              setRoleDisable(false)
+            }
+             
+            }
+          });
+        
+      }
     }
     else if (selectedValue === 'election') {
       setSelectedElection(event.target.value);
@@ -120,7 +142,8 @@ const RoleMapping = () => {
       setSelectedstate(event.target.value);
       const stateUserData = {
         payload: {
-          type: 'Constituency',
+          type: 'constituency',
+          election_code: selectedElection,
           state_code: event.target.value
         },
         endPoint: BOOTH_API,
@@ -135,8 +158,10 @@ const RoleMapping = () => {
       setSelectedConstituency(event.target.value);
       const constituencyUserData = {
         payload: {
-          type: 'Division',
-          division_code: event.target.value
+          type: 'division',
+          election_code: selectedElection,
+          state_code: selectedstate,
+          constituency_code: event.target.value
         },
         endPoint: BOOTH_API,
       };
@@ -150,8 +175,12 @@ const RoleMapping = () => {
       setSelectedDivision(event.target.value);
       const divisionUserData = {
         payload: {
-          type: 'Booth',
-          booth_code: event.target.value
+          type: 'booth',
+          election_code: selectedElection,
+          state_code: selectedstate,
+          // division_code:selectedDivision,
+          constituency_code: selectedConstituency,
+          division_code: event.target.value
         },
         endPoint: BOOTH_API,
       };
@@ -232,7 +261,7 @@ const RoleMapping = () => {
           toast.success("Data Created Successfull", {
             position: "top-right",
           });
-          setSelectedMobile("")
+          // setSelectedMobile("")
           setSelectedElection("");
           setSelectedstate("");
           setSelectedConstituency("");
@@ -271,6 +300,7 @@ const RoleMapping = () => {
             id="exampleFormControlInput1"
             placeholder="User ID"
             onChange={(event) => handleSelectChange(event, 'Mobile')}
+            value={mobile_no}
           />
         </div>
 
@@ -284,6 +314,7 @@ const RoleMapping = () => {
             aria-label="Role Type"
             onChange={(event) => handleSelectChange(event, 'Role')}
             value={selectedRole}
+            disabled={roleDisable}
           >
             <option value="">Select Role</option>
             {role.map((role, index) => (
