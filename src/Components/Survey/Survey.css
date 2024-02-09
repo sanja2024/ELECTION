@@ -1,8 +1,15 @@
 :root {
   --text-blue-clr: rgba(2, 44, 88, 1);
   --text-blue-grey: rgba(51, 51, 51, 0.84);
+
 }
 
+
+.survey_body::-webkit-scrollbar {
+  height: 1px;             
+  width: 1px;                
+  color: transparent;
+}
 .survey_body {
   width: 90vw;
   margin: auto;

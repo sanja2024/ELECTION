@@ -14,14 +14,14 @@ const SearchVoter = () => {
   const [searchList, setSearchList] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [cardList, setCardList] = useState([]);
-  
+
   const handleSearchChange = (event) => {
     const query = event.target.value;
     setSearchQuery(query);
   };
 
   const handleAgentSearch = () => {
-    console.log(searchQuery,'searchdddk')
+    console.log(searchQuery, 'searchdddk')
     // setSearchList(true);
     // const userData = {
     //   payload: {
@@ -31,30 +31,30 @@ const SearchVoter = () => {
     // };
     const userData = {
       payload: {
-        voter_id:searchQuery
+        voter_id: searchQuery
       },
       endPoint: VOTER_SEARCH_URL,
     };
     dispatch(createUser(userData)).then((res) => {
       if (res?.payload?.message === "success") {
-         setCardList(res?.payload?.data.list);
-        console.log(res?.payload?.data.list,'wwewewe')
-       
+        setCardList(res?.payload?.data.list);
+        console.log(res?.payload?.data.list, 'wwewewe')
+
       }
     });
 
-  //   dispatch(agentSearch(userData)).then((res) => {
-  //     if (res?.payload?.message === "success") {
-  // console.log(res?.payload?.data.list[0],'searchdddk')
-  //      if(res?.payload?.data.list[0]){
-  //       // setSelectedRole("AGENT")
-  //       // setRoleDisable(true)
-  //      }else{
-  //       // setRoleDisable(false)
-  //     }
-       
-  //     }
-  //   });
+    //   dispatch(agentSearch(userData)).then((res) => {
+    //     if (res?.payload?.message === "success") {
+    // console.log(res?.payload?.data.list[0],'searchdddk')
+    //      if(res?.payload?.data.list[0]){
+    //       // setSelectedRole("AGENT")
+    //       // setRoleDisable(true)
+    //      }else{
+    //       // setRoleDisable(false)
+    //     }
+
+    //     }
+    //   });
   };
 
 
@@ -94,131 +94,139 @@ const SearchVoter = () => {
 
       <div className="searchedcardHead mt-3">
         <div className="scroll_cards">
-        {cardList?.map((item, index) => (
-  <div className="card saerched_dataCard" key={index}>
-    <div className="card-body pb-1">
-      <div className="d-flex border-bottom pb-2">
-        <div>
-          <img className="searchedimg" src={profile_img} alt="profile"></img>
-        </div>
-        <div className="d-flex flex-column">
-          <span className="searchedAgentName">{item.fmNameEn}</span>
-          <span className="searchedAgentName">{item.fmNameV1}</span>
-        </div>
-      </div>
-      <div className="searched_data">
-        <div className="d-flex flex-column">
-          <span className="searchedTitle">S/O</span>
-          <span className="searchedData">{item.rlnFmNmEn}</span>
-          <span className="searchedData">{item.rlnFmNmV1}</span>
-        </div>
-        <div className="d-flex flex-column">
-          <span className="searchedTitle">Gender</span>
-          <span className="searchedData">{item.gender}</span>
-        </div>
-        <div className="d-flex flex-column">
-          <span className="searchedTitle">Age</span>
-          <span className="searchedData">{item.age}</span>
-        </div>
-        <div className="d-flex flex-column">
-          <span className="searchedTitle">Address</span>
-          <span className="searchedData">{item.cHouseNo}, {item.sectionNo}</span>
-        </div>
-      </div>
-      <div className="searched_data border-0">
-        <div className="d-flex flex-column">
-          <span className="searchedTitle">Voter Id</span>
-          <span className="searchedData">{item.epicNo}</span>
-        </div>
-        <div className="d-flex flex-column">
-          <span className="searchedTitle">Mobile No.</span>
-          <span className="searchedData">{item.mobileNo}</span>
-        </div>
-      </div>
-      <div className="searched_data  ">
-        <div className="d-flex flex-column">
-          <span className="searchedTitle">Booth Status</span>
-          <span className="searchedData">B9T878G9</span>
-        </div>
-      </div>
-      <div className="">
-        <div>
-          <div className="d-flex justify-content-evenly">
-            <div>
-              <button className="searched_status">SURVEY</button>
-            </div>
-            <div>
-              <button
-                className="searched_status "
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target={`#collapseExample${index}`}
-                aria-expanded="false"
-                aria-controls={`collapseExample${index}`}
-              >
-                Poll Status
-              </button>
-            </div>
-            <div>
-              <button
-                className="searched_status"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#visitStatus"
-                aria-expanded="false"
-                aria-controls="VisitStatus"
-              >
-                Visit Status
-              </button>
-            </div>
-          </div>
-          <div className="collapse coll_width" id={`collapseExample${index}`}>
-            <div className="card card-body">
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
-                <label className="form-check-label" htmlFor="flexCheckDefault1">
-                  Polled
-                </label>
+          {cardList?.map((item, index) => (
+            <div className="card saerched_dataCard" key={index}>
+              <div className="card-body pb-1 p-0">
+                <div className="d-flex justify-content-between border-bottom pb-2">
+                  <div className="name_img">
+
+                 
+                  <div>
+                    <img className="searchedimg" src={profile_img} alt="profile"></img>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedAgentName">{item.fmNameEn}</span>
+                    <span className="searchedAgentName">{item.fmNameV1}</span>
+                  </div> </div>
+
+                  <div className='VoteNo1'>
+                
+                    <span className='noVote1'>200</span>
+                  </div>
+                </div>
+                <div className="searched_data">
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">S/O</span>
+                    <span className="searchedData">{item.rlnFmNmEn}</span>
+                    <span className="searchedData">{item.rlnFmNmV1}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Gender</span>
+                    <span className="searchedData">{item.gender}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Age</span>
+                    <span className="searchedData">{item.age}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Address</span>
+                    <span className="searchedData">{item.cHouseNo}, {item.sectionNo}</span>
+                  </div>
+                </div>
+                <div className="searched_data border-0">
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Voter Id</span>
+                    <span className="searchedData">{item.epicNo}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Mobile No.</span>
+                    <span className="searchedData">{item.mobileNo}</span>
+                  </div>
+                </div>
+                <div className="searched_data  ">
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Booth Status</span>
+                    <span className="searchedData">B9T878G9</span>
+                  </div>
+                </div>
+                <div className="">
+                  <div>
+                    <div className="d-flex justify-content-evenly">
+                      <div>
+                        <button className="searched_status">SURVEY</button>
+                      </div>
+                      <div>
+                        <button
+                          className="searched_status "
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target={`#collapseExample${index}`}
+                          aria-expanded="false"
+                          aria-controls={`collapseExample${index}`}
+                        >
+                          Poll Status
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          className="searched_status"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#visitStatus"
+                          aria-expanded="false"
+                          aria-controls="VisitStatus"
+                        >
+                          Visit Status
+                        </button>
+                      </div>
+                    </div>
+                    <div className="collapse coll_width" id={`collapseExample${index}`}>
+                      <div className="card card-body">
+                        <div className="form-check">
+                          <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
+                          <label className="form-check-label" htmlFor="flexCheckDefault1">
+                            Polled
+                          </label>
+                        </div>
+                        <div className="form-check">
+                          <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
+                          <label className="form-check-label" htmlFor="flexCheckChecked2">
+                            Not Polled
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="collapse coll_width2" id="visitStatus">
+                      <div className="card card-body p-0">
+                        <div className="btn-group dropend">
+                          <button className="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Time
+                          </button>
+                          <ul className="dropdown-menu scrollvisit_status">
+                            <li><a className="dropdown-item" href="#">07:00 AM</a></li>
+                            <li><a className="dropdown-item" href="#">08:00 AM</a></li>
+                            <li><a className="dropdown-item" href="#">09:00 AM</a></li>
+                            <li><a className="dropdown-item" href="#">10:00 AM</a></li>
+                            <li><a className="dropdown-item" href="#">11:00 AM</a></li>
+                            <li><a className="dropdown-item" href="#">12:00 PM</a></li>
+                            <li><a className="dropdown-item" href="#">01:00 PM</a></li>
+                            <li><a className="dropdown-item" href="#">02:00 PM</a></li>
+                            <li><a className="dropdown-item" href="#">03:00 PM</a></li>
+                            <li><a className="dropdown-item" href="#">04:00 PM</a></li>
+                            <li><a className="dropdown-item" href="#">05:00 PM</a></li>
+                            <li><a className="dropdown-item" href="#">06:00 PM</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="form-check">
-                <input className="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-                <label className="form-check-label" htmlFor="flexCheckChecked2">
-                  Not Polled
-                </label>
-              </div>
             </div>
-          </div>
-          <div className="collapse coll_width2" id="visitStatus">
-            <div className="card card-body p-0">
-              <div className="btn-group dropend">
-                <button className="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Time
-                </button>
-                <ul className="dropdown-menu scrollvisit_status">
-                  <li><a className="dropdown-item" href="#">07:00 AM</a></li>
-                  <li><a className="dropdown-item" href="#">08:00 AM</a></li>
-                  <li><a className="dropdown-item" href="#">09:00 AM</a></li>
-                  <li><a className="dropdown-item" href="#">10:00 AM</a></li>
-                  <li><a className="dropdown-item" href="#">11:00 AM</a></li>
-                  <li><a className="dropdown-item" href="#">12:00 PM</a></li>
-                  <li><a className="dropdown-item" href="#">01:00 PM</a></li>
-                  <li><a className="dropdown-item" href="#">02:00 PM</a></li>
-                  <li><a className="dropdown-item" href="#">03:00 PM</a></li>
-                  <li><a className="dropdown-item" href="#">04:00 PM</a></li>
-                  <li><a className="dropdown-item" href="#">05:00 PM</a></li>
-                  <li><a className="dropdown-item" href="#">06:00 PM</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-))}
+          ))}
 
 
-  
+
 
 
         </div>
