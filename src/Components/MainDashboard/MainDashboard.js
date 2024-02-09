@@ -21,7 +21,7 @@ import PollStatus from "../../Common/asset/images/voteimg/PollStatus.svg";
 import menu from "../../Common/asset/images/voteimg/menu.svg";
 
 import Footer from "../Footer/Footer";
-import { AddAgents_ROUTE, Assign2_ROUTE, ComingSoon_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
+import { AddAgents_ROUTE, Assign2_ROUTE, ComingSoon_ROUTE, NonVoterPage_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterPage_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
 import { useNavigate } from "react-router-dom";
 import SearchVoter from "../Agents/SearchVoter";
 import { AgentAccessCode } from "../../Common/Route/ConfigRoute";
@@ -93,7 +93,7 @@ const MainDashboard = () => {
 
         <div className="row m-0 dashboard_data">
           <div>
-          {AccessCode != "GUEST" ? ( <span className="">Agents</span>):(<></>)}
+            {AccessCode != "GUEST" ? (<span className="">Agents</span>) : (<></>)}
             {AccessCode != "GUEST" ? (<div className="agents_detail_scroll">
               <div className="agents_detail">
                 <div className="card p-0">
@@ -254,7 +254,7 @@ const MainDashboard = () => {
                       <span
                         className="KeyfeatureVal"
                         onClick={() => {
-                          navigate(AddAgents_ROUTE);
+                          navigate(VoterPage_ROUTE);
                         }}
                       >
                         Voters
@@ -265,7 +265,7 @@ const MainDashboard = () => {
                       <span
                         className="KeyfeatureVal"
                         onClick={() => {
-                          navigate(RoleMapping_ROUTE);
+                          navigate(NonVoterPage_ROUTE);
                         }}
                       >
                         Non-Voters

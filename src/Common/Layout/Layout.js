@@ -17,7 +17,9 @@ import {
   Assign2_ROUTE,
   BoothStatus_ROUTE,
   VoterSearch_ROUTE,
-  ComingSoon_ROUTE
+  ComingSoon_ROUTE,
+  VoterPage_ROUTE,
+  NonVoterPage_ROUTE
 
 } from "../Route/Routes";
 import Dashboard from "../../Components/Dashboard/Dashboard";
@@ -45,6 +47,8 @@ import Footer from "../../Components/Footer/Footer";
 import OTPverify from "../EnterMobile/OTPverify";
 import SearchVoter from "../../Components/Agents/SearchVoter";
 import { AgentAccessCode } from "../Route/ConfigRoute";
+import VoterPage from "../../Components/Voter/VoterPage";
+import NonVoterPage from "../../Components/Voter/NonVoterPage";
 
 const Layout = () => {
   const AccessCode = AgentAccessCode()
@@ -77,6 +81,10 @@ const Layout = () => {
           <Route path={Assign_ROUTE} element={<Assign />} />
           <Route path={Assign2_ROUTE} element={<Assign2 />} />
           <Route path={BoothStatus_ROUTE} element={<BoothStatus />} />
+
+          <Route path={VoterPage_ROUTE} element={<VoterPage />} />
+
+          <Route path={NonVoterPage_ROUTE} element={<NonVoterPage />} />
 
           <Route path={VoterSearch_ROUTE} element={<SearchVoter />} />
           <Route path={ComingSoon_ROUTE} element={<ComingSoon />} />

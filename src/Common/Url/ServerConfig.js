@@ -103,6 +103,7 @@ export const GET_SAVE_ANSWER_URL = BASE_API_URL + "topic/answer/save";
 export const GET_BOOTH_STATUS_URL = BASE_API_URL + "dashboard/dashboard1";
 
 
+export const GET_VISITOR_URL = BASE_API_URL + "visit/search";
 
 export const ASSIGN_VOTER_URL = BASE_API_URL + "transaction/poll/add";
 
