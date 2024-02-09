@@ -56,20 +56,20 @@ const SurveyForm = ({ questions, onSubmit }) => {
             {question.type === "radio" ? (
               question.option.split(",").map((option) => (
                 <div key={option} className="survey_btn">
-                  <div className="survey_btns">
+                  {/* <div className="survey_btns"> */}
                     <input
                       id={option}
-                      className="form-check-input"
+                      className="form-check-input survey_input1"
                       type="radio"
                       name={question.topicCode}
                       checked={selectedOptions[question.topicCode] === option}
                       value={option}
                       onChange={() => handleOptionSelect(question.topicCode, option)}
                     />
-                    <label className="form-check-label" htmlFor={option}>
+                    <label className="form-check-label newbtn" htmlFor={option}>
                       {option}
                     </label>
-                  </div>
+                  {/* </div> */}
                 </div>
               ))
             ) : (
@@ -85,20 +85,20 @@ const SurveyForm = ({ questions, onSubmit }) => {
             )}
           </div>
         </div>
-        {error && <p className="error-message">{error}</p>}
+        {error && <p className="error-message p-3">{error}</p>}
         {currentPage > 0 && (
-          <button className="submit_btn" type="button" onClick={handlePreviousPage}>
+          <button className="submit_btn1" type="button" onClick={handlePreviousPage}>
             Previous
           </button>
         )}
         {currentPage < questions.length - 1 && (
-          <button className="submit_btn" type="button" onClick={handleNextPage}>
+          <button className="submit_btn2" type="button" onClick={handleNextPage}>
             Next
           </button>
         )}
 
         {currentPage === questions.length - 1 && (
-          <button className="submit_btn" type="button" onClick={handleSubmit}>
+          <button className="submit_btn2" type="button" onClick={handleSubmit}>
             Submit
           </button>
         )}

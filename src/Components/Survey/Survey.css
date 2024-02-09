@@ -8,8 +8,9 @@
   margin: auto;
   margin-top: 24px;
   /* border: 1px solid red; */
-  height: 78vh;
+  height: 70vh;
   overflow-y: scroll;
+  margin-bottom: 24px;
 }
 .survey_card{
   margin-bottom: 14px;
@@ -65,10 +66,10 @@ form-text-input1:focus-visible {
   margin: auto;
   margin-top: 24px;
   /* border: 1px solid red; */
-  /* height: 78vh; */
+  height: 60vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .QuestoinHead {
@@ -93,13 +94,17 @@ form-text-input1:focus-visible {
 }
 
 .survey_btn {
-  border: 1px solid var(--text-blue-clr);
+  border: 1px solid white;
   border-radius: 6px;
-  padding: 8px 12px;
+  padding: 16px 12px;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   margin-bottom: 12px;
+}
+.survey_btn:focus-within {
+  border: 1px solid var(--text-blue-clr);
+ 
 }
 
 .survey_btns {
@@ -115,18 +120,93 @@ form-text-input1:focus-visible {
   padding-left: 0px !important;
 }
 
-.survey_btns input:checked {
+.survey_btn input:checked {
   background-color: var(--text-blue-clr) !important;
-  /* color: deeppink; */
+  color: deeppink;
   border-color: var(--text-blue-clr) !important;
+}
+.survey_input1:checked + .survey_btn {
+border:1px solid var(--text-blue-clr) !important;
 }
 
 .form-check input:checked .survey_btns {
   background-color: var(--text-blue-clr) !important;
-  /* color: deeppink; */
+  color: deeppink;
   border-color: var(--text-blue-clr) !important;
+} */
+
+.form-check-input:checked +.survey_btn {
+  border: 1px solid var(--text-blue-clr) !important;
 }
 
-.form-check-input:checked+.survey_btn {
-  border: 1px solid var(--text-blue-clr) !important;
+
+
+
+
+
+.submit_btn1{
+  background-color: rgba(204, 55, 91, 1);
+  color: white;
+  /* font-family: Lato; */
+  position: absolute;
+font-size: 18px;
+font-weight: 500;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: center;
+padding: 14px  24px;
+display: flex;
+justify-content: center;
+width: 40%;
+left: 4%;
+margin: auto;
+border: none;
+border-radius: 6px;
+margin-bottom: 10px;
+
+
+}
+.submit_btn1{
+  background-color: rgba(204, 55, 91, 1);
+  color: white;
+  /* font-family: Lato; */
+  position: absolute;
+font-size: 18px;
+font-weight: 500;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: center;
+padding: 14px  24px;
+display: flex;
+justify-content: center;
+width: 40%;
+left: 4%;
+margin: auto;
+border: none;
+border-radius: 6px;
+margin-bottom: 10px;
+
+
+}
+.submit_btn2{
+  background-color: rgba(204, 55, 91, 1);
+  color: white;
+  /* font-family: Lato; */
+  position: absolute;
+font-size: 18px;
+font-weight: 500;
+line-height: 22px;
+letter-spacing: 0em;
+text-align: center;
+padding: 14px  24px;
+display: flex;
+justify-content: center;
+width: 40%;
+right: 4%;
+margin: auto;
+border: none;
+border-radius: 6px;
+margin-bottom: 10px;
+
+
 }

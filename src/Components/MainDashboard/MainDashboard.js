@@ -27,7 +27,7 @@ import { useNavigate } from "react-router-dom";
 const MainDashboard = () => {
   const navigate = useNavigate();
   return (
-    <div className="container p-0 m-0">
+    <div className="">
 
       <div className="bgImgMD">
         <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%" }}>
@@ -227,7 +227,7 @@ const MainDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-3">
+            <div className="mt-3 mb-5">
               <span>My Status</span>
               <div className="Agent_detail">
                 <div className="Agent_detailBoxTop">
