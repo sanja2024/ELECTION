@@ -109,7 +109,7 @@ const SurveyForm = ({ questions, onSubmit }) => {
   return <div className="container p-0">{renderCurrentPage()}</div>;
 };
 
-const Survey = () => {
+const Survey = ({ finalResp }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [selectedTopic, setSelectedTopic] = useState(null);
@@ -153,14 +153,15 @@ const Survey = () => {
         toast.success(res?.payload?.data?.message, {
           position: toast.POSITION.TOP_RIGHT,
         });
-        navigate("/MainDashboard")
+        navigate("/CompleteSurvey")
       }
     })
   };
 
   return (
     <div className="container p-0">
-      <Header />
+
+      {finalResp == true ? "" : <Header />}
       {selectedTopic ? (
         <SurveyForm
           questions={(topics?.data?.list?.find((topic) => topic.topicCode === selectedTopic)?.topicList || [])}

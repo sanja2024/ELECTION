@@ -3,6 +3,7 @@ import sms from "../../Common/asset/images/voteimg/sms.svg";
 import hand from "../../Common/asset/images/voteimg/wb_hand.svg";
 import logo from "../../Common/asset/images/voteimg/admin_icon.svg";
 import Footer from '../Footer/Footer';
+import Survey from './Survey';
 const CompleteSurvey = () => {
   return (
     <div className="container p-0">
@@ -30,9 +31,10 @@ const CompleteSurvey = () => {
 
 
 
-
+        <Survey finalResp={true} />
       </div>
-      <Footer/>
+
+      {/* <Footer /> */}
     </div>
   )
 }
