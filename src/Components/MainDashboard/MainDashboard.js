@@ -30,7 +30,7 @@ const MainDashboard = () => {
     <div className="">
 
       <div className="bgImgMD">
-        <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%" ,zIndex:"2 !important"}}>
+        <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%", zIndex: "2 !important" }}>
           <div className="mt-1 ">
             <img className="logot" src={logo}></img>
           </div>
@@ -38,7 +38,7 @@ const MainDashboard = () => {
 
             <button class="btn  p-1 border rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{}} >  <img className="logot1" src={menu}></img></button>
 
-           
+
           </div>
         </div>
         <div className="blog_scroll">
@@ -78,14 +78,14 @@ const MainDashboard = () => {
       </div>
 
       <div className="welcomebackmd">
-      <div class="offcanvas zindex offcanvas-end" tabindex="2" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-      <button type="button" class="btn-close close_btn" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              <div class="offcanvas-body" >
-                <div className="logout">
-                  <button className="btnLogout"> Logout</button>
-                  </div>             
-              </div>
+        <div class="offcanvas zindex offcanvas-end" tabindex="2" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+          <button type="button" class="btn-close close_btn" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <div class="offcanvas-body" >
+            <div className="logout">
+              <button className="btnLogout"> Logout</button>
             </div>
+          </div>
+        </div>
         {/* <div className="wb_logo"><img src={logo}></img></div> */}
 
         <div className="row m-0 dashboard_data">
@@ -186,7 +186,9 @@ const MainDashboard = () => {
                   </div>
                   <div className="KeyfeatureBox">
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
-                    <span className="KeyfeatureVal">Survey</span>
+                    <span onClick={() => {
+                      navigate(Survey_ROUTE);
+                    }} className="KeyfeatureVal">Survey</span>
                   </div>
                 </div>
               </div>
@@ -225,7 +227,7 @@ const MainDashboard = () => {
                     <img className="AddAgentIcons" src={searchstatus}></img>
                     <span className="KeyfeatureVal">Vote Search</span>
                   </div>
-                  <div className="KeyfeatureBox" onClick={() => { navigate(Assign2_ROUTE);}}>
+                  <div className="KeyfeatureBox" onClick={() => { navigate(Assign2_ROUTE); }}>
                     <img className="AddAgentIcons" src={Assign}></img>
                     <span className="KeyfeatureVal">Assign</span>
                   </div>

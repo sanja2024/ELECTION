@@ -50,7 +50,7 @@ const SurveyForm = ({ questions, onSubmit }) => {
       <div>
         <div className="survey_questionnaire">
           <div className="d-flex flex-column mb-3">
-            <span className="QuestoinHead">Survey Questionnaire</span>
+            <span className="QuestoinHead">{question.topicName}</span>
             <span className="QuestoinnaireQues">{question.topicQuestion}</span>
           </div>
           <div>
@@ -178,7 +178,24 @@ const Survey = ({ finalResp }) => {
           questions={(topics?.data?.list?.find((topic) => topic.topicCode === selectedTopic)?.topicList || [])}
           onSubmit={handleFormSubmit}
         /> :
-          <SurveyDetail />
+          <>
+            <div
+
+            >
+              <div style={{
+                width: "90vw",
+                marginTop: "24px",
+
+                marginLeft: "16px"
+              }} className="d-flex flex-column mb-3">
+
+                <span className="QuestoinHead">{selectedTopic}</span>
+
+              </div>
+              <SurveyDetail />
+            </div>
+          </>
+
 
       ) : (
         <div className="survey_body">
@@ -202,9 +219,10 @@ const Survey = ({ finalResp }) => {
             </div>
           ))}
         </div>
-      )}
+      )
+      }
       <Footer />
-    </div>
+    </div >
   );
 };
 
