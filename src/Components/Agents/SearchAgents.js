@@ -11,34 +11,32 @@ const SearchAgent = () => {
       <Header />
       <div className="mt-2">
         <div className="">
-          <span className="search_agent">
-            <div className="search_agent_inside ">
-              <div className="d-flex ">
-                <form className="searchagentform" role="search">
-                  <input
-                    className="form-control searchagentinput "
-                    type="search"
-                    placeholder="Enter Agent ID or Voter ID"
-                    aria-label="Search"
-                  // value={searchQuery}
-                  // onChange={(e) => setBarCode(e.target.value)}
-                  />
-                </form>
-              </div>
-              <div>
-                <button
-                  className="search_agent_btn  "
-                // onClick={() => handleClick(searchLeadID)}
-                >
-                  {" "}
-                  <h4
-                    className="text-white bi bi-search mb-0"
-                  // src={search_new_img}
-                  ></h4>
-                </button>
-              </div>
+          <div className="search_agent_inside ">
+            <div className="d-flex " style={{ flexBasis: "90%" }}>
+              <form className="searchagentform" role="search">
+                <input
+                  className="form-control searchagentinput "
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                // value={searchQuery}
+                // onChange={(e) => setBarCode(e.target.value)}
+                />
+              </form>
             </div>
-          </span>
+            <div style={{ flexBasis: "10%" }}>
+              <button
+                className="search_agent_btn  "
+              // onClick={() => handleClick(searchLeadID)}
+              >
+                {" "}
+                <h4
+                  className="text-white bi bi-search mb-0"
+                // src={search_new_img}
+                ></h4>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -128,7 +126,7 @@ const SearchAgent = () => {
                       >visit status</button>
                     </div>
                   </div>
-                  <div class="collapse coll_width" id="VisitStatus">
+                  <div class="collapse coll_width" id="collapseExample1">
                     <div class="card card-body">
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
@@ -148,7 +146,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -276,7 +274,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -404,7 +402,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -532,7 +530,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -660,7 +658,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -788,7 +786,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -916,7 +914,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -1044,7 +1042,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -1172,7 +1170,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -1300,7 +1298,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -1428,7 +1426,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -1556,7 +1554,7 @@ const SearchAgent = () => {
                     <div class="card card-body p-0">
                       <div class="btn-group dropend">
                         <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         Time
+                          Time
                         </button>
                         <ul class="dropdown-menu scrollvisit_status">
                           <li><a class="dropdown-item" href="#">07:00 AM</a></li>
@@ -1580,7 +1578,7 @@ const SearchAgent = () => {
               </div>
             </div>
           </div>
-       
+
 
         </div>
       </div>

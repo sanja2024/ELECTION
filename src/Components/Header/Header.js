@@ -28,6 +28,7 @@ const Header = () => {
     "/RoleMapping": "Role Mapping",
     "/Assign": " Assign",
     "/Assign2": " Assign",
+    "/BoothStatus": " Booth Status",
   };
 
   return (

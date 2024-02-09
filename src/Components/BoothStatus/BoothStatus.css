@@ -1,0 +1,155 @@
+.BoothStatus {
+    height: 80vh;
+    /* border: 1px solid red; */
+    padding: 14px;
+    /* overflow-y: scroll; */
+}
+.boothdatanew{
+    /* border: 1px solid red; */
+    position: relative;
+    height: 90%;
+    overflow-y: scroll;
+}
+.boothscroll{
+    position: relative;
+  
+}
+.BoothName {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    /* padding-bottom: 10px; */
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 0px 10px 14px;
+}
+
+.VoteNo {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(2, 44, 88, 0.122);
+    padding: 10px;
+    border-radius: 0px 0px 0px 10px;
+}
+
+.noVote {
+    color: rgb(41, 45, 50);
+    font-family: Lato;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.noOFVote {
+    color: rgb(2, 44, 88);
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+
+
+}
+
+
+
+
+.boothName {
+    color: rgb(2, 44, 88);
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 15px;
+    letter-spacing: 0.03em;
+    text-align: left;
+    text-transform: uppercase;
+    padding: 5px;
+
+}
+.booth_val{
+    color: rgb(51, 51, 51);
+    font-family: Lato;
+font-size: 12px;
+font-weight: 600;
+line-height: 15px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+.boothAdd {
+    color: rgb(51, 51, 51);
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding: 5px;
+
+}
+
+.boothdata {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+    padding: 8px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.data1 {
+    flex-basis: 15%;
+}
+
+.data2 {
+    flex-basis: 15%;
+}
+
+.data3 {
+    flex-basis: 15%;
+}
+
+.boothdata2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px 16px;
+}
+
+.boothname {
+    font-family: Lato;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgb(128, 128, 128);
+}
+
+.boothVal {
+    font-family: Lato;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+
+    color: rgb(51, 51, 51);
+}
+
+.Polled {
+    background-color: rgba(91, 91, 91, 0.039);
+    color: rgba(2, 44, 88, 0.529);
+    font-family: Lato;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: 0.04em;
+    text-align: center;
+    padding: 4px 0px;
+    margin-bottom: 4px;
+
+}
