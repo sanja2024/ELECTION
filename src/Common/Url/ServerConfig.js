@@ -79,7 +79,7 @@ const BASE_EL_API_URL = "";
 
 export const ADD_AGENT_URL = BASE_API_URL + "agent/user/create";
 
-export const ADD_AGENT_SEARCH_URL = BASE_EL_API_URL + "agent/user/search";
+export const ADD_AGENT_SEARCH_URL = BASE_API_URL + "agent/user/search";
 
 export const LOGIN_AUTH_URL = BASE_API_URL + "auth/login";
 
