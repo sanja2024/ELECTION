@@ -308,6 +308,12 @@
   margin-bottom: 24px;
   /* margin-right: 24px; */
 }
+.saerched_dataCard1 {
+  width: 85vw;
+  margin: auto;
+  margin-bottom: 24px;
+  /* margin-right: 24px; */
+}
 
 .coll_width {
   z-index: 1;
