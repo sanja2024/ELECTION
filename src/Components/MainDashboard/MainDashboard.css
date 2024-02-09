@@ -136,10 +136,9 @@
   justify-content: space-evenly;
 }
 .Agent_detailBoxTop {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+width: 90vw;
 
 }
 

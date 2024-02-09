@@ -21,7 +21,7 @@ import PollStatus from "../../Common/asset/images/voteimg/PollStatus.svg";
 import menu from "../../Common/asset/images/voteimg/menu.svg";
 
 import Footer from "../Footer/Footer";
-import { AddAgents_ROUTE, Assign2_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
+import { AddAgents_ROUTE, Assign2_ROUTE, ComingSoon_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
 import { useNavigate } from "react-router-dom";
 
 const MainDashboard = () => {
@@ -172,17 +172,20 @@ const MainDashboard = () => {
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal">Vote Search</span>
                   </div>
-                  <div className="KeyfeatureBox">
+                  <div className="KeyfeatureBox"  onClick={() => {navigate(ComingSoon_ROUTE);}}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
-                    <span className="KeyfeatureVal">Constituencies</span>
+                    <span className="KeyfeatureVal"  
+                   >Constituencies</span>
                   </div>
-                  <div className="KeyfeatureBox">
+                  <div className="KeyfeatureBox"  onClick={() => {navigate(ComingSoon_ROUTE);}}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
-                    <span className="KeyfeatureVal">Candidate info</span>
+                    <span className="KeyfeatureVal"
+                    >Candidate info</span>
                   </div>
-                  <div className="KeyfeatureBox">
+                  <div className="KeyfeatureBox"  onClick={() => {navigate(ComingSoon_ROUTE);}}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
-                    <span className="KeyfeatureVal">Election info</span>
+                    <span className="KeyfeatureVal"
+                    >Election info</span>
                   </div>
                   <div className="KeyfeatureBox">
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>

@@ -36,7 +36,7 @@ const BoothStatus = () => {
                 </div>
                 <div className='boothdatanew'>
                     <div className='boothscroll'>
-                        <div className='card border m-2 p-0'>
+                        <div className='card border m-2 p-0 pb-2'>
                             <div className='card-body p-0'>
                                 <div className='BoothName'>
                                     <div className='d-flex flex-column justify-content-start pt-2'>
