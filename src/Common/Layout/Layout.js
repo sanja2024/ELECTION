@@ -17,8 +17,10 @@ import {
   Assign2_ROUTE,
   BoothStatus_ROUTE,
   VoterSearch_ROUTE,
-  ComingSoon_ROUTE
-        
+  ComingSoon_ROUTE,
+  VoterPage_ROUTE,
+  NonVoterPage_ROUTE
+
 } from "../Route/Routes";
 import Dashboard from "../../Components/Dashboard/Dashboard";
 
@@ -44,65 +46,51 @@ import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import OTPverify from "../EnterMobile/OTPverify";
 import SearchVoter from "../../Components/Agents/SearchVoter";
+import { AgentAccessCode } from "../Route/ConfigRoute";
+import VoterPage from "../../Components/Voter/VoterPage";
+import NonVoterPage from "../../Components/Voter/NonVoterPage";
 
 const Layout = () => {
+  const AccessCode = AgentAccessCode()
   return (
     <>
       {/* <Header /> */}
       <Routes>
         {/* Dashboard Path Start /main*/}
         {/* <Route path={DASHBOARD_ROUTE} element={<Dashboard />} /> */}
-        <Route path={WelcomeBack_ROUTE} element={<WelcomeBack />} />
-        {/* <Route path={EnterMobile_ROUTE} element={<EnterMobile />} /> */}
-        
-        {/* <Route path={OTP_ROUTE} element={<OTPverify />} /> */}
+        {AccessCode == "GUEST" ? (<>
 
-        <Route path={MainDashboard_ROUTE} element={<MainDashboard />} />
-        <Route path={AddAgents_ROUTE} element={<AddAgents />} />
-        <Route path={RoleMapping_ROUTE} element={<RoleMapping />} />
-        <Route path={SearchAgent_ROUTE} element={<SearchAgent />} />
-        <Route path={Survey_ROUTE} element={<Survey />} />
-        <Route path={SurveyForm_ROUTE} element={<SurveyForm />} />
-        <Route path={CompleteSurvey_ROUTE} element={<CompleteSurvey />} />
-        <Route path={Assign_ROUTE} element={<Assign />} />
-        <Route path={Assign2_ROUTE} element={<Assign2 />} />
-        <Route path={BoothStatus_ROUTE} element={<BoothStatus />} />
+          <Route path={WelcomeBack_ROUTE} element={<WelcomeBack />} />
+          <Route path={MainDashboard_ROUTE} element={<MainDashboard />} />
+          <Route path={Survey_ROUTE} element={<Survey />} />
+          <Route path={SurveyForm_ROUTE} element={<SurveyForm />} />
+          <Route path={CompleteSurvey_ROUTE} element={<CompleteSurvey />} />
+          <Route path={VoterSearch_ROUTE} element={<SearchVoter />} />
+          <Route path={ComingSoon_ROUTE} element={<ComingSoon />} />
 
-        <Route path={VoterSearch_ROUTE} element={<SearchVoter />} />
-        <Route path={ComingSoon_ROUTE} element={<ComingSoon />} />
-        
+        </>) : (<>
 
-        {/* <Route path={'/CongratsPage'} element={<CongratsPage />} /> */}
+          <Route path={WelcomeBack_ROUTE} element={<WelcomeBack />} />
+          <Route path={MainDashboard_ROUTE} element={<MainDashboard />} />
+          <Route path={AddAgents_ROUTE} element={<AddAgents />} />
+          <Route path={RoleMapping_ROUTE} element={<RoleMapping />} />
+          <Route path={SearchAgent_ROUTE} element={<SearchAgent />} />
+          <Route path={Survey_ROUTE} element={<Survey />} />
+          <Route path={SurveyForm_ROUTE} element={<SurveyForm />} />
+          <Route path={CompleteSurvey_ROUTE} element={<CompleteSurvey />} />
+          <Route path={Assign_ROUTE} element={<Assign />} />
+          <Route path={Assign2_ROUTE} element={<Assign2 />} />
+          <Route path={BoothStatus_ROUTE} element={<BoothStatus />} />
 
-        {/* Dashboard Path End */}
+          <Route path={VoterPage_ROUTE} element={<VoterPage />} />
 
-        {/* Master Path Start */}
-        {/* <Route path={USER_MASTER_ROUTE} element={<User />} />
-        <Route path={MENU_MASTER_ROUTE} element={<Menu />} />
-        <Route path={ROLE_MASTER_ROUTE} element={<Role />} />
-        <Route path={PRODUCT_MASTER_ROUTE} element={<Product />} /> */}
-        {/* Master Path End */}
+          <Route path={NonVoterPage_ROUTE} element={<NonVoterPage />} />
 
-        {/* Mapping Path Start */}
-        {/* <Route path={ROLE_RIGHTS_ROUTE} element={<RoleRights />} />
-        <Route path={ROLE_MAPPING_ROUTE} element={<RoleMapping />} />
-        <Route path={PRODUCT_MAPPING_ROUTE} element={<ProductMapping />} />
-        <Route path={TIMELINE_ROUTE} element={<Timeline />} /> */}
-        {/* <Route path={DISINTEGERATION_ROUTE} element={<DisintegrationTarget />} /> */}
-        {/* <Route path={LoginPage0_ROUTE} element={<LoginPage0 />} />
-        <Route path={LoginPage_ROUTE} element={<LoginPage />} /> */}
-        {/* <Route path={ProductPage_ROUTE} element={<ProductPage />} /> */}
+          <Route path={VoterSearch_ROUTE} element={<SearchVoter />} />
+          <Route path={ComingSoon_ROUTE} element={<ComingSoon />} />
+        </>)}
 
-        {/* <Route path={LoginPage2_ROUTE} element={<LoginPage2 />} />
-        <Route path={LoginPage3_ROUTE} element={<LoginPage3 />} />
-        <Route path={LoginOTP_ROUTE} element={<LoginPage4 />} />
-        <Route path={LoginPage5_ROUTE} element={<LoginPage5 />} />
-        <Route path={LoginPage6_ROUTE} element={<LoginPage6 />} />
-        <Route path={LoginPage7_ROUTE} element={<LoginPage7 />} />
-        <Route path={CustumerAll_ROUTE} element={<CustomerAll />} />
-        <Route path={ResonForVisit_ROUTE} element={<ResonForVIsit />} /> */}
 
-        {/* Mapping Path End */}
       </Routes>
       {/* <Footer/> */}
     </>

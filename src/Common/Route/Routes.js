@@ -45,6 +45,9 @@ export const AddAgents_ROUTE = "/Add_Agents";
 export const RoleMapping_ROUTE = "/RoleMapping";
 export const SearchAgent_ROUTE = "/SearchAgent";
 export const VoterSearch_ROUTE = "/SearchVoter";
+export const VoterPage_ROUTE = "/VoterPage";
+export const NonVoterPage_ROUTE = "/NonSearchVoter";
+
 export const Assign_ROUTE = "/Assign";
 export const Assign2_ROUTE = "/Assign2";
 

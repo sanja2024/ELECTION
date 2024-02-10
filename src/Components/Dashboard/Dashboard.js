@@ -172,7 +172,7 @@ const Dashboard = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    dispatch(fetchTranxID(DEALER_GET_URL));
+    // dispatch(fetchTranxID(DEALER_GET_URL));
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -226,6 +226,18 @@ const Dashboard = () => {
     window.location.reload();
   };
 
+  const fnGuest = (nav) => {
+      localStorage.setItem("CUSTOMTOKEN", 'coSkKDoSS70Cu6RUsDRKnKQUlXvmzyvoSEBS3WpRd6/4gEtZ39STlENqKRjDRFKew69PE6RyGN');
+      localStorage.setItem("product_code", 'EL');
+      localStorage.setItem("User", 'GUEST');
+      toast.success("Login Successful!", {
+        position: "top-right",
+        // theme: "dark",
+      });
+      navigate(nav)
+  };
+  
+
   useEffect(() => {
     // console.log(data.status,'ssldkmsdata')
     if (posts?.status == "success") {
@@ -274,8 +286,8 @@ const Dashboard = () => {
             <span className="slow">Your Voice, Your Future</span>
           </div>
           <div className="sign_btn">
-            <button className="signbtn " onClick={() => { navigate(LOGIN_ROUTE); }}>Sign in - </button>
-            <button className="signbtn2 " onClick={() => { navigate(LOGIN_ROUTE); }}>Guest Signin - </button>
+            <button className="signbtn " onClick={() => { navigate(LOGIN_ROUTE); }}> {"Sign in ->"} </button>
+            <button className="signbtn2 " onClick={() => { fnGuest(LOGIN_ROUTE) }}>Guest </button>
             <span className="register" onClick={() => { navigate(EnterMobile_ROUTE); }}>Register For an account</span>
           </div>
         </div>

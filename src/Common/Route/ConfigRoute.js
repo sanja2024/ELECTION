@@ -34,6 +34,10 @@ export function employeeCode() {
   const name = localStorage.getItem("emp_code");
   return name;
 }
+export function AgentAccessCode() {
+  const name = localStorage.getItem("User");
+  return name;
+}
 // export function PublicRoute({ children }) {
 //   const token = localStorage.getItem("custom_token");
 //   // const location = useLocation();

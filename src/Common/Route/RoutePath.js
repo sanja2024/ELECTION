@@ -73,7 +73,7 @@ function RoutePath() {
           <Route path={OTP_ROUTE} element={<PublicRoute><OTPverify /></PublicRoute>} />
           <Route path={Page5_ROUTE} element={<PublicRoute><Page5 /></PublicRoute>} />
           <Route path={Forgot_ROUTE} element={<PublicRoute><Forgot /></PublicRoute>} />
-          
+
           {/* <Route path={"/Add_Agents"} element={<AddAgents />} /> */}
         </Routes>
       </Router>

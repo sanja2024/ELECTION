@@ -1,325 +1,160 @@
-import React, { useState, useEffect, useRef } from "react";
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
+import React, { useState, useEffect } from "react";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import profile_img from "../../Common/asset/images/voteimg/agents_img.svg";
-import { ADD_AGENT_SEARCH_URL } from "../../Common/Url/ServerConfig";
+import { useLocation } from "react-router-dom";
+import { createUser } from "../../Common/redux/slices/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { createRegion } from "../../Common/redux/slices/geoSlice";
-import { agentSearch } from "../../Common/redux/slices/agentSlice";
+import { useNavigate } from "react-router-dom";
+import { ASSIGN_VOTER_URL } from "../../Common/Url/ServerConfig";
+import { toast } from "react-toastify";
+import { Assign2_ROUTE } from "../../Common/Route/Routes";
 const Assign = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { state } = useLocation();
+  console.log("state", state?.response);
 
+  const handleSelect = (selectedVoter) => {
+    setSelectedVoter(selectedVoter);
+  };
+
+  const VoterComponent = ({ voter }) => {
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleCheckboxChange = (event) => {
+      const { checked } = event.target;
+      setIsChecked(checked);
+      if (checked) {
+        handleSelect({
+          voter_id: voter?.epicNo,
+          poll_status:false,
+          poll_time:'0',
+          visit_code:0
+        });
+      } else {
+        handleSelect(null);
+      }
+    };
+
+    return (
+      <div className="scroll_cards">
+        <div className="d-flex">
+          <div className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id={`checkbox-${voter?.epicNo}`}
+            checked={isChecked}
+            onChange={handleCheckboxChange} // Use handleCheckboxChange as the onChange handler
+          />
+            <label
+              className="form-check-label"
+              htmlFor={`checkbox-${voter?.epicNo}`}
+            ></label>
+          </div>
+        </div>
+        <div className="card saerched_dataCard">
+          <div className="card-body pb-1">
+            <div className="d-flex border-bottom pb-2">
+              <div>
+                <img className="searchedimg" src={profile_img} alt="profile" />
+              </div>
+              <div className="d-flex flex-column">
+                <span className="searchedAgentName">
+                  {`${voter.fmNameEn} ${voter.lastnameEn}`}
+                </span>
+                <span className="searchedAgentName">
+                  {`${voter.fmNameV1} ${voter.lastnameV1}`}
+                </span>
+              </div>
+            </div>
+            <div className="searched_data">
+              <div className="d-flex flex-column">
+                <span className="searchedTitle">S/O</span>
+                <span className="searchedData">{`${voter.rlnFmNmEn} ${voter.rlnLNmEn}`}</span>
+              </div>
+              <div className="d-flex flex-column">
+                <span className="searchedTitle">Gender</span>
+                <span className="searchedData">{voter.gender}</span>
+              </div>
+              <div className="d-flex flex-column">
+                <span className="searchedTitle">Age</span>
+                <span className="searchedData">{voter.age}</span>
+              </div>
+              <div className="d-flex flex-column">
+                <span className="searchedTitle">Address</span>
+                <span className="searchedData">{voter.cHouseNo}</span>
+              </div>
+            </div>
+            <div className="searched_data2 border-0">
+              <div className="d-flex flex-column">
+                <span className="searchedTitle">Voter Id</span>
+                <span className="searchedData">{voter.epicNo}</span>
+              </div>
+              <div className="d-flex flex-column">
+                <span className="searchedTitle">Voter No.</span>
+                <span className="searchedData">{voter.slnoinpart}</span>
+              </div>
+            </div>
+            <div className="">
+              <div>
+                <div className="d-flex justify-content-evenly">
+                  {/* Add buttons here */}
+                </div>
+                {/* Add collapsible content here */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const [selectedVoter, setSelectedVoter] = useState(null);
+
+  useEffect(() => {
+    console.log(selectedVoter, "selectedVoter");
+    // You can perform actions here when the selected voter changes
+  }, [selectedVoter]);
+
+
+
+  const handleSubmit = () => {
+    const userData = {
+      payload: selectedVoter,
+       endPoint: ASSIGN_VOTER_URL,
+    };
+
+    dispatch(createUser(userData)).then((res) => {
+      if (res.payload.message == 'success') {
+          // console.log(res?.payload.data.message,'sjkbdsjkdbsbd')
+          toast.success(res?.payload.data.message, {
+            position: "top-right",
+          });
+          navigate(Assign2_ROUTE);
+      }else{
+        // toast.error("Error", {
+        //   position: "top-right",
+  
+        // });
+      }
+
+    });
+  };
   return (
     <div>
       <Header />
       <div className="searchedcardHeadassign">
-        <div className="scroll_cards">
-          <div className="d-flex">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <label class="form-check-label" for="flexCheckDefault">
-
-              </label>
-            </div>
-
-          </div>
-          <div className="card saerched_dataCard" >
-            <div className="card-body pb-1">
-              <div className="d-flex border-bottom pb-2">
-                <div>
-                  <img className="searchedimg" src={profile_img} alt="profile"></img>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedAgentName">
-                    U Namasivayam Vadivelan
-                  </span>
-                  <span className="searchedAgentName">
-                    உ நமசிவாயம் வடிவேலன்
-                  </span>
-                </div>
-              </div>
-              <div className="searched_data">
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">S/O</span>
-                  <span className="searchedData">Umapathy Sivam</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Gender</span>
-                  <span className="searchedData">Male</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Age</span>
-                  <span className="searchedData">30</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Address</span>
-                  <span className="searchedData">
-                    Guindy, Chennai, Tamil Nadu, India
-                  </span>
-                </div>
-              </div>
-              <div className="searched_data2 border-0">
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Voter Id</span>
-                  <span className="searchedData">B9T878G9</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Voter No.</span>
-                  <span className="searchedData">23867</span>
-                </div>
-              </div>
-              <div className="searched_data  ">
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Booth Status</span>
-                  <span className="searchedData">B9T878G9</span>
-                </div>
-
-              </div>
-              <div className="">
-                <div>
-                  <div className="d-flex justify-content-evenly">
-                    <div>
-                      <button className="searched_status">SURVEY</button>
-                    </div>
-                    <div>
-                      <button
-                        className="searched_status "
-                        type="button"
-                        data-bs-toggle="collapse"
-                        // data-bs-target={`#collapseExample${index}`}
-                        data-bs-target="#assignpage"
-                        aria-expanded="false"
-                        // aria-controls={`collapseExample${index}`}
-                        aria-controls='assignpage'
-                      >
-                        Poll Status
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        className="searched_status"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#visitStatus"
-                        aria-expanded="false"
-                        aria-controls="VisitStatus"
-                      >
-                        Visit Status
-                      </button>
-                    </div>
-                  </div>
-                  <div className="collapse coll_width" id="assignpage">
-                    <div className="card card-body">
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div>
-                          <div className="form-group">
-                            <div>
-                              <label className="switch">
-                                <input
-                                  type="checkbox"
-                                // checked={row.lock}
-                                // onChange={(e) => {
-                                //   handleLockChange(row._id, row.lock);
-                                //   // console.log(Row ${row._id} is active: ${row.lock});
-                                // }}
-                                />
-                                <span className="slider round"></span>
-                              </label>
-                            </div>
-                          </div>
-                          <span className="searchedTitle p-1">Polled</span>
-                          <span className="searchedTitle p-1">Not-Polled</span>
-                        </div>
-
-                        <div className="btn-group dropdown">
-                          <button className="btn border rounded p-2 btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Time
-                          </button>
-                          <ul className="dropdown-menu scrollvisit_status">
-                            <li><a className="dropdown-item" href="#">07:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">08:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">09:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">10:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">11:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">12:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">01:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">02:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">03:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">04:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">05:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">06:00 PM</a></li>
-                          </ul>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div className="collapse coll_width2" id="visitStatus">
-                    <div className="card card-body p-0">
-okok
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div className="scroll_cards">
-          <div className="d-flex">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <label class="form-check-label" for="flexCheckDefault">
-
-              </label>
-            </div>
-
-          </div>
-          <div className="card saerched_dataCard" >
-            <div className="card-body pb-1">
-              <div className="d-flex border-bottom pb-2">
-                <div>
-                  <img className="searchedimg" src={profile_img} alt="profile"></img>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedAgentName">
-                    U Namasivayam Vadivelan
-                  </span>
-                  <span className="searchedAgentName">
-                    உ நமசிவாயம் வடிவேலன்
-                  </span>
-                </div>
-              </div>
-              <div className="searched_data">
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">S/O</span>
-                  <span className="searchedData">Umapathy Sivam</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Gender</span>
-                  <span className="searchedData">Male</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Age</span>
-                  <span className="searchedData">30</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Address</span>
-                  <span className="searchedData">
-                    Guindy, Chennai, Tamil Nadu, India
-                  </span>
-                </div>
-              </div>
-              <div className="searched_data2 border-0">
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Voter Id</span>
-                  <span className="searchedData">B9T878G9</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Voter No.</span>
-                  <span className="searchedData">23867</span>
-                </div>
-              </div>
-              <div className="searched_data  ">
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Booth Status</span>
-                  <span className="searchedData">B9T878G9</span>
-                </div>
-
-              </div>
-              <div className="">
-                <div>
-                  <div className="d-flex justify-content-evenly">
-                    <div>
-                      <button className="searched_status">SURVEY</button>
-                    </div>
-                    <div>
-                      <button
-                        className="searched_status "
-                        type="button"
-                        data-bs-toggle="collapse"
-                        // data-bs-target={`#collapseExample${index}`}
-                        data-bs-target="collapseExample"
-                        aria-expanded="false"
-                        // aria-controls={`collapseExample${index}`}
-                        aria-controls='collapseExample'
-                      >
-                        Poll Status
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        className="searched_status"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#visitStatus"
-                        aria-expanded="false"
-                        aria-controls="VisitStatus"
-                      >
-                        Visit Status
-                      </button>
-                    </div>
-                  </div>
-                  <div className="collapse coll_width" id="collapseExample">
-                    <div className="card card-body">
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div>
-                          <div className="form-group">
-                            <div>
-                              <label className="switch">
-                                <input
-                                  type="checkbox"
-                                // checked={row.lock}
-                                // onChange={(e) => {
-                                //   handleLockChange(row._id, row.lock);
-                                //   // console.log(Row ${row._id} is active: ${row.lock});
-                                // }}
-                                />
-                                <span className="slider round"></span>
-                              </label>
-                            </div>
-                          </div>
-                          <span className="searchedTitle p-1">Polled</span>
-                          <span className="searchedTitle p-1">Not-Polled</span>
-                        </div>
-
-                        <div className="btn-group dropdown">
-                          <button className="btn border rounded p-2 btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Time
-                          </button>
-                          <ul className="dropdown-menu scrollvisit_status">
-                            <li><a className="dropdown-item" href="#">07:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">08:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">09:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">10:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">11:00 AM</a></li>
-                            <li><a className="dropdown-item" href="#">12:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">01:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">02:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">03:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">04:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">05:00 PM</a></li>
-                            <li><a className="dropdown-item" href="#">06:00 PM</a></li>
-                          </ul>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div className="collapse coll_width2" id="visitStatus">
-                    <div className="card card-body p-0">
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        {state?.response.map((voter, index) => (
+          <VoterComponent key={index} voter={voter} />
+        ))}
+        <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Submit</button>
       </div>
+
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Assign
+export default Assign;

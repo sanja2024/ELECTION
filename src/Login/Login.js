@@ -26,7 +26,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { Forgot_ROUTE, MainDashboard_ROUTE } from "../Common/Route/Routes";
 const LoginPage = () => {
   const navigate = useNavigate();
-
+  const token = localStorage.getItem("User");
   const dispatch = useDispatch();
 
   const [username, setUserName] = useState();
@@ -59,6 +59,7 @@ const LoginPage = () => {
 
       localStorage.setItem("CUSTOMTOKEN", 'coSkKDoSS70Cu6RUsDRKnKQUlXvmzyvoSEBS3WpRd6/4gEtZ39STlENqKRjDRFKew69PE6RyGN');
       localStorage.setItem("product_code", 'EL');
+      localStorage.setItem("User", 'AGENT');
       toast.success("Login Successful!", {
         position: "top-right",
         // theme: "dark",
@@ -121,6 +122,7 @@ const LoginSucess = (posts) => {
     //  localStorage.setItem("CUSTOMTOKEN", posts.DATA?.access_token);
     localStorage.setItem("CUSTOMTOKEN", 'coSkKDoSS70Cu6RUsDRKnKQUlXvmzyvoSEBS3WpRd6/4gEtZ39STlENqKRjDRFKew69PE6RyGN');
     localStorage.setItem("product_code", 'EL');
+
     // const Token = localStorage.setItem("CUSTOMTOKEN", posts?.DATA?.access_token);
     // localStorage.setItem("emp_code", posts?.DATA?.emp_code)
     // const decoded = jwtDecode(Token);

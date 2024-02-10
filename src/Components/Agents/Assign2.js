@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { ADD_AGENT_SEARCH_URL, BOOTH_API, VOTER_SEARCH_URL } from "../../Common/Url/ServerConfig";
 import { agentSearch } from "../../Common/redux/slices/agentSlice";
 import { createUser } from "../../Common/redux/slices/usersSlice";
+import { toast } from "react-toastify";
+import { Assign_ROUTE } from "../../Common/Route/Routes";
 const Assign2 = () => {
     const [selectedElection, setSelectedElection] = useState([]);
     const [selectedstate, setSelectedstate] = useState([]);
@@ -23,7 +25,7 @@ const Assign2 = () => {
     const [selectedBooth, setSelectedBooth] = useState("");
 
     const [voteToNo, setVoteToNo] = useState("");
-    const [voteFromNV, setVoteFromNo] = useState("");
+    const [voteFromNo, setVoteFromNo] = useState("");
     
     const [stateRole, setStateRole] = useState("Select State");
     const [constituencyRole, setConstituencyRole] = useState("Select Constituency");
@@ -35,6 +37,14 @@ const Assign2 = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const handleVoteFromNoChange = (event) => {
+        setVoteFromNo(event.target.value);
+    };
+
+    const handleVoteToNoChange = (event) => {
+        setVoteToNo(event.target.value);
+    };
 
     const handleSelectChange = async (event, selectedValue) => {
 
@@ -202,6 +212,53 @@ const Assign2 = () => {
     };
 
 
+    const handleSubmit = () => {
+        if (
+            voteFromNo && voteToNo
+     
+        ) {
+          const userData = {
+            payload: {
+              ac_no: selectedConstituency, //Constituency
+              section_no: selectedBooth,//booth no
+              from_slnoinpart:voteFromNo,
+              to_slnoinpart:voteToNo
+            },
+             endPoint: VOTER_SEARCH_URL,
+          };
+    
+          dispatch(createUser(userData)).then((res) => {
+            if (res.payload.message == 'success') {
+                console.log(res?.payload.data.list,'sjkbdsjkdbsbd')
+                navigate(Assign_ROUTE, {
+                    state: {
+                        response: res?.payload.data.list
+                    },
+                });
+            //   setSelectedElection("");
+            //   setSelectedstate("");
+            //   setSelectedConstituency("");
+            //   setSelectedDivision("");
+            //   setSelectedBooth("");
+            //   setSelectedRole("");
+            //   setSelectedMobile("");
+            }else{
+              toast.error("Error", {
+                position: "top-right",
+        
+              });
+            }
+    
+          });
+        } else {
+          toast.error("Enter Valid Field", {
+            position: "top-right",
+    
+          });
+        }
+      };
+
+
     useEffect(() => {
         const QueryPayload = {
             type: "election"
@@ -324,11 +381,12 @@ const Assign2 = () => {
                         Vote From No.
                     </label>
                     <input
-                        type="email"
+                        type="text"
                         class="form-control p-3"
                         id="exampleFormControlInput1"
                         placeholder="User ID"
-                        value={voteFromNV}
+                        value={voteFromNo}
+                        onChange={handleVoteFromNoChange}
                     />
                 </div>
                 <div className="addAgent_datapoints">
@@ -336,14 +394,15 @@ const Assign2 = () => {
                         Vote To No.
                     </label>
                     <input
-                        type="email"
+                        type="text"
                         class="form-control p-3"
                         id="exampleFormControlInput1"
                         placeholder="User ID"
                         value={voteToNo}
+                        onChange={handleVoteToNoChange}
                     />
                 </div>
-                <button className="wb_login mt-4 mb-4">Filter</button>
+                <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Filter</button>
             </div>
             <Footer />
         </div>

@@ -115,9 +115,72 @@ export const agentSearch = createAsyncThunk(
   }
 );
 
+export const getVisitor = createAsyncThunk(
+  "agent/getVisitor",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const end = userData;
+
+      let getApiUrl = end?.endpoint;
+
+      const objString =
+        "?" +
+        new URLSearchParams(end?.payload).toString();
+      getApiUrl += objString;
+
+      const response = await axios.get(getApiUrl);
+
+      const user = response.data;
+      const currentToken = user.current_token;
+      const loginToken = localStorage.getItem("CUSTOMTOKEN");
+
+      if (currentToken !== loginToken) {
+      }
+
+      if (user) {
+        return user;
+      }
+
+      if (response.data.error === "authError") {
+        window.location.href = "/session";
+      } else {
+        console.error("errorMsg");
+      }
+    } catch (error) {
+      // if (error.response?.data?.error) {
+      //   toast.error(error.response?.data?.error, {
+      //     position: toast.POSITION.TOP_RIGHT,
+      //   });
+      // }
+      //  if (
+      //   error?.response?.status === 401 &&
+      //   error.response.data.message == "Unauthorized"
+      // ) {
+      //   localStorage.clear();
+      //   window.location.reload();
+      // }
+      if (
+        error?.response?.status === 401 &&
+        error.response.data.message == "Unauthorized"
+      ) {
+        localStorage.clear();
+        window.location.reload();
+      } else {
+        // console.log(error?.response?.data,'sdsdsdsdsd')
+        return rejectWithValue(error?.response?.data);
+      }
+      throw error;
+    }
+  }
+);
+
+
 const initialState = {
   agentCreateData: [],
   agentSearchData: [],
+  visitorData: [],
+
+
 };
 
 const agentSlice = createSlice({
@@ -128,6 +191,9 @@ const agentSlice = createSlice({
     clearUserPullData: (state) => {
       state.agentCreateData = [];
       state.agentSearchData = [];
+      state.visitorData = [];
+
+
     },
   },
 
@@ -155,7 +221,21 @@ const agentSlice = createSlice({
       .addCase(agentSearch.rejected, (state, action) => {
         state.loading = "rejected";
         state.error = action.error.message;
+      })
+
+      .addCase(getVisitor.pending, (state) => {
+        state.loading = "pending";
+      })
+      .addCase(getVisitor.fulfilled, (state, action) => {
+        state.loading = "fulfilled";
+        state.visitorData = action.payload;
+      })
+      .addCase(getVisitor.rejected, (state, action) => {
+        state.loading = "rejected";
+        state.error = action.error.message;
       });
+
+
   },
 });
 export const { reset, clearUserPullData } = agentSlice.actions;

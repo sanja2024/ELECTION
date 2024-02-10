@@ -33,6 +33,9 @@ const Header = () => {
     "/Assign2": " Assign",
     "/BoothStatus": " Booth Status",
     "/SearchVoter": "Search Voter",
+    "/VoterPage": "Voter",
+    "/NonSearchVoter": "Non Voter",
+
   };
 
   return (
