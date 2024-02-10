@@ -169,28 +169,28 @@ const MainDashboard = () => {
               <span>Key Features</span>
               <div className="KeyFeature_detail">
                 <div className="KeyfeatureBoxTop">
-                  <div className="KeyfeatureBox " onClick={() => {navigate(SearchVoter);}}>
+                  <div className="KeyfeatureBox " onClick={() => { navigate(SearchVoter); }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal">Vote Search</span>
                   </div>
-                  <div className="KeyfeatureBox"  onClick={() => {navigate(ComingSoon_ROUTE);}}>
+                  <div className="KeyfeatureBox" onClick={() => { navigate(ComingSoon_ROUTE); }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
-                    <span className="KeyfeatureVal"  
-                   >Constituencies</span>
+                    <span className="KeyfeatureVal"
+                    >Constituencies</span>
                   </div>
-                  <div className="KeyfeatureBox"  onClick={() => {navigate(ComingSoon_ROUTE);}}>
+                  <div className="KeyfeatureBox" onClick={() => { navigate(ComingSoon_ROUTE); }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal"
                     >Candidate info</span>
                   </div>
-                  <div className="KeyfeatureBox"  onClick={() => {navigate(ComingSoon_ROUTE);}}>
+                  <div className="KeyfeatureBox" onClick={() => { navigate(ComingSoon_ROUTE); }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal"
                     >Election info</span>
                   </div>
-                  <div className="KeyfeatureBox"  onClick={() => {
-                      navigate(Survey_ROUTE);
-                    }}>
+                  <div className="KeyfeatureBox" onClick={() => {
+                    navigate(Survey_ROUTE);
+                  }}>
                     <img className="KeyfeatureIcons" src={VoteSearch}></img>
                     <span className="KeyfeatureVal">Survey</span>
                   </div>
