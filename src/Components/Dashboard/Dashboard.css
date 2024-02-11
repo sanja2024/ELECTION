@@ -117,10 +117,10 @@
   border-radius: 10px !important;
 }
 .signbtn {
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(50px);
   position: absolute;
   top: 70%;
-  left: 4%;
+  right: 4%;
   border-radius: 10px !important;
   width: 45vw;
   padding: 14px 24px;
@@ -133,14 +133,15 @@
   background: rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0);
   color: white;
   border-radius: 4px !important;
-  border: none !important;
+  border: 1px solid white !important;
   background-color: transparent !important;
+
 }
 .signbtn2 {
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(50px);
   position: absolute;
   top: 70%;
-  right: 4%;
+  left: 4%;
   border-radius: 10px !important;
   width: 45vw;
   padding: 14px 0px;
@@ -153,7 +154,7 @@
   background: rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0);
   color: white;
   border-radius: 4px !important;
-  border: none !important;
+  border: none;
   background-color: transparent !important;
 }
 .register {
@@ -168,6 +169,11 @@
   line-height: normal;
   text-align: center;
   letter-spacing: 0.48px;
+  /* text-decoration: underline; */
+  backdrop-filter: blur(50px);
+  /* padding: 10px;
+  border-radius: 10px !important;
+  border: 1px solid white; */
 }
 
 

@@ -286,8 +286,9 @@ const Dashboard = () => {
             <span className="slow">Your Voice, Your Future</span>
           </div>
           <div className="sign_btn">
+
+            <button className="signbtn2 " onClick={() => { fnGuest(LOGIN_ROUTE) }}>Guest -> </button>
             <button className="signbtn " onClick={() => { navigate(LOGIN_ROUTE); }}> {"Sign in ->"} </button>
-            <button className="signbtn2 " onClick={() => { fnGuest(LOGIN_ROUTE) }}>Guest </button>
             <span className="register" onClick={() => { navigate(EnterMobile_ROUTE); }}>Register For an account</span>
           </div>
         </div>
