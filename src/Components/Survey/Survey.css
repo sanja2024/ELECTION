@@ -264,3 +264,39 @@ margin-bottom: 10px;
 
 
 }
+
+
+
+
+.survey_datas {
+  z-index: 1;
+  /* background-color: white; */
+  position: relative;
+
+  width: 90vw;
+  height: 50Lvh;
+  margin: auto;
+  /* overflow-y: scroll; */
+  /* border: 1px solid red; */
+  margin: 10px 16px;
+  /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
+}
+.survey_datas::-webkit-scrollbar {
+  height: 1px;             
+  width: 1px;                
+  color: transparent;
+}
+.addAgent_datapoints {
+  margin-bottom: 10px;
+}
+
+.survey_datas label {
+  font-family: Lato;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
+}

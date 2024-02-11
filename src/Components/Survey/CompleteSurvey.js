@@ -26,11 +26,6 @@ const CompleteSurvey = () => {
             Survey!</span>
 
         </div>
-
-
-
-
-
         <Survey finalResp={true} />
       </div>
 

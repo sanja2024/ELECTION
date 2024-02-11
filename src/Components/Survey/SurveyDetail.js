@@ -46,13 +46,13 @@ const SurveyDetail = () => {
 
         validationSchema: Yup.object({
             voter_id: Yup.string()
-                .required("Voter id is required"),
+                .required("Voter-id is required"),
 
             name: Yup.string()
-                .required("name is required"),
+                .required("Name is required"),
 
             mobile_no: Yup.number()
-                .required("Mobile No is required"),
+                .required("Mobile No. is required"),
 
         }),
 
@@ -76,7 +76,7 @@ const SurveyDetail = () => {
         <div className="container p-0">
 
 
-            <div className="agentadd_datas">
+            <div className="survey_datas">
                 <div className="addAgent_datapoints">
                     <label for="exampleFormControlInput1" class="form-label">
                         Mobile Number
@@ -126,9 +126,12 @@ const SurveyDetail = () => {
                 </div>
 
             </div>
+            <div className="" >
             <button className="submit_btn " onClick={handleSubmit}>
                 Next
             </button>
+            </div>
+          
 
         </div>
     );
