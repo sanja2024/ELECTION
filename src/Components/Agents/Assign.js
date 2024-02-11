@@ -37,7 +37,7 @@ const Assign = () => {
       }
     };
 
-    return (
+    return (<>
       <div className="scroll_cards">
         <div className="d-flex">
           <div className="form-check">
@@ -51,7 +51,7 @@ const Assign = () => {
             <label
               className="form-check-label"
               htmlFor={`checkbox-${voter?.epicNo}`}
-            ></label>
+            > </label>
           </div>
         </div>
         <div className="card saerched_dataCard">
@@ -100,6 +100,7 @@ const Assign = () => {
             <div className="">
               <div>
                 <div className="d-flex justify-content-evenly">
+                  
                   {/* Add buttons here */}
                 </div>
                 {/* Add collapsible content here */}
@@ -108,7 +109,8 @@ const Assign = () => {
           </div>
         </div>
       </div>
-    );
+
+          </> );
   };
 
   const [selectedVoter, setSelectedVoter] = useState(null);
@@ -149,9 +151,13 @@ const Assign = () => {
         {state?.response.map((voter, index) => (
           <VoterComponent key={index} voter={voter} />
         ))}
-        <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Submit</button>
-      </div>
 
+      </div>
+      <div>
+
+   
+      <button className="sbmit_btn mt-4 mb-4 m-auto" onClick={handleSubmit}>Submit</button>
+      </div>
       <Footer />
     </div>
   );
