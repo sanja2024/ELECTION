@@ -215,7 +215,8 @@ margin: 20px!important;
   padding: 10px 16px;
 }
 .searchedimg {
-  width: 35px;
+  width: 35px !important;
+  height: 35px !important;
   margin-right: 20px;
   aspect-ratio: 1/1;
   border-radius: 4px;

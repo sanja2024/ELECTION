@@ -52,6 +52,7 @@
   border-radius: 0px 0px 0px 6px;
   /* width: 70px; */
   height: 100%;
+  width: 64px;
 }
 .agents_detail_scroll {
   overflow-x: scroll;
