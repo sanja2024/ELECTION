@@ -93,7 +93,7 @@ const VoterPage = () => {
             <div className="searchedcardHead mt-3">
                 <div className="scroll_cards">
 
-                    {voterResp?.data?.list?.map((item, index) => (
+                    {(Array.isArray(voterResp?.data?.list)) && voterResp?.data?.list?.map((item, index) => (
                         <div className="card saerched_dataCard1" key={index}>
                             <div className="card-body pb-1 p-0">
                                 <div className="d-flex justify-content-between border-bottom pb-2">
