@@ -41,8 +41,8 @@ const VoterPage = () => {
         };
         dispatch(createUser(userData)).then((res) => {
             if (res?.payload?.message === "success") {
-                setCardList(res?.payload?.data.list);
-                console.log(res?.payload?.data.list, 'wwewewe')
+                setCardList(res?.payload?.data?.list);
+
 
             }
         });
@@ -92,7 +92,7 @@ const VoterPage = () => {
 
             <div className="searchedcardHead mt-3">
                 <div className="scroll_cards">
-                    {console.log("asdasd", voterResp)}
+
                     {voterResp?.data?.list?.map((item, index) => (
                         <div className="card saerched_dataCard1" key={index}>
                             <div className="card-body pb-1 p-0">
@@ -104,8 +104,8 @@ const VoterPage = () => {
                                             <img className="searchedimg" src={profile_img} alt="profile"></img>
                                         </div>
                                         <div className="d-flex flex-column">
-                                            <span className="searchedAgentName">{item.fmNameEn}</span>
-                                            <span className="searchedAgentName">{item.fmNameV1}</span>
+                                            <span className="searchedAgentName">{item?.fmNameEn}</span>
+                                            <span className="searchedAgentName">{item?.fmNameV1}</span>
                                         </div> </div>
 
                                     <div className='VoteNo1'>
@@ -116,30 +116,30 @@ const VoterPage = () => {
                                 <div className="searched_data">
                                     <div className="d-flex flex-column">
                                         <span className="searchedTitle">S/O</span>
-                                        <span className="searchedData">{item.rlnFmNmEn}</span>
-                                        <span className="searchedData">{item.rlnFmNmV1}</span>
+                                        <span className="searchedData">{item?.rlnFmNmEn}</span>
+                                        <span className="searchedData">{item?.rlnFmNmV1}</span>
                                     </div>
                                     <div className="d-flex flex-column">
                                         <span className="searchedTitle">Gender</span>
-                                        <span className="searchedData">{item.gender}</span>
+                                        <span className="searchedData">{item?.gender}</span>
                                     </div>
                                     <div className="d-flex flex-column">
                                         <span className="searchedTitle">Age</span>
-                                        <span className="searchedData">{item.age}</span>
+                                        <span className="searchedData">{item?.age}</span>
                                     </div>
                                     <div className="d-flex flex-column">
                                         <span className="searchedTitle">Address</span>
-                                        <span className="searchedData">{item.cHouseNo}, {item.sectionNo}</span>
+                                        <span className="searchedData">{item?.cHouseNo}, {item?.sectionNo}</span>
                                     </div>
                                 </div>
                                 <div className="searched_data border-0">
                                     <div className="d-flex flex-column">
                                         <span className="searchedTitle">Voter Id</span>
-                                        <span className="searchedData">{item.epicNo}</span>
+                                        <span className="searchedData">{item?.epicNo}</span>
                                     </div>
                                     <div className="d-flex flex-column">
                                         <span className="searchedTitle">Mobile No.</span>
-                                        <span className="searchedData">{item.mobileNo}</span>
+                                        <span className="searchedData">{item?.mobileNo}</span>
                                     </div>
                                 </div>
                                 <div className="searched_data  ">
@@ -247,9 +247,9 @@ const VoterPage = () => {
                                                             // disabled={roleDisable}
                                                             >
 
-                                                                {visitorResp?.data?.list.map((visit, index) => (
-                                                                    <option key={index} value={visit.roleCode}>
-                                                                        {visit.visitName}
+                                                                {visitorResp?.data?.list?.map((visit, index) => (
+                                                                    <option key={index} value={visit?.roleCode}>
+                                                                        {visit?.visitName}
                                                                     </option>
                                                                 ))}
                                                             </select>

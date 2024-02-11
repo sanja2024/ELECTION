@@ -107,4 +107,8 @@ export const GET_VISITOR_URL = BASE_API_URL + "visit/search";
 
 export const ASSIGN_VOTER_URL = BASE_API_URL + "transaction/poll/add";
 
+export const GET_POLL_STATUS_URL = BASE_API_URL + "mapping/agent/voter/search";
+
+
+
 

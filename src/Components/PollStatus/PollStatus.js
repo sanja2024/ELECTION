@@ -1,5 +1,5 @@
 // PollStatus.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./PollStatus.css";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -13,232 +13,205 @@ import pickup_vote from '../../Common/asset/images/voteimg/Pickup_icon.svg';
 import Footer from '../Footer/Footer';
 
 import profile_img from "../../Common/asset/images/voteimg/agents_img.svg";
+import { useDispatch, useSelector } from 'react-redux';
+import { ASSIGN_VOTER_URL, GET_POLL_STATUS_URL, VOTER_SEARCH_URL } from '../../Common/Url/ServerConfig';
+import { getPollStatusList } from '../../Common/redux/slices/boothSlice';
+import { createUser } from '../../Common/redux/slices/usersSlice';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 const PollStatus = () => {
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
-  return (
-    <div>
-      <div className="bgImgPS">
-        <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%", zIndex: "2 !important" }}>
-          <div className="mt-1 ">
-            <img className="logot" src={logo} alt="Logo"></img>
-          </div>
-          <div className="mt-3 me-4" >
-            <button className="btn  p-1 border rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{}} >
-              <img className="logot1" src={menu} alt="Menu"></img>
-            </button>
-          </div>
-        </div>
-        <div className="PS_scroll">
-          <div className="PS">
-            <p className="PSHeading">Polling Sheet 05:00 PM</p>
-            <p className="PSsubHeading">Thiyagi Natesan Street 1</p>
-            <p className="PS_content mb-0">
-              <table className="table table-sm">
-                <thead className="table-light">
-                  <tr>
-                    <td></td>
-                    <td>M</td>
-                    <td>F</td>
-                    <td>Others</td>
-                    <td>Total</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className='polledVote1'>
-                    <td >As per Electrol</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>12</td>
-                  </tr>
-                  <tr className='polledVote2'>
-                    <td >Total Polled Vote</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>12</td>
-                  </tr>
-                </tbody>
-              </table>
-            </p>
-            <div className='votepercentage1'>
-              <span className='votepercentage'>
-                PICKUP VOTE : 15%
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className='PollStatusmain'>
-        <div className='typeOfVote'>
-          <div className='male'>
-            <div className="square"></div>
-            <span className='typeOfVoteText'>Male</span>
-          </div>
-          <div className='male'>
-            <div className="square2"></div>
-            <span className='typeOfVoteText'>Female</span>
-          </div>
-          <div className='male'>
-            <div className="square3"></div>
-            <span className='typeOfVoteText'>Others</span>
-          </div>
-          <div className='male'>
-            <div className="square4"></div>
-            <span className='typeOfVoteText'>Pickup vote</span>
-          </div>
-        </div>
-        <div className='votedOrNot'>
-          <div className='allvoterDetail'>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-            <div className='whoVoted' onClick={() => setShowModal(true)}>
-              <img src={female_icon} alt="Female"></img>
-              <span className='vote_number'>01</span>
-            </div>
-           
-          </div>
-        </div>
-      </div>
-      <Footer />
-      {/* Render Popup component */}
-      <Popup show={showModal} setShow={setShowModal} />
-    </div>
-  );
-};
+  const [pollStatus, setPollStatus] = useState(false);
+  const [voterIdd, setVoterId] = useState("");
 
-// Popup.js
-const Popup = ({ show, setShow }) => {
+
+
+
+
+
+
+  const pollResp = useSelector((state) => state.booth.pollData);
+  const voterResp = useSelector((state) => state.users.data);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const reqParams = {
+      payload: "",
+      endpoint: GET_POLL_STATUS_URL
+    }
+    dispatch(getPollStatusList(reqParams)).then((res) => {
+    })
+  }, [])
+
+  const handleTrigger = (data) => {
+
+
+    const userData = {
+      payload: {
+        voter_id: data || ""
+      },
+      endPoint: VOTER_SEARCH_URL,
+    };
+    dispatch(createUser(userData)).then((res) => {
+      if (res?.payload?.message === "success") {
+        // setCardList(res?.payload?.data?.list);
+
+
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (pollStatus == true) {
+      const userData = {
+        payload: {
+          voter_id: voterIdd,
+          poll_status: pollStatus,
+          poll_time: "0",
+          visit_code: 0,
+        },
+        endPoint: ASSIGN_VOTER_URL,
+      };
+      dispatch(createUser(userData)).then((res) => {
+        if (res.payload.message == 'success') {
+
+          toast.success(res?.payload.data.message, {
+            position: "top-right",
+          });
+          setShowModal(!showModal)
+
+          const reqParams = {
+            payload: "",
+            endpoint: GET_POLL_STATUS_URL
+          }
+          dispatch(getPollStatusList(reqParams)).then((res) => {
+          })
+
+        } else {
+
+        }
+
+      });
+    }
+  }, [pollStatus])
+
+
   return (
     <>
-      {/* <Button variant="primary" onClick={() => setShow(true)}>
-        Custom Width Modal
-      </Button> */}
+
+      <div>
+        <div className="bgImgPS">
+          <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%", zIndex: "2 !important" }}>
+            <div className="mt-1 ">
+              <img className="logot" src={logo} alt="Logo"></img>
+            </div>
+            <div className="mt-3 me-4" >
+              <button className="btn  p-1 border rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{}} >
+                <img className="logot1" src={menu} alt="Menu"></img>
+              </button>
+            </div>
+          </div>
+          <div className="PS_scroll">
+            <div className="PS">
+              <p className="PSHeading">Polling Sheet 05:00 PM</p>
+              <p className="PSsubHeading">Thiyagi Natesan Street 1</p>
+              <p className="PS_content mb-0">
+                <table className="table table-sm">
+                  <thead className="table-light">
+                    <tr>
+                      <td></td>
+                      <td>M</td>
+                      <td>F</td>
+                      <td>Others</td>
+                      <td>Total</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className='polledVote1'>
+                      <td >As per Electrol</td>
+                      <td>12</td>
+                      <td>12</td>
+                      <td>12</td>
+                      <td>12</td>
+                    </tr>
+                    <tr className='polledVote2'>
+                      <td >Total Polled Vote</td>
+                      <td>12</td>
+                      <td>12</td>
+                      <td>12</td>
+                      <td>12</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </p>
+              <div className='votepercentage1'>
+                <span className='votepercentage'>
+                  PICKUP VOTE : 15%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='PollStatusmain'>
+          <div className='typeOfVote'>
+            <div className='male'>
+              <div className="square"></div>
+              <span className='typeOfVoteText'>Male</span>
+            </div>
+            <div className='male'>
+              <div className="square2"></div>
+              <span className='typeOfVoteText'>Female</span>
+            </div>
+            <div className='male'>
+              <div className="square3"></div>
+              <span className='typeOfVoteText'>Others</span>
+            </div>
+            <div className='male'>
+              <div className="square4"></div>
+              <span className='typeOfVoteText'>Pickup vote</span>
+            </div>
+          </div>
+          <div className='votedOrNot'>
+            <div className='allvoterDetail'>
+              {
+                pollResp?.data?.list?.[0]?.data?.map((item) => {
+                  return (
+                    <>
+                      <div className='whoVoted' onClick={() => {
+                        handleTrigger(item?.TrnsPollDetailsInfo?.voterId)
+                        setShowModal(true)
+                        setVoterId(item?.TrnsPollDetailsInfo?.voterId)
+                      }}>
+                        <img src={female_icon} alt="Female"></img>
+                        <span className='vote_number'>{item?.slnoinpart}</span>
+                      </div>
+                    </>
+                  )
+                })
+              }
+
+
+
+
+            </div>
+          </div>
+        </div>
+        <Footer />
+
+
+      </div>
 
       <Modal
-        show={show}
-        onHide={() => setShow(false)}
+        show={showModal}
+        onHide={() => setShowModal(false)}
         dialogClassName="modal-90w"
         aria-labelledby="example-custom-modal-styling-title "
         centered
 
-      
+
       >
         <Modal.Header closeButton className='p-2'>
           {/* <Modal.Title id="example-custom-modal-styling-title">
@@ -247,50 +220,51 @@ const Popup = ({ show, setShow }) => {
         </Modal.Header>
         <Modal.Body >
           <p>
-          <div className="card saerched_dataCard" >
+            {console.log("zdvxdv", voterResp?.data?.list?.[0])}
+            <div className="card saerched_dataCard" >
               <div className="card-body pb-1">
                 <div className="d-flex border-bottom pb-2">
                   <div>
                     <img className="searchedimg" src={profile_img} alt="profile"></img>
                   </div>
                   <div className="d-flex flex-column">
-                  <span className="searchedAgentName">
-                    U Namasivayam Vadivelan
-                  </span>
-                  <span className="searchedAgentName">
-                    உ நமசிவாயம் வடிவேலன்
-                  </span>
-                </div>
+                    <span className="searchedAgentName">
+                      {voterResp?.data?.list?.[0]?.fmNameEn}
+                    </span>
+                    <span className="searchedAgentName">
+                      {voterResp?.data?.list?.[0]?.fmNameV1}
+                    </span>
+                  </div>
                 </div>
                 <div className="searched_data">
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">S/O</span>
-                  <span className="searchedData">Umapathy Sivam</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Gender</span>
-                  <span className="searchedData">Male</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Age</span>
-                  <span className="searchedData">30</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Address</span>
-                  <span className="searchedData">
-                    Guindy, Chennai, Tamil Nadu, India
-                  </span>
-                </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">S/O</span>
+                    <span className="searchedData"> {voterResp?.data?.list?.[0]?.rlnFmNmEn}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Gender</span>
+                    <span className="searchedData">{voterResp?.data?.list?.[0]?.gender}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Age</span>
+                    <span className="searchedData">{voterResp?.data?.list?.[0]?.age}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Address</span>
+                    <span className="searchedData">
+                      {voterResp?.data?.list?.[0]?.cHouseNo}, {voterResp?.data?.list?.[0]?.sectionNo}
+                    </span>
+                  </div>
                 </div>
                 <div className="searched_data2 ">
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Voter Id</span>
-                  <span className="searchedData">B9T878G9</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="searchedTitle">Voter No.</span>
-                  <span className="searchedData">23867</span>
-                </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Voter Id</span>
+                    <span className="searchedData">{voterResp?.data?.list?.[0]?.epicNo}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Mobile No.</span>
+                    <span className="searchedData">{voterResp?.data?.list?.[0]?.mobileNo} </span>
+                  </div>
                 </div>
                 {/* <div className="searched_data  ">
                 <div className="d-flex flex-column">
@@ -301,7 +275,7 @@ const Popup = ({ show, setShow }) => {
                 <div className="">
                   <div>
                     <div className="d-flex flex-column justify-content-evenly">
-                    
+
                       <div>
                         {/* <p
                           className="Polled "
@@ -321,6 +295,8 @@ const Popup = ({ show, setShow }) => {
                                 <label className="switch">
                                   <input
                                     type="checkbox"
+                                    checked={pollStatus}
+                                    onChange={() => { setPollStatus(true) }}
                                   />
                                   <span className="slider round"></span>
                                 </label>
@@ -356,10 +332,10 @@ const Popup = ({ show, setShow }) => {
                               <li><a className="dropdown-item" href="#">06:00 PM</a></li>
                             </ul>
                           </div> */}
-                         
+
                         </div>
                       </div>
-                    
+
                     </div>
                     {/* <div className="collapse coll_width" id="collapseExample12">
                       <div className="card card-body">
@@ -380,7 +356,11 @@ const Popup = ({ show, setShow }) => {
         </Modal.Body>
       </Modal>
     </>
+
+
   );
 };
+
+
 
 export default PollStatus;
