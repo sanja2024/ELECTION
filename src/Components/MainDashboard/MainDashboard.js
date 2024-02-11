@@ -4,6 +4,7 @@ import "./MainDashboard.css";
 // IMAGE
 import agents_img from "../../Common/asset/images/voteimg/agents_img.svg";
 import logo from "../../Common/asset/images/voteimg/admin_icon.svg";
+import menu from "../../Common/asset/images/voteimg/menu.svg";
 // ICON
 import VoteSearch from "../../Common/asset/images/voteimg/VoteSearch.svg";
 import AddAgent from "../../Common/asset/images/voteimg/AddAgent.svg";
@@ -18,7 +19,7 @@ import NonVoters from "../../Common/asset/images/voteimg/NonVoters.svg";
 import BoothStatus from "../../Common/asset/images/voteimg/BoothStatus.svg";
 import Report from "../../Common/asset/images/voteimg/Report.svg";
 import PollStatus from "../../Common/asset/images/voteimg/PollStatus.svg";
-import menu from "../../Common/asset/images/voteimg/menu.svg";
+
 
 import Footer from "../Footer/Footer";
 import { AddAgents_ROUTE, Assign2_ROUTE, BoothStatus_ROUTE, ComingSoon_ROUTE, NonVoterPage_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterPage_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";

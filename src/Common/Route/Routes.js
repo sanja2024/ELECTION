@@ -58,3 +58,5 @@ export const SurveyForm_ROUTE = "/SurveyForm";
 export const CompleteSurvey_ROUTE = "/CompleteSurvey";
 export const BoothStatus_ROUTE = "/BoothStatus";
 export const ComingSoon_ROUTE = "/ComingSoon";
+export const PollStatus_ROUTE = "/PollStatus";
+export const Popup_ROUTE = "/Popup";

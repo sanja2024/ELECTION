@@ -19,7 +19,10 @@ import {
   VoterSearch_ROUTE,
   ComingSoon_ROUTE,
   VoterPage_ROUTE,
-  NonVoterPage_ROUTE
+  NonVoterPage_ROUTE,
+  PollStatus_ROUTE,
+  Popup_ROUTE,
+
 
 } from "../Route/Routes";
 import Dashboard from "../../Components/Dashboard/Dashboard";
@@ -40,6 +43,7 @@ import SurveyForm from "../../Components/Survey/SurveyForm";
 import CompleteSurvey from "../../Components/Survey/CompleteSurvey";
 import BoothStatus from "../../Components/BoothStatus/BoothStatus";
 import ComingSoon from "../../Components/Survey/ComingSoon";
+import PollStatus from "../../Components/PollStatus/PollStatus";
 
 
 import Header from "../../Components/Header/Header";
@@ -49,6 +53,7 @@ import SearchVoter from "../../Components/Agents/SearchVoter";
 import { AgentAccessCode } from "../Route/ConfigRoute";
 import VoterPage from "../../Components/Voter/VoterPage";
 import NonVoterPage from "../../Components/Voter/NonVoterPage";
+import Popup from "../../Components/PollStatus/Popup";
 
 const Layout = () => {
   const AccessCode = AgentAccessCode()
@@ -88,6 +93,8 @@ const Layout = () => {
 
           <Route path={VoterSearch_ROUTE} element={<SearchVoter />} />
           <Route path={ComingSoon_ROUTE} element={<ComingSoon />} />
+          <Route path={PollStatus_ROUTE} element={<PollStatus />} />
+          <Route path={Popup_ROUTE} element={<Popup />} />
         </>)}
 
 
