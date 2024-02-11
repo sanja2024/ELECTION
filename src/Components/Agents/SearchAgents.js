@@ -173,11 +173,6 @@ const SearchAgent = () => {
                                 <label className="switch">
                                   <input
                                     type="checkbox"
-                                  // checked={row.lock}
-                                  // onChange={(e) => {
-                                  //   handleLockChange(row._id, row.lock);
-                                  //   // console.log(Row ${row._id} is active: ${row.lock});
-                                  // }}
                                   />
                                   <span className="slider round"></span>
                                 </label>

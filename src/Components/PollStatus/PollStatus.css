@@ -227,3 +227,23 @@ letter-spacing: 0.03em;
 text-align: center;
 color: rgb(41, 45, 50);
   }
+
+
+
+
+
+
+
+
+
+  /******************** POPUP ************/
+  .PollTime{
+    font-family: Lato;
+font-size: 10px;
+font-weight: 500;
+line-height: 15px;
+letter-spacing: 0em;
+text-align: left;
+display: flex;
+flex-direction: column;
+  }
