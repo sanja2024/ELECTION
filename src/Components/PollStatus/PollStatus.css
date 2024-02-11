@@ -129,14 +129,14 @@ text-align: left;
   .PS_content td {
     background-color: transparent !important;
     border: none !important;
-    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.4) !important;
     color: white !important;
     border-top: none !important ;
   }
   .PS_content tbody td {
     background-color: transparent !important;
         border: none !important;
-    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.4) !important;
     color: white !important;
   }
    .table tr{
@@ -145,10 +145,10 @@ text-align: left;
 
   .polledVote1 td:not(:last-child) {
     /* border-right: 0.1px solid white !important; */
-    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.4) !important;
   }
   .polledVote2 td:not(:last-child) {
-    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.5) !important;
+    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.4) !important;
     /* border-right: 0.1px solid white !important; */
   }
 
@@ -206,6 +206,7 @@ margin: 12px;
     padding: 16px;
     overflow-y: scroll;
     height:45vh;
+    margin-bottom: 26px;
 }
 
 .whoVoted{
@@ -214,7 +215,8 @@ margin: 12px;
     align-items: center;
     padding: 10px;
     margin: 10px;
-    border: 1px solid red;
+   
+    /* border: 1px solid red; */
 }
   .vote_number{
     font-family: Lato;

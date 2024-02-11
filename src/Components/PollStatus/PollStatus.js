@@ -8,6 +8,7 @@ import male_icon from '../../Common/asset/images/voteimg/Male_icon.svg'
 import others_icon from '../../Common/asset/images/voteimg/Other_icon.svg'
 import notVoted from '../../Common/asset/images/voteimg/NotVoted_icon.svg'
 import pickup_vote from '../../Common/asset/images/voteimg/Pickup_icon.svg'
+import Footer from '../Footer/Footer';
 
 const PollStatus = () => {
   return (
@@ -233,13 +234,14 @@ const PollStatus = () => {
           </div>
           <div className='whoVoted'>
             <img src={female_icon}></img>
-            <span className='vote_number'>01</span>
+            <span className='vote_number'>50</span>
           </div>
 </div>
         
 
         </div>
       </div>
+      <Footer/>
     </div>
   )
 }
