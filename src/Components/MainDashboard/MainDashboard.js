@@ -265,34 +265,34 @@ const MainDashboard = () => {
                         Voters
                       </span>
                     </div>
-                    <div className="KeyfeatureBox">
+                    <div className="KeyfeatureBox" onClick={() => {
+                          navigate(NonVoterPage_ROUTE);
+                        }}>
                       <img className="AddAgentIcons" src={NonVoters}></img>
                       <span
                         className="KeyfeatureVal"
-                        onClick={() => {
-                          navigate(NonVoterPage_ROUTE);
-                        }}
+                        
                       >
                         Non-Voters
                       </span>
                     </div>
-                    <div className="KeyfeatureBox">
-                      <img className="AddAgentIcons" src={BoothStatus}></img>
-                      <span onClick={() => {
+                    <div className="KeyfeatureBox" onClick={() => {
                         navigate(BoothStatus_ROUTE);
-                      }} className="KeyfeatureVal">Booth Status</span>
+                      }} >
+                      <img className="AddAgentIcons" src={BoothStatus}></img>
+                      <span className="KeyfeatureVal">Booth Status</span>
                     </div>
-                    <div className="KeyfeatureBox">
-                      <img className="AddAgentIcons" src={Report}></img>
-                      <span onClick={() => {
+                    <div className="KeyfeatureBox" onClick={() => {
                         navigate(ComingSoon_ROUTE);
-                      }} className="KeyfeatureVal">Report</span>
+                      }} >
+                      <img className="AddAgentIcons" src={Report}></img>
+                      <span className="KeyfeatureVal">Report</span>
                     </div>
-                    <div className="KeyfeatureBox">
-                      <img className="AddAgentIcons" src={PollStatus}></img>
-                      <span onClick={() => {
+                    <div className="KeyfeatureBox" onClick={() => {
                         navigate(PollStatus_ROUTE);
-                      }} className="KeyfeatureVal">Poll Status</span>
+                      }}>
+                      <img className="AddAgentIcons" src={PollStatus}></img>
+                      <span  className="KeyfeatureVal">Poll Status</span>
                     </div>
                   </div>
                 </div>

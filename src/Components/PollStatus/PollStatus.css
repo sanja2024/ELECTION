@@ -229,7 +229,10 @@ color: rgb(41, 45, 50);
   }
 
 
-
+.name_img{
+  display: flex;
+  padding: 10px 16px;
+}
 
 
 
