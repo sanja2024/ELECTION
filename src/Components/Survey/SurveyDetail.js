@@ -14,7 +14,11 @@ import { agentSearch, createAgent } from "../../Common/redux/slices/agentSlice";
 import { useNavigate } from "react-router-dom";
 
 
-const SurveyDetail = () => {
+const SurveyDetail = ({ data }) => {
+
+    console.log(data?.item?.mobileNo, "datatatta")
+
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.agent.agentCreateData);
@@ -40,9 +44,15 @@ const SurveyDetail = () => {
         setFieldError,
         setFieldValue,
     } = useFormik({
-        initialValues: {
+        initialValues: data?.item ? {
             ...formValues,
-        },
+            voter_id: data?.item?.epicNo,
+            name: data?.item?.fmNameEn,
+            mobile_no: data?.item?.mobileNo,
+        } :
+            {
+                ...formValues,
+            },
 
         validationSchema: Yup.object({
             voter_id: Yup.string()
@@ -59,11 +69,26 @@ const SurveyDetail = () => {
 
         onSubmit: (values) => {
 
+            const finaldata =
+                data?.item ?
+                    {
+                        ...values,
+                        voter_id: data?.item?.epicNo,
+                        name: data?.item?.fmNameEn,
+                        mobile_no: data?.item?.mobileNo,
+                    } :
+                    values
+
+
+
 
 
             navigate("/Survey", {
                 state: {
-                    data: values
+                    data: {
+                        label: "submit",
+                        finaldata
+                    }
                 },
             });
 
@@ -88,8 +113,8 @@ const SurveyDetail = () => {
                         placeholder="Mobile Number"
                         onChange={handleChange}
                         value={values?.mobile_no}
-                        type="number"
-                        max="10"
+                        type="tel"
+                    // max="10"
 
                     />
                     {errors.mobile_no && touched.mobile_no ? <div style={{ color: "red" }}>{errors.mobile_no}</div> : null}
@@ -127,11 +152,11 @@ const SurveyDetail = () => {
 
             </div>
             <div className="" >
-            <button className="submit_btn " onClick={handleSubmit}>
-                Next
-            </button>
+                <button className="submit_btn " onClick={handleSubmit}>
+                    Next
+                </button>
             </div>
-          
+
 
         </div>
     );

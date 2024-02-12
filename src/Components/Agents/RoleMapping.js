@@ -27,7 +27,7 @@ const RoleMapping = () => {
   const [booth, setBooth] = useState([]);
   const [division, setDivision] = useState([]);
   const [roleDisable, setRoleDisable] = useState(false);
-  
+
   const [mobile_no, setSelectedMobile] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedConstituency, setSelectedConstituency] = useState("");
@@ -37,7 +37,7 @@ const RoleMapping = () => {
 
   const [stateRole, setStateRole] = useState("Select State");
   const [constituencyRole, setConstituencyRole] = useState("Select Constituency");
-  const [divisionRole, setDivisionRole] = useState("Select Division");
+  const [divisionRole, setDivisionRole] = useState("Select Assembly");
   const [boothRole, setBoothRole] = useState("Select Booth");
 
   const [electionNames, setElectionNames] = useState([]);
@@ -53,26 +53,26 @@ const RoleMapping = () => {
 
     if (selectedValue === 'Mobile') {
       setSelectedMobile(event.target.value);
-      if(event.target.value.length==10){
-  
-          const userData = {
-            payload: event.target.value,
-            endPoint: ADD_AGENT_SEARCH_URL,
-          };
-          dispatch(agentSearch(userData)).then((res) => {
-            if (res?.payload?.message === "success") {
-              // setState(res?.payload.data.list);
+      if (event.target.value.length == 10) {
+
+        const userData = {
+          payload: event.target.value,
+          endPoint: ADD_AGENT_SEARCH_URL,
+        };
+        dispatch(agentSearch(userData)).then((res) => {
+          if (res?.payload?.message === "success") {
+            // setState(res?.payload.data.list);
             //  console.log(res?.payload?.data.list[0].agentType,'wwewewe')
-             if(res?.payload?.data.list[0]?.agentType=='AGENT'){
+            if (res?.payload?.data.list[0]?.agentType == 'AGENT') {
               setSelectedRole("AGENT")
               setRoleDisable(true)
-             }else{
+            } else {
               setRoleDisable(false)
             }
-             
-            }
-          });
-        
+
+          }
+        });
+
       }
     }
     else if (selectedValue === 'election') {
@@ -222,7 +222,7 @@ const RoleMapping = () => {
         // });
       }
     })
-     dispatch(fetchPosts(ROLE_SEARCH_API)).then((res) => {
+    dispatch(fetchPosts(ROLE_SEARCH_API)).then((res) => {
       if (res?.payload?.message === "success") {
         setRole(res?.payload.data.list);
       }
@@ -269,10 +269,10 @@ const RoleMapping = () => {
           setSelectedBooth("");
           setSelectedRole("");
           setSelectedMobile("");
-        }else{
+        } else {
           toast.error("Error", {
             position: "top-right",
-    
+
           });
         }
 
@@ -292,7 +292,7 @@ const RoleMapping = () => {
       <div className="rolemapping_data">
         <div className="addAgent_datapoints">
           <label htmlFor="exampleFormControlInput1" className="form-label">
-            Agent 
+            Agent
           </label>
           <input
             type="text"
@@ -342,7 +342,7 @@ const RoleMapping = () => {
             ))}
           </select>
         </div>
-        
+
         <div className="addAgent_datapoints dropdown">
           <label htmlFor="exampleFormControlInput1" className="form-label">
             State
@@ -381,7 +381,7 @@ const RoleMapping = () => {
         </div>
         <div className="addAgent_datapoints dropdown">
           <label htmlFor="exampleFormControlInput1" className="form-label">
-            Division
+            Assembly
           </label>
           <select
             className="form-control"

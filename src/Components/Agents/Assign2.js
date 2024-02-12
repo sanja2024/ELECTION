@@ -7,7 +7,7 @@ import { ADD_AGENT_SEARCH_URL, BOOTH_API, VOTER_SEARCH_URL } from "../../Common/
 import { agentSearch } from "../../Common/redux/slices/agentSlice";
 import { createUser } from "../../Common/redux/slices/usersSlice";
 import { toast } from "react-toastify";
-import { Assign_ROUTE } from "../../Common/Route/Routes";
+import { Assign_ROUTE, MainDashboard_ROUTE } from "../../Common/Route/Routes";
 const Assign2 = () => {
     const [selectedElection, setSelectedElection] = useState([]);
     const [selectedstate, setSelectedstate] = useState([]);
@@ -25,8 +25,10 @@ const Assign2 = () => {
     const [selectedBooth, setSelectedBooth] = useState("");
 
     const [voteToNo, setVoteToNo] = useState("");
+    const [agentMobileNo, setAgentMobileNo] = useState("");
+
     const [voteFromNo, setVoteFromNo] = useState("");
-    
+
     const [stateRole, setStateRole] = useState("Select State");
     const [constituencyRole, setConstituencyRole] = useState("Select Constituency");
     const [divisionRole, setDivisionRole] = useState("Select Division");
@@ -192,8 +194,8 @@ const Assign2 = () => {
                     // election_code: selectedElection,
                     // state_code: selectedstate,
                     // division_code:selectedDivision,
-                    ac_no: selectedConstituency, //Constituency
-                    section_no: event.target.value
+                    ac_no: selectedDivision, //Constituency
+                    part_no: event.target.value
                 },
                 endPoint: VOTER_SEARCH_URL,
             };
@@ -202,8 +204,8 @@ const Assign2 = () => {
                     // setBooth(res?.payload.data.list);
                     const minNumber = Math.min(...res?.payload.data.list.map(item => parseInt(item.slnoinpart)));
                     const maxNumber = Math.max(...res?.payload.data.list.map(item => parseInt(item.slnoinpart)));
-                    setVoteFromNo(minNumber)
-                    setVoteToNo(maxNumber)
+                    setVoteFromNo(res?.payload.data.list?.[0]?.minSlnoinpart)
+                    setVoteToNo(res?.payload.data.list?.[0]?.maxSlnoinpart)
                     // console.log("Minimum Number:", minNumber);
                     // console.log("Maximum Number:", maxNumber);
                 }
@@ -215,48 +217,54 @@ const Assign2 = () => {
     const handleSubmit = () => {
         if (
             voteFromNo && voteToNo
-     
+
         ) {
-          const userData = {
-            payload: {
-              ac_no: selectedConstituency, //Constituency
-              section_no: selectedBooth,//booth no
-              from_slnoinpart:voteFromNo,
-              to_slnoinpart:voteToNo
-            },
-             endPoint: VOTER_SEARCH_URL,
-          };
-    
-          dispatch(createUser(userData)).then((res) => {
-            if (res.payload.message == 'success') {
-                console.log(res?.payload.data.list,'sjkbdsjkdbsbd')
-                navigate(Assign_ROUTE, {
-                    state: {
-                        response: res?.payload.data.list
-                    },
-                });
-            //   setSelectedElection("");
-            //   setSelectedstate("");
-            //   setSelectedConstituency("");
-            //   setSelectedDivision("");
-            //   setSelectedBooth("");
-            //   setSelectedRole("");
-            //   setSelectedMobile("");
-            }else{
-              toast.error("Error", {
-                position: "top-right",
-        
-              });
-            }
-    
-          });
+            const userData = {
+                payload: {
+                    ac_no: selectedDivision, //Constituency
+                    part_no: selectedBooth,//booth no
+                    from_slnoinpart: voteFromNo,
+                    to_slnoinpart: voteToNo,
+                    agent_mobile_no: agentMobileNo
+                },
+                endPoint: VOTER_SEARCH_URL,
+            };
+
+            dispatch(createUser(userData)).then((res) => {
+                if (res.payload.message == 'success') {
+                    console.log(res?.payload.data.list, 'sjkbdsjkdbsbd')
+                    toast.success("Voter Assigned Successfully", {
+                        position: "top-right",
+
+                    });
+                    // navigate(Assign_ROUTE, {
+                    //     state: {
+                    //         response: res?.payload.data.list
+                    //     },
+                    // });
+                    navigate(MainDashboard_ROUTE);
+                    //   setSelectedElection("");
+                    //   setSelectedstate("");
+                    //   setSelectedConstituency("");
+                    //   setSelectedDivision("");
+                    //   setSelectedBooth("");
+                    //   setSelectedRole("");
+                    //   setSelectedMobile("");
+                } else {
+                    toast.error("Error", {
+                        position: "top-right",
+
+                    });
+                }
+
+            });
         } else {
-          toast.error("Enter Valid Field", {
-            position: "top-right",
-    
-          });
+            toast.error("Enter Valid Field", {
+                position: "top-right",
+
+            });
         }
-      };
+    };
 
 
     useEffect(() => {
@@ -286,7 +294,7 @@ const Assign2 = () => {
         <div>
             <Header />
             <div className='assign_datas'>
-            <div className="addAgent_datapoints">
+                <div className="addAgent_datapoints">
                     <label for="exampleFormControlInput1" class="form-label">
                         Agent
                     </label>
@@ -295,8 +303,8 @@ const Assign2 = () => {
                         class="form-control p-3"
                         id="exampleFormControlInput1"
                         placeholder="Agent Mobile No."
-                        value={voteFromNo}
-                        onChange={handleVoteFromNoChange}
+                        value={agentMobileNo}
+                        onChange={(e) => { setAgentMobileNo(e.target.value) }}
                     />
                 </div>
                 <div className="addAgent_datapoints dropdown">
@@ -415,9 +423,9 @@ const Assign2 = () => {
                         onChange={handleVoteToNoChange}
                     />
                 </div>
-               
+
             </div>
-            <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Filter</button>
+            <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Submit</button>
             <Footer />
         </div>
     )

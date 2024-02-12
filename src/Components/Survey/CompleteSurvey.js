@@ -26,10 +26,10 @@ const CompleteSurvey = () => {
             Survey!</span>
 
         </div>
-        <Survey finalResp={true} />
+        {/* <Survey finalResp={true} /> */}
       </div>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

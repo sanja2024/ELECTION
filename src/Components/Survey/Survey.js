@@ -13,6 +13,8 @@ import SurveyDetail from "./SurveyDetail";
 
 const SurveyForm = ({ questions, onSubmit }) => {
 
+  console.log("SDcsd", questions)
+
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [error, setError] = useState("");
@@ -41,6 +43,7 @@ const SurveyForm = ({ questions, onSubmit }) => {
   };
 
   const renderCurrentPage = () => {
+    console.log("Adas", questions[currentPage])
     const question = questions[currentPage];
     if (!question) {
       return null;
@@ -48,6 +51,7 @@ const SurveyForm = ({ questions, onSubmit }) => {
 
     return (
       <div>
+        {console.log("AEfafda", question)}
         <div className="survey_questionnaire">
           <div className="d-flex flex-column mb-3">
             <span className="QuestoinHead">{question.topicName}</span>
@@ -136,9 +140,9 @@ const Survey = ({ finalResp }) => {
     console.log("dfsafasf", location?.state);
 
     const voterData = {
-      voter_id: location?.state?.data?.voter_id,
-      name: location?.state?.data?.name,
-      mobile_no: parseInt(location?.state?.data?.mobile_no),
+      voter_id: location?.state?.data?.finaldata?.voter_id,
+      name: location?.state?.data?.finaldata?.name,
+      mobile_no: parseInt(location?.state?.data?.finaldata?.mobile_no),
       question: Object.entries(selectedOptions).map(([topicCode, answer]) => ({ topicCode, answer })),
     };
 
@@ -168,12 +172,7 @@ const Survey = ({ finalResp }) => {
     <div className="container p-0">
 
       {finalResp == true ? "" : <Header />}
-      {selectedTopic ? (
-        // <SurveyForm
-        //   questions={(topics?.data?.list?.find((topic) => topic.topicCode === selectedTopic)?.topicList || [])}
-        //   onSubmit={handleFormSubmit}
-        // />
-
+      {/* {selectedTopic ? (
         selectedTopic && location?.state?.data ? <SurveyForm
           questions={(topics?.data?.list?.find((topic) => topic.topicCode === selectedTopic)?.topicList || [])}
           onSubmit={handleFormSubmit}
@@ -213,13 +212,43 @@ const Survey = ({ finalResp }) => {
                 <span className="surveybtn" onClick={() => finalResp === true && navigate("/Survey")}
                 >Start Survey &gt;</span>
               </div>
-              {/* <div className="card-footer text-center" style={{ backgroundColor: "rgba(3, 52, 104, 0.2)" }}>
-                
-              </div> */}
+            
             </div>
           ))}
         </div>
       )
+      } */}
+
+      {
+        location?.state?.data?.label == "submit" ?
+          <>
+            {console.log("DFasfas", location?.state?.data)}
+            <SurveyForm
+              // questions={(topics?.data?.list?.find((topic) => topic.topicCode === selectedTopic)?.topicList || [])}
+              questions={(topics?.data?.list?.[0]?.topicList || [])}
+
+              onSubmit={handleFormSubmit}
+            />
+          </>
+          :
+          <>
+            <div
+
+            >
+              <div style={{
+                width: "90vw",
+                marginTop: "24px",
+
+                marginLeft: "16px"
+              }} className="d-flex flex-column mb-3">
+                {console.log(topics?.data?.list, "asdasda")}
+                <span className="QuestoinHead">{topics?.data?.list?.[0]?.topicCode}</span>
+
+              </div>
+              <SurveyDetail data={location?.state?.data} />
+            </div>
+          </>
+
       }
       <Footer />
     </div >

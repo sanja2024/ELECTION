@@ -4,7 +4,7 @@ import "./../Agents/AddAgents.css";
 import profile_img from "../../Common/asset/images/voteimg/agents_img.svg";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import { ADD_AGENT_SEARCH_URL, GET_VISITOR_URL, VOTER_SEARCH_URL } from "../../Common/Url/ServerConfig";
+import { ADD_AGENT_SEARCH_URL, GET_POLL_STATUS_URL, GET_VISITOR_URL, VOTER_SEARCH_URL } from "../../Common/Url/ServerConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { createRegion } from "../../Common/redux/slices/geoSlice";
 import { agentSearch, getVisitor } from "../../Common/redux/slices/agentSlice";
@@ -35,9 +35,9 @@ const VoterPage = () => {
 
         const userData = {
             payload: {
-                voter_id: "XBG0186080"
+                agent_mobile_no: 9094562766
             },
-            endPoint: VOTER_SEARCH_URL,
+            endPoint: GET_POLL_STATUS_URL,
         };
         dispatch(createUser(userData)).then((res) => {
             if (res?.payload?.message === "success") {
@@ -89,66 +89,69 @@ const VoterPage = () => {
         <div className="container p-0">
             <Header />
 
+            {(!Array.isArray(voterResp?.data?.list)) ?
+                <>LOADING....</> :
+                <div className="searchedcardHead mt-3">
+                    <div className="scroll_cards">
+                        {console.log("sddds", voterResp)}
+                        {/* {(Array.isArray(voterResp?.data?.list)) && voterResp?.data?.list?.[0]?.data?.map((item, index) => ( */}
 
-            <div className="searchedcardHead mt-3">
-                <div className="scroll_cards">
+                        <div className="card saerched_dataCard1" >
 
-                    {(Array.isArray(voterResp?.data?.list)) && voterResp?.data?.list?.map((item, index) => (
-                        <div className="card saerched_dataCard1" key={index}>
                             <div className="card-body pb-1 p-0">
                                 <div className="d-flex justify-content-between border-bottom pb-2">
                                     <div className="name_img">
 
 
                                         {/* <div>
-                                            <img className="searchedimg" src={profile_img} alt="profile"></img>
-                                        </div> */}
+                             <img className="searchedimg" src={profile_img} alt="profile"></img>
+                         </div> */}
                                         <div className="d-flex flex-column">
-                                            <span className="searchedAgentName">{item?.fmNameEn}</span>
-                                            <span className="searchedAgentName">{item?.fmNameV1}</span>
+                                            <span className="searchedAgentName">{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.fmNameEn}</span>
+                                            <span className="searchedAgentName">{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.fmNameV1}</span>
                                         </div> </div>
 
                                     <div className='VoteNo1'>
 
-                                        <span className='noVote1'>200</span>
+                                        <span className='noVote1'>{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.slnoinpart}</span>
                                     </div>
                                 </div>
                                 <div className="searched_data">
                                     <div className="d-flex flex-column pb-2">
                                         <span className="searchedTitle">S/O</span>
-                                        <span className="searchedData">{item?.rlnFmNmEn}</span>
-                                        <span className="searchedData">{item?.rlnFmNmV1}</span>
+                                        <span className="searchedData">{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.rlnFmNmEn}</span>
+                                        <span className="searchedData">{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.rlnFmNmV1}</span>
                                     </div>
                                     <div className="d-flex flex-column pb-2">
                                         <span className="searchedTitle">Gender</span>
-                                        <span className="searchedData">{item?.gender}</span>
+                                        <span className="searchedData">{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.gender}</span>
                                     </div>
                                     <div className="d-flex flex-column pb-2">
                                         <span className="searchedTitle">Age</span>
-                                        <span className="searchedData">{item?.age}</span>
+                                        <span className="searchedData">{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.age}</span>
                                     </div>
                                     <div className="d-flex flex-column pb-2">
                                         <span className="searchedTitle">Voter Id</span>
-                                        <span className="searchedData">{item?.epicNo}</span>
+                                        <span className="searchedData">{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.epicNo}</span>
                                     </div>
-                                   
+
                                 </div>
                                 <div className="searched_data border-0">
-                                <div className="d-flex flex-column">
+                                    <div className="d-flex flex-column">
                                         <span className="searchedTitle">Address</span>
-                                        <span className="searchedData">{item?.cHouseNo}, {item?.sectionNo}</span>
+                                        <span className="searchedData">{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.cHouseNo}, {voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.sectionNo}</span>
                                     </div>
                                     {/* <div className="d-flex flex-column">
-                                        <span className="searchedTitle">Mobile No.</span>
-                                        <span className="searchedData">{item?.mobileNo}</span>
-                                    </div> */}
+                         <span className="searchedTitle">Mobile No.</span>
+                         <span className="searchedData">{voterResp?.data?.list?.[0]?.data?.[0]?.VoterDetailInfo?.mobileNo}</span>
+                     </div> */}
                                 </div>
                                 {/* <div className="searched_data  ">
-                                    <div className="d-flex flex-column">
-                                        <span className="searchedTitle">Booth Status</span>
-                                        <span className="searchedData">B9T878G9</span>
-                                    </div>
-                                </div> */}
+                     <div className="d-flex flex-column">
+                         <span className="searchedTitle">Booth Status</span>
+                         <span className="searchedData">B9T878G9</span>
+                     </div>
+                 </div> */}
                                 <div className="">
                                     <div>
                                         <div className="d-flex justify-content-evenly">
@@ -162,9 +165,9 @@ const VoterPage = () => {
                                                     className="searched_status "
                                                     type="button"
                                                     data-bs-toggle="collapse"
-                                                    data-bs-target={`#collapseExample${index}`}
+                                                    data-bs-target={`#collapseExample${"index"}`}
                                                     aria-expanded="false"
-                                                    aria-controls={`collapseExample${index}`}
+                                                    aria-controls={`collapseExample${"index"}`}
                                                     onClick={() => { setExpand("poll") }}
                                                 >
                                                     Poll Status
@@ -175,16 +178,16 @@ const VoterPage = () => {
                                                     className="searched_status"
                                                     type="button"
                                                     data-bs-toggle="collapse"
-                                                    data-bs-target={`#visit${index}`}
+                                                    data-bs-target={`#visit${"index"}`}
                                                     aria-expanded="false"
-                                                    aria-controls={`visit${index}`}
+                                                    aria-controls={`visit${"index"}`}
                                                     onClick={() => { setExpand("visit") }}
                                                 >
                                                     Visit Status
                                                 </button>
                                             </div>
                                         </div>
-                                        {expand == "poll" ? <div className="collapse coll_width" id={`collapseExample${index}`}>
+                                        {expand == "poll" ? <div className="collapse coll_width" id={`collapseExample${"index"}`}>
                                             <div className="card card-body">
                                                 <div className="d-flex justify-content-between align-items-center">
                                                     <div>
@@ -230,7 +233,7 @@ const VoterPage = () => {
 
                                             </div>
                                         </div> :
-                                            <div className="collapse coll_width" id={`visit${index}`}>
+                                            <div className="collapse coll_width" id={`visit${"index"}`}>
                                                 <div className="card card-body">
                                                     <div className="d-flex justify-content-between align-items-center">
 
@@ -263,14 +266,16 @@ const VoterPage = () => {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                        {/* ))} */}
 
 
 
 
 
+                    </div>
                 </div>
-            </div>
+            }
+
             <Footer />
         </div>
     );

@@ -130,7 +130,7 @@ const SearchVoter = () => {
 
                   <div className='VoteNo1'>
 
-                    <span className='noVote1'>200</span>
+                    <span className='noVote1'>{item?.SLNOINPART}</span>
                   </div>
                 </div>
                 <div className="searched_data">
@@ -151,10 +151,10 @@ const SearchVoter = () => {
                     <span className="searchedTitle">Voter Id</span>
                     <span className="searchedData">{item.epicNo}</span>
                   </div>
-                 
+
                 </div>
                 <div className="searched_data border-0">
-                <div className="d-flex flex-column">
+                  <div className="d-flex flex-column">
                     <span className="searchedTitle">Address</span>
                     <span className="searchedData">{item.cHouseNo}, {item.sectionNo}</span>
                   </div>
@@ -174,7 +174,16 @@ const SearchVoter = () => {
                     {AccessCode != "GUEST" ? (<div className="d-flex justify-content-evenly">
                       <div>
                         <button
-                          onClick={() => { navigate("/Survey") }}
+                          onClick={() => {
+                            navigate("/Survey", {
+                              state: {
+                                data: {
+                                  label: "",
+                                  item
+                                }
+                              },
+                            })
+                          }}
                           className="searched_status">SURVEY</button>
                       </div>
                       <div>

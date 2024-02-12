@@ -116,8 +116,8 @@ const PollStatus = () => {
           </div>
           <div className="PS_scroll">
             <div className="PS">
-              <p className="PSHeading">Polling Sheet 05:00 PM</p>
-              <p className="PSsubHeading">Thiyagi Natesan Street 1</p>
+              <p className="PSHeading">Polling Sheet </p>
+              <p className="PSsubHeading"></p>
               <p className="PS_content mb-0">
                 <table className="table table-sm">
                   <thead className="table-light">
@@ -132,31 +132,31 @@ const PollStatus = () => {
                   <tbody>
                     <tr className='polledVote1'>
                       <td >As per Electrol</td>
-                      <td>12</td>
-                      <td>12</td>
-                      <td>12</td>
-                      <td>12</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
                     </tr>
                     <tr className='polledVote2'>
                       <td >Total Polled Vote</td>
-                      <td>12</td>
-                      <td>12</td>
-                      <td>12</td>
-                      <td>12</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
                     </tr>
                   </tbody>
                 </table>
               </p>
               <div className='votepercentage1'>
                 <span className='votepercentage'>
-                  PICKUP VOTE : 15%
+                  PICKUP VOTE : 0%
                 </span>
               </div>
             </div>
           </div>
         </div>
         <div className='PollStatusmain'>
-          <div className='typeOfVote'>
+          {/* <div className='typeOfVote'>
             <div className='male'>
               <div className="square"></div>
               <span className='typeOfVoteText'>Male</span>
@@ -173,7 +173,7 @@ const PollStatus = () => {
               <div className="square4"></div>
               <span className='typeOfVoteText'>Pickup vote</span>
             </div>
-          </div>
+          </div> */}
           <div className='votedOrNot'>
             <div className='allvoterDetail'>
               {
@@ -228,20 +228,20 @@ const PollStatus = () => {
                     <img className="searchedimg" src={profile_img} alt="profile"></img>
                   </div> */}
                   <div className='name_img'>
-                  <div className="d-flex flex-column">
-                    <span className="searchedAgentName">
-                      {voterResp?.data?.list?.[0]?.fmNameEn}
-                    </span>
-                    <span className="searchedAgentName">
-                      {voterResp?.data?.list?.[0]?.fmNameV1}
-                    </span>
+                    <div className="d-flex flex-column">
+                      <span className="searchedAgentName">
+                        {voterResp?.data?.list?.[0]?.fmNameEn}
+                      </span>
+                      <span className="searchedAgentName">
+                        {voterResp?.data?.list?.[0]?.fmNameV1}
+                      </span>
+                    </div>
                   </div>
-                  </div>
-                
+
                   <div className='VoteNo1'>
 
-<span className='noVote1'>200</span>
-</div>
+                    <span className='noVote1'>{voterResp?.data?.list?.[0]?.slnoinpart}</span>
+                  </div>
                 </div>
                 <div className="searched_data">
                   <div className="d-flex flex-column">
@@ -331,7 +331,7 @@ const PollStatus = () => {
                               <li><a className="dropdown-item" href="#">09:00 AM</a></li>
                               <li><a className="dropdown-item" href="#">10:00 AM</a></li>
                               <li><a className="dropdown-item" href="#">11:00 AM</a></li>
-                              <li><a className="dropdown-item" href="#">12:00 PM</a></li>
+                              <li><a className="dropdown-item" href="#">0:00 PM</a></li>
                               <li><a className="dropdown-item" href="#">01:00 PM</a></li>
                               <li><a className="dropdown-item" href="#">02:00 PM</a></li>
                               <li><a className="dropdown-item" href="#">03:00 PM</a></li>
