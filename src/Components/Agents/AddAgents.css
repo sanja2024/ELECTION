@@ -36,6 +36,42 @@
   margin: 10px 16px;
   /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
 }
+.assign_datas {
+  z-index: 1;
+  /* background-color: white; */
+  position: relative;
+
+  width: 90vw;
+  height: 60vh;
+  margin: auto;
+  overflow-y: scroll;
+  /* border: 1px solid red; */
+  margin: 10px 16px;
+  /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
+}
+.rolemapping_data {
+  z-index: 1;
+  /* background-color: white; */
+  position: relative;
+
+  width: 90vw;
+  height: 60vh;
+  margin: auto;
+  overflow-y: scroll;
+  /* border: 1px solid red; */
+  margin: 10px 16px;
+  /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
+}
+.rolemapping_data::-webkit-scrollbar {
+  height: 1px;             
+  width: 1px;                
+  color: transparent;
+}
+.assign_datas::-webkit-scrollbar {
+  height: 1px;             
+  width: 1px;                
+  color: transparent;
+}
 .agentadd_datas::-webkit-scrollbar {
   height: 1px;             
   width: 1px;                
@@ -45,6 +81,26 @@
   margin-bottom: 10px;
 }
 
+.assign_datas label {
+  font-family: Lato;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
+}
+.rolemapping_data label {
+  font-family: Lato;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 10px;
+}
 .agentadd_datas label {
   font-family: Lato;
   font-size: 10px;

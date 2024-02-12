@@ -120,9 +120,9 @@ const SearchVoter = () => {
                   <div className="name_img">
 
 
-                    <div>
+                    {/* <div>
                       <img className="searchedimg" src={profile_img} alt="profile"></img>
-                    </div>
+                    </div> */}
                     <div className="d-flex flex-column">
                       <span className="searchedAgentName">{item.fmNameEn}</span>
                       <span className="searchedAgentName">{item.fmNameV1}</span>
@@ -157,17 +157,17 @@ const SearchVoter = () => {
                     <span className="searchedTitle">Voter Id</span>
                     <span className="searchedData">{item.epicNo}</span>
                   </div>
-                  <div className="d-flex flex-column">
+                  {/* <div className="d-flex flex-column">
                     <span className="searchedTitle">Mobile No.</span>
                     <span className="searchedData">{item.mobileNo}</span>
-                  </div>
+                  </div> */}
                 </div>
-                <div className="searched_data  ">
+                {/* <div className="searched_data  ">
                   <div className="d-flex flex-column">
                     <span className="searchedTitle">Booth Status</span>
                     <span className="searchedData">B9T878G9</span>
                   </div>
-                </div>
+                </div> */}
                 <div className="">
                   <div>
                     {AccessCode != "GUEST" ? (<div className="d-flex justify-content-evenly">

@@ -141,7 +141,7 @@ const BoothStatus = () => {
                                 </div>
                                 <div className='boothdata2'>
                                     <div className='Polled'>
-                                        POLLED
+                                       NOT-POLLED
                                     </div>
                                     <div className='d-flex justify-content-between p-1'>
 

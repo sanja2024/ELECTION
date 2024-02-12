@@ -285,7 +285,20 @@ const Assign2 = () => {
     return (
         <div>
             <Header />
-            <div className='agentadd_datas'>
+            <div className='assign_datas'>
+            <div className="addAgent_datapoints">
+                    <label for="exampleFormControlInput1" class="form-label">
+                        Agent
+                    </label>
+                    <input
+                        type="text"
+                        class="form-control p-3"
+                        id="exampleFormControlInput1"
+                        placeholder="Agent Mobile No."
+                        value={voteFromNo}
+                        onChange={handleVoteFromNoChange}
+                    />
+                </div>
                 <div className="addAgent_datapoints dropdown">
                     <label htmlFor="exampleFormControlInput1" className="form-label">
                         Election Type
@@ -384,7 +397,7 @@ const Assign2 = () => {
                         type="text"
                         class="form-control p-3"
                         id="exampleFormControlInput1"
-                        placeholder="User ID"
+                        placeholder=" Vote From No."
                         value={voteFromNo}
                         onChange={handleVoteFromNoChange}
                     />
@@ -397,13 +410,14 @@ const Assign2 = () => {
                         type="text"
                         class="form-control p-3"
                         id="exampleFormControlInput1"
-                        placeholder="User ID"
+                        placeholder=" Vote To No."
                         value={voteToNo}
                         onChange={handleVoteToNoChange}
                     />
                 </div>
-                <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Filter</button>
+               
             </div>
+            <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Filter</button>
             <Footer />
         </div>
     )

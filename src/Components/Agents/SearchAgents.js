@@ -123,17 +123,35 @@ const SearchAgent = () => {
                     <span className="searchedData">{item.voterId}</span>
                   </div>
                   <div className="d-flex flex-column">
-                    <span className="searchedTitle">Voter No.</span>
+                    <span className="searchedTitle">Mobile No.</span>
+                    <span className="searchedData">{item.mobileNo}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Alternate Mobile No.</span>
                     <span className="searchedData">{item.mobileNo}</span>
                   </div>
                 </div>
-                <div className="searched_data  ">
+                <div className="searched_data2 border-0">
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">EMail Id</span>
+                    <span className="searchedData">{item.voterId}</span>
+                  </div>
+                  {/* <div className="d-flex flex-column">
+                    <span className="searchedTitle">Mobile No.</span>
+                    <span className="searchedData">{item.mobileNo}</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Alternate Mobile No.</span>
+                    <span className="searchedData">{item.mobileNo}</span>
+                  </div> */}
+                </div>
+                {/* <div className="searched_data  ">
                   <div className="d-flex flex-column">
                     <span className="searchedTitle">Booth Address</span>
                     <span className="searchedData">B9T878G9</span>
                   </div>
-                </div>
-                <div className="">
+                </div> */}
+                {/* <div className="">
                   <div>
                     <div className="d-flex justify-content-evenly">
                       <div>
@@ -211,7 +229,7 @@ const SearchAgent = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           ))}

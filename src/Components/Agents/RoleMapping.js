@@ -289,16 +289,16 @@ const RoleMapping = () => {
     <div className="container p-0">
       <Header />
 
-      <div className="agentadd_datas">
+      <div className="rolemapping_data">
         <div className="addAgent_datapoints">
           <label htmlFor="exampleFormControlInput1" className="form-label">
-            Agent ID
+            Agent 
           </label>
           <input
             type="text"
             className="form-control"
             id="exampleFormControlInput1"
-            placeholder="User ID"
+            placeholder="Agent Mobile No."
             onChange={(event) => handleSelectChange(event, 'Mobile')}
             value={mobile_no}
           />
@@ -419,8 +419,9 @@ const RoleMapping = () => {
 
 
 
-        <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Submit</button>
       </div>
+
+      <button className="wb_login mt-4 mb-4" onClick={handleSubmit}>Submit</button>
       <Footer />
     </div>
   );

@@ -33,7 +33,7 @@ const MainDashboard = () => {
   return (
     <div className="">
 
-      <div className="bgImgMD">
+      <div className="bgImgMmain ">
         <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%", zIndex: "2 !important" }}>
           <div className="mt-1 ">
             <img className="logot" src={logo}></img>
@@ -94,8 +94,9 @@ const MainDashboard = () => {
 
         <div className="row m-0 dashboard_data">
           <div>
-            {AccessCode != "GUEST" ? (<span className="">Agents</span>) : (<></>)}
-            {AccessCode != "GUEST" ? (<div className="agents_detail_scroll">
+            {/* {AccessCode != "GUEST" ? (<span className="">Agents</span>) : (<></>)} */}
+            {/* {AccessCode != "GUEST" ? (
+            <div className="agents_detail_scroll">
               <div className="agents_detail">
                 <div className="card p-0">
                   <div className="card-header p-0">
@@ -167,7 +168,7 @@ const MainDashboard = () => {
                 </div>
               </div>
             </div>
-            ) : (<></>)}
+            ) : (<></>)} */}
             {AccessCode == "GUEST" ? (<div className="mt-3">
               <span>Key Features</span>
               <div className="KeyFeature_detail">
