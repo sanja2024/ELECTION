@@ -40,7 +40,10 @@ const MainDashboard = () => {
           </div>
           <div className="mt-3 me-4" >
 
-            <button class="btn  p-1 border rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{}} >  <img className="logot1" src={menu}></img></button>
+            <button class="btn  p-1 border rounded" onClick={() => {
+                                localStorage.clear();
+                                window.location.reload();
+                              }}> <img className="logot1" src={menu}></img></button>
 
 
           </div>
@@ -82,14 +85,14 @@ const MainDashboard = () => {
       </div>
 
       <div className="welcomebackmd">
-        <div class="offcanvas zindex offcanvas-end" tabindex="2" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        {/* <div class="offcanvas zindex offcanvas-end" tabindex="2" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
           <button type="button" class="btn-close close_btn" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           <div class="offcanvas-body" >
             <div className="logout">
-              <button className="btnLogout"> Logout</button>
+              <button className="btnLogout" onClick={}> Logout</button>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <div className="wb_logo"><img src={logo}></img></div> */}
 
         <div className="row m-0 dashboard_data">

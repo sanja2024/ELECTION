@@ -222,11 +222,12 @@ const PollStatus = () => {
           <p>
             {console.log("zdvxdv", voterResp?.data?.list?.[0])}
             <div className="card saerched_dataCard" >
-              <div className="card-body pb-1">
-                <div className="d-flex border-bottom pb-2">
-                  <div>
+              <div className="card-body pb-1 p-0">
+                <div className="d-flex justify-content-between border-bottom pb-2">
+                  {/* <div>
                     <img className="searchedimg" src={profile_img} alt="profile"></img>
-                  </div>
+                  </div> */}
+                  <div className='name_img'>
                   <div className="d-flex flex-column">
                     <span className="searchedAgentName">
                       {voterResp?.data?.list?.[0]?.fmNameEn}
@@ -235,6 +236,12 @@ const PollStatus = () => {
                       {voterResp?.data?.list?.[0]?.fmNameV1}
                     </span>
                   </div>
+                  </div>
+                
+                  <div className='VoteNo1'>
+
+<span className='noVote1'>200</span>
+</div>
                 </div>
                 <div className="searched_data">
                   <div className="d-flex flex-column">
@@ -250,21 +257,22 @@ const PollStatus = () => {
                     <span className="searchedData">{voterResp?.data?.list?.[0]?.age}</span>
                   </div>
                   <div className="d-flex flex-column">
+                    <span className="searchedTitle">Voter Id</span>
+                    <span className="searchedData">{voterResp?.data?.list?.[0]?.epicNo}</span>
+                  </div>
+                </div>
+                <div className="searched_data2 ">
+
+                  <div className="d-flex flex-column">
                     <span className="searchedTitle">Address</span>
                     <span className="searchedData">
                       {voterResp?.data?.list?.[0]?.cHouseNo}, {voterResp?.data?.list?.[0]?.sectionNo}
                     </span>
                   </div>
-                </div>
-                <div className="searched_data2 ">
-                  <div className="d-flex flex-column">
-                    <span className="searchedTitle">Voter Id</span>
-                    <span className="searchedData">{voterResp?.data?.list?.[0]?.epicNo}</span>
-                  </div>
-                  <div className="d-flex flex-column">
+                  {/* <div className="d-flex flex-column">
                     <span className="searchedTitle">Mobile No.</span>
                     <span className="searchedData">{voterResp?.data?.list?.[0]?.mobileNo} </span>
-                  </div>
+                  </div> */}
                 </div>
                 {/* <div className="searched_data  ">
                 <div className="d-flex flex-column">
@@ -305,14 +313,14 @@ const PollStatus = () => {
                             {/* <span className="searchedTitle p-1">Polled</span>
                             <span className="searchedTitle p-1">Not-Polled</span> */}
                           </div>
-                          <div className='PollTime'>
+                          {/* <div className='PollTime'>
                             <span className='mb-2'>Polled Time</span>
                             <span className=''>07:00 AM</span>
                           </div>
                           <div className='PollTime'>
                             <span className='mb-2'>Visit Status </span>
                             <span className=''>Interested</span>
-                          </div>
+                          </div> */}
                           {/* <div className="btn-group dropdown">
                             <button className="btn border rounded p-2 btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                               Time

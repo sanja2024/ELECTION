@@ -27,10 +27,7 @@ const Footer = () => {
           <img className="Footer_iconS" src={center_icon}></img>
           {/* <span>Home</span> */}
         </div>
-        <div className="d-flex flex-column align-items-center" onClick={() => {
-                                localStorage.clear();
-                                window.location.reload();
-                              }}>
+        <div className="d-flex flex-column align-items-center" >
           <img className="Footer_icon " src={setting_icon}></img>
           <span className="footer_text">Setting</span>
         </div>

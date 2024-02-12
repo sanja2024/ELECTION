@@ -114,28 +114,29 @@ const VoterPage = () => {
                                     </div>
                                 </div>
                                 <div className="searched_data">
-                                    <div className="d-flex flex-column">
+                                    <div className="d-flex flex-column pb-2">
                                         <span className="searchedTitle">S/O</span>
                                         <span className="searchedData">{item?.rlnFmNmEn}</span>
                                         <span className="searchedData">{item?.rlnFmNmV1}</span>
                                     </div>
-                                    <div className="d-flex flex-column">
+                                    <div className="d-flex flex-column pb-2">
                                         <span className="searchedTitle">Gender</span>
                                         <span className="searchedData">{item?.gender}</span>
                                     </div>
-                                    <div className="d-flex flex-column">
+                                    <div className="d-flex flex-column pb-2">
                                         <span className="searchedTitle">Age</span>
                                         <span className="searchedData">{item?.age}</span>
                                     </div>
-                                    <div className="d-flex flex-column">
-                                        <span className="searchedTitle">Address</span>
-                                        <span className="searchedData">{item?.cHouseNo}, {item?.sectionNo}</span>
-                                    </div>
-                                </div>
-                                <div className="searched_data border-0">
-                                    <div className="d-flex flex-column">
+                                    <div className="d-flex flex-column pb-2">
                                         <span className="searchedTitle">Voter Id</span>
                                         <span className="searchedData">{item?.epicNo}</span>
+                                    </div>
+                                   
+                                </div>
+                                <div className="searched_data border-0">
+                                <div className="d-flex flex-column">
+                                        <span className="searchedTitle">Address</span>
+                                        <span className="searchedData">{item?.cHouseNo}, {item?.sectionNo}</span>
                                     </div>
                                     {/* <div className="d-flex flex-column">
                                         <span className="searchedTitle">Mobile No.</span>

@@ -128,15 +128,16 @@ const NonVoterPage = () => {
                                         <span className="searchedData">{item?.age}</span>
                                     </div>
                                     <div className="d-flex flex-column">
-                                        <span className="searchedTitle">Address</span>
-                                        <span className="searchedData">{item?.cHouseNo}, {item?.sectionNo}</span>
-                                    </div>
-                                </div>
-                                <div className="searched_data border-0">
-                                    <div className="d-flex flex-column">
                                         <span className="searchedTitle">Voter Id</span>
                                         <span className="searchedData">{item?.epicNo}</span>
                                     </div>
+                                </div>
+                                <div className="searched_data border-0">
+                                <div className="d-flex flex-column">
+                                        <span className="searchedTitle">Address</span>
+                                        <span className="searchedData">{item?.cHouseNo}, {item?.sectionNo}</span>
+                                    </div>
+                                   
                                     {/* <div className="d-flex flex-column">
                                         <span className="searchedTitle">Mobile No.</span>
                                         <span className="searchedData">{item?.mobileNo}</span>
