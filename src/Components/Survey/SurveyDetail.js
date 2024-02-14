@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 const SurveyDetail = ({ data }) => {
 
-    console.log(data?.item?.mobileNo, "datatatta")
+    console.log(data?.item, "datatatta")
 
 
     const navigate = useNavigate();

@@ -92,7 +92,11 @@ const VoterPage = () => {
     useEffect(() => {
         if (voterResp?.data?.list?.length > 0) {
 
-            setTotalData([...(voterResp?.data?.list?.[0]?.data || []), ...(voterResp?.data?.list?.[1]?.data || [])])
+            const falseData = voterResp?.data?.list.filter(item => item._id === false);
+            const trueData = voterResp?.data?.list.filter(item => item._id === true);
+            console.log(trueData, "Dasdas", falseData)
+
+            setTotalData([...(trueData?.[0]?.data || []), ...(falseData?.[0]?.data || [])])
         }
 
     }, [voterResp])
@@ -156,7 +160,16 @@ const VoterPage = () => {
                                             <div className="d-flex justify-content-evenly">
                                                 <div>
                                                     <button
-                                                        onClick={() => { navigate("/Survey") }}
+                                                        onClick={() => {
+                                                            navigate("/Survey", {
+                                                                state: {
+                                                                    data: {
+                                                                        label: "",
+                                                                        item: item?.VoterDetailInfo
+                                                                    }
+                                                                },
+                                                            })
+                                                        }}
                                                         className="searched_status">SURVEY</button>
                                                 </div>
                                                 <div>

@@ -12,6 +12,7 @@ import { createUser } from "../../Common/redux/slices/usersSlice";
 import { useNavigate } from "react-router-dom";
 const NonVoterPage = () => {
     const [expand, setExpand] = useState("");
+    const [totalData, setTotalData] = useState([]);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -84,7 +85,17 @@ const NonVoterPage = () => {
         //     }
         //   });
     };
+    useEffect(() => {
+        if (voterResp?.data?.list?.length > 0) {
 
+            const falseData = voterResp?.data?.list.filter(item => item._id === false);
+            const trueData = voterResp?.data?.list.filter(item => item._id === true);
+
+
+            setTotalData(falseData?.[0]?.data || [])
+        }
+
+    }, [voterResp])
 
     return (
         <div className="container p-0">
@@ -94,7 +105,7 @@ const NonVoterPage = () => {
                 <div className="searchedcardHead mt-3">
                     <div className="scroll_cards">
 
-                        {voterResp?.data?.list?.[1]?.data?.length > 0 ? voterResp?.data?.list?.[1]?.data?.map((item) => {
+                        {totalData.length > 0 ? totalData?.map((item) => {
                             return (<div className="card saerched_dataCard1" >
 
                                 <div className="card-body pb-1 p-0">
@@ -146,7 +157,16 @@ const NonVoterPage = () => {
                                             <div className="d-flex justify-content-evenly">
                                                 <div>
                                                     <button
-                                                        onClick={() => { navigate("/Survey") }}
+                                                        onClick={() => {
+                                                            navigate("/Survey", {
+                                                                state: {
+                                                                    data: {
+                                                                        label: "",
+                                                                        item: item?.VoterDetailInfo
+                                                                    }
+                                                                },
+                                                            })
+                                                        }}
                                                         className="searched_status">SURVEY</button>
                                                 </div>
                                                 <div>
