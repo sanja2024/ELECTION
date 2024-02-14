@@ -248,9 +248,14 @@ margin: 20px!important;
 
 .searchedcardHead {
   /* border: 1px solid red; */
-  height: 60vh;
+  height: 65vh;
   overflow-y: scroll;
   margin: 10px;
+}
+.searchedcardHead::-webkit-scrollbar {
+  height: 1px;             
+  width: 1px;                
+  color: transparent;
 }
 
 .searchedcardHeadassign {
@@ -411,6 +416,7 @@ margin: 20px!important;
 
 .scroll_cards {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: start;
 }
