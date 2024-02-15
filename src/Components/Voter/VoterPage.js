@@ -92,8 +92,8 @@ const VoterPage = () => {
     useEffect(() => {
         if (voterResp?.data?.list?.length > 0) {
 
-            const falseData = voterResp?.data?.list.filter(item => item._id === false);
-            const trueData = voterResp?.data?.list.filter(item => item._id === true);
+            const falseData = voterResp?.data?.list?.filter(item => item._id === false);
+            const trueData = voterResp?.data?.list?.filter(item => item._id === true);
             console.log(trueData, "Dasdas", falseData)
 
             setTotalData([...(trueData?.[0]?.data || []), ...(falseData?.[0]?.data || [])])

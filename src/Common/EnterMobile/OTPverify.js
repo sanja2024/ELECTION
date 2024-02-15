@@ -36,8 +36,8 @@ const OTPverify = () => {
 
       const fnVerify = () => {
         const ProductPayload = {
-        otp_no:state.list.otpCode,
-        mobile_no:state.mobile_no
+        otp_no:state?.list.otpCode,
+        mobile_no:state?.mobile_no
         };
         const userData = {
           payload: ProductPayload,
@@ -75,7 +75,6 @@ const OTPverify = () => {
 
 
       useEffect(() => {
-        console.log(state.list.otpCode,'ssdsd')
         if (state && state.list && state.list.otpCode) {
           const otpCode = state.list.otpCode.toString();
           const updatedOTPValues = otpCode.split('').map((digit) => digit || '');

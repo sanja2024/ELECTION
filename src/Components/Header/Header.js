@@ -9,7 +9,7 @@ const Header = () => {
 
   useEffect(() => {
     // Update the page name based on the last segment of the path
-    const pathSegments = currentPath.split("/").filter((segment) => segment !== "");
+    const pathSegments = currentPath.split("/")?.filter((segment) => segment !== "");
     const updatedPageName =
       pathSegments[pathSegments.length - 1].charAt(0).toUpperCase() +
       pathSegments[pathSegments.length - 1].slice(1);

@@ -220,7 +220,6 @@ const PollStatus = () => {
         </Modal.Header>
         <Modal.Body >
           <p>
-            {console.log("zdvxdv", voterResp?.data?.list?.[0])}
             <div className="card saerched_dataCard" >
               <div className="card-body pb-1 p-0">
                 <div className="d-flex justify-content-between border-bottom pb-2">

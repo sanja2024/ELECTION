@@ -19,7 +19,6 @@ const AddAgents = () => {
   const posts = useSelector((state) => state.agent.agentCreateData);
   const searchData = useSelector((state) => state.agent.agentSearchData);
 
-  console.log("adfadf", searchData?.data?.list?.[0]);
   const initialValues = {
     voter_id: "",
     name: "",
