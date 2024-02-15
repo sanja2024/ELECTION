@@ -22,7 +22,7 @@ import {
   NonVoterPage_ROUTE,
   PollStatus_ROUTE,
   Popup_ROUTE,
-
+Rating_ROUTE
 
 } from "../Route/Routes";
 import Dashboard from "../../Components/Dashboard/Dashboard";
@@ -54,6 +54,7 @@ import { AgentAccessCode } from "../Route/ConfigRoute";
 import VoterPage from "../../Components/Voter/VoterPage";
 import NonVoterPage from "../../Components/Voter/NonVoterPage";
 import Popup from "../../Components/PollStatus/Popup";
+import Rating from "../../Components/Rating/Rating";
 
 const Layout = () => {
   const AccessCode = AgentAccessCode()
@@ -114,6 +115,7 @@ const Layout = () => {
           <Route path={ComingSoon_ROUTE} element={<ComingSoon />} />
           <Route path={PollStatus_ROUTE} element={<PollStatus />} />
           <Route path={Popup_ROUTE} element={<Popup />} />
+          <Route path={Rating_ROUTE} element={<Rating />} />
         </>)}
 
 

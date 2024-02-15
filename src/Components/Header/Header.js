@@ -35,6 +35,7 @@ const Header = () => {
     "/SearchVoter": "Search Voter",
     "/VoterPage": "Voter",
     "/NonSearchVoter": "Non Voter",
+    "/Rating": "Customer Satisfaction",
 
   };
 
