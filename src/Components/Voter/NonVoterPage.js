@@ -169,7 +169,7 @@ const NonVoterPage = () => {
                                                         }}
                                                         className="searched_status">SURVEY</button>
                                                 </div>
-                                                <div>
+                                                {/* <div>
                                                     <button
                                                         className="searched_status "
                                                         type="button"
@@ -181,8 +181,8 @@ const NonVoterPage = () => {
                                                     >
                                                         Poll Status
                                                     </button>
-                                                </div>
-                                                <div>
+                                                </div> */}
+                                                {/* <div>
                                                     <button
                                                         className="searched_status"
                                                         type="button"
@@ -194,7 +194,7 @@ const NonVoterPage = () => {
                                                     >
                                                         Visit Status
                                                     </button>
-                                                </div>
+                                                </div> */}
                                             </div>
                                             {expand == "poll" ? <div className="collapse coll_width" id={`collapseExample${"index"}`}>
                                                 <div className="card card-body">

@@ -186,7 +186,7 @@ const SearchVoter = () => {
                           }}
                           className="searched_status">SURVEY</button>
                       </div>
-                      <div>
+                      {/* <div>
                         <button
                           className="searched_status "
                           type="button"
@@ -198,8 +198,8 @@ const SearchVoter = () => {
                         >
                           Poll Status
                         </button>
-                      </div>
-                      <div>
+                      </div> */}
+                      {/* <div>
                         <button
                           className="searched_status"
                           type="button"
@@ -211,7 +211,7 @@ const SearchVoter = () => {
                         >
                           Visit Status
                         </button>
-                      </div>
+                      </div> */}
                     </div>) : <></>}
                     {expand == "poll" ?
                       <div className="collapse coll_width" id={`collapseExample${index}`}>
