@@ -109,9 +109,9 @@ const PollStatus = () => {
               <img className="logot" src={logo} alt="Logo"></img>
             </div>
             <div className="mt-3 me-4" >
-              <button className="btn  p-1 border rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{}} >
+              {/* <button className="btn  p-1 border rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" style={{}} >
                 <img className="logot1" src={menu} alt="Menu"></img>
-              </button>
+              </button> */}
             </div>
           </div>
           <div className="PS_scroll">
