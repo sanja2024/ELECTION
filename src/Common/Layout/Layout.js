@@ -73,7 +73,26 @@ const Layout = () => {
           <Route path={VoterSearch_ROUTE} element={<SearchVoter />} />
           <Route path={ComingSoon_ROUTE} element={<ComingSoon />} />
 
-        </>) : (<>
+        </>)
+        :
+            
+        AccessCode == "AGENT" ? (<>
+        
+        <Route path={WelcomeBack_ROUTE} element={<WelcomeBack />} />
+          <Route path={MainDashboard_ROUTE} element={<MainDashboard />} />
+     
+
+          <Route path={Survey_ROUTE} element={<Survey />} />
+          <Route path={SurveyForm_ROUTE} element={<SurveyForm />} />
+          <Route path={CompleteSurvey_ROUTE} element={<CompleteSurvey />} />
+          <Route path={VoterPage_ROUTE} element={<VoterPage />} />
+
+          <Route path={VoterSearch_ROUTE} element={<SearchVoter />} />
+          <Route path={ComingSoon_ROUTE} element={<ComingSoon />} />
+          {/* <Route path={PollStatus_ROUTE} element={<PollStatus />} /> */}
+          <Route path={Popup_ROUTE} element={<Popup />} />
+        </>)
+        : (<>
 
           <Route path={WelcomeBack_ROUTE} element={<WelcomeBack />} />
           <Route path={MainDashboard_ROUTE} element={<MainDashboard />} />
