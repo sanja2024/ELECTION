@@ -82,14 +82,14 @@ const PollStatus = () => {
             position: "top-right",
           });
           setShowModal(!showModal)
-
+      
           const reqParams = {
             payload: "",
             endpoint: GET_POLL_STATUS_URL
           }
           dispatch(getPollStatusList(reqParams)).then((res) => {
           })
-
+          setPollStatus(false)
         } else {
 
         }

@@ -22,7 +22,7 @@ import PollStatus from "../../Common/asset/images/voteimg/PollStatus.svg";
 
 
 import Footer from "../Footer/Footer";
-import { AddAgents_ROUTE, Assign2_ROUTE, BoothStatus_ROUTE, ComingSoon_ROUTE, NonVoterPage_ROUTE, PollStatus_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterPage_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
+import { AddAgents_ROUTE, Assign2_ROUTE, BoothStatus_ROUTE, ComingSoon_ROUTE, NonVoterPage_ROUTE, PollStatus_ROUTE, Rating_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterPage_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
 import { useNavigate } from "react-router-dom";
 import SearchVoter from "../Agents/SearchVoter";
 import { AgentAccessCode } from "../../Common/Route/ConfigRoute";
@@ -328,7 +328,7 @@ const MainDashboard = () => {
                       <span className="KeyfeatureVal">Booth Status</span>
                     </div>
                     <div className="KeyfeatureBox" onClick={() => {
-                      navigate(ComingSoon_ROUTE);
+                      navigate(Rating_ROUTE);
                     }} >
                       <img className="AddAgentIcons" src={Report}></img>
                       <span className="KeyfeatureVal">Report</span>

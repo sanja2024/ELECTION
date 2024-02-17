@@ -182,9 +182,9 @@ const Rating = () => {
 </div> */}
 
 <div className="m-4" >
-  {surveyQuestions.map((question, index) => (
-    <div key={question._id}>
-      {index === 0 || surveyQuestions[index - 1].topicName !== question.topicName ? (
+  {surveyQuestions?.map((question, index) => (
+    <div key={question?._id}>
+      {index === 0 || surveyQuestions[index - 1]?.topicName !== question?.topicName ? (
         <div>
           <div>
             <span className="cshead">{question?.topicName}</span>
@@ -196,17 +196,17 @@ const Rating = () => {
         <span className="cs_Ques ">{index + 1}. {question?.question}</span> 
       </div>
       <div className="d-flex flex-column">
-        {question.answers.map((answer) => (
-          <div key={answer.answer} className="d-flex align-items-center">
-            <div style={{ width: '100px' }}>{answer.answer}</div>
+        {question?.answers.map((answer) => (
+          <div key={answer?.answer} className="d-flex align-items-center">
+            <div style={{ width: '100px' }}>{answer?.answer}</div>
             <div className="progress" style={{ height: '20px', width: '200px', marginLeft: '10px', position: 'relative' }}>
               <div
-                className={`progress-bar ${getProgressBarColor(answer.avg)}`}
+                className={`progress-bar ${getProgressBarColor(answer?.avg)}`}
                 role="progressbar"
                 style={{
-                  width: `${answer.avg.toFixed(2)}%`,
+                  width: `${answer?.avg.toFixed(2)}%`,
                 }}
-                aria-valuenow={answer.avg}
+                aria-valuenow={answer?.avg}
                 aria-valuemin="0"
                 aria-valuemax="100"
               ></div>
@@ -214,7 +214,7 @@ const Rating = () => {
                 className="position-absolute top-50 end-0 translate-middle p-1"
                 style={{ color: 'black', fontSize: '12px', transform: 'translateY(50%)' }}
               >
-                {`${Number.isInteger(answer.avg) ? answer.avg.toFixed(0) : answer.avg.toFixed(2)}%`}
+                {`${Number.isInteger(answer?.avg) ? answer?.avg.toFixed(0) : answer?.avg.toFixed(2)}%`}
               </span>
             </div>
           </div>
