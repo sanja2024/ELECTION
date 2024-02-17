@@ -32,6 +32,9 @@ const RoleMapping = () => {
   const [roleDisable, setRoleDisable] = useState(false);
 
   const [mobile_no, setSelectedMobile] = useState("");
+  const [agentDetails, setAgentDetails] = useState("");
+
+
   const [selectedRole, setSelectedRole] = useState("");
   const [selectedRoleID, setSelectedRoleID] = useState("");
 
@@ -84,7 +87,13 @@ const RoleMapping = () => {
   const handleSelectChange = async (event, selectedValue) => {
 
     if (selectedValue === 'Mobile') {
-      setSelectedMobile(event.target.value);
+
+      const finalselectedMob = JSON.parse(event.target.value);
+
+      console.log("SFsds", finalselectedMob?.mobileNo)
+      setSelectedMobile(finalselectedMob?.mobileNo);
+      setAgentDetails(finalselectedMob?.mappingresult);
+
       if (event.target.value.length == 10) {
 
         const userData = {
@@ -204,7 +213,12 @@ const RoleMapping = () => {
 
       dispatch(createUser(constituencyUserData)).then((res) => {
         if (res?.payload?.message === "success") {
-          setDivision(res?.payload.data.list);
+
+          const resultt = res?.payload?.data?.list?.filter(el1 => {
+            return agentDetails.some(el2 => el2?.divisionCode === el1?.divisionCode.toString());
+          });
+
+          setDivision(resultt?.length > 0 ? resultt : res?.payload?.data?.list);
         }
       });
     } else if (selectedValue === 'Division') {
@@ -354,12 +368,12 @@ const RoleMapping = () => {
             className="form-select"
             aria-label="Mobile"
             onChange={(event) => handleSelectChange(event, 'Mobile')}
-            value={mobile_no}
+          // value={mobile_no}
 
           >
             <option value="">Select Agent Mno</option>
             {agentMno?.data?.list?.map((mno, index) => (
-              <option key={index} value={mno.mobileNo}>
+              <option key={index} value={JSON.stringify(mno)}>
                 {mno.mobileNo}
               </option>
             ))}
