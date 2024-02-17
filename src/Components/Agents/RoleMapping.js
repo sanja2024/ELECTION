@@ -7,10 +7,10 @@ import Header from "../Header/Header";
 import { fetchPosts } from "../../Common/redux/slices/postsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../Common/redux/slices/usersSlice";
-import { ADD_AGENT_SEARCH_URL, BOOTH_API, MAPPING_CREATE_API, ROLE_SEARCH_API } from "../../Common/Url/ServerConfig";
+import { ADD_AGENT_SEARCH_URL, BOOTH_API, GET_AGENT_MNO_URL, GET_ROLE_URL, MAPPING_CREATE_API, ROLE_SEARCH_API } from "../../Common/Url/ServerConfig";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { agentSearch } from "../../Common/redux/slices/agentSlice";
+import { agentSearch, getAgentMno, getRoleList } from "../../Common/redux/slices/agentSlice";
 const RoleMapping = () => {
   const initialValues = {
     // barCode: "",
@@ -19,6 +19,9 @@ const RoleMapping = () => {
     // leadId: "",
   };
   // const data = useSelector((state) => state.users.data);
+  const agentMno = useSelector((state) => state.agent.agentMnoData);
+  const roleList = useSelector((state) => state.agent.roleRepData);
+
   const [selectedElection, setSelectedElection] = useState([]);
   const [selectedstate, setSelectedstate] = useState([]);
 
@@ -30,6 +33,8 @@ const RoleMapping = () => {
 
   const [mobile_no, setSelectedMobile] = useState("");
   const [selectedRole, setSelectedRole] = useState("");
+  const [selectedRoleID, setSelectedRoleID] = useState("");
+
   const [selectedConstituency, setSelectedConstituency] = useState("");
   const [selectedDivision, setSelectedDivision] = useState("");
   const [selectedBooth, setSelectedBooth] = useState("");
@@ -49,6 +54,33 @@ const RoleMapping = () => {
 
 
 
+  useEffect(() => {
+
+    const reqParams = {
+      payload: {
+        mobile_no: parseInt(localStorage.getItem("mobile"))
+      },
+      endPoint: GET_AGENT_MNO_URL
+    }
+
+    dispatch(getAgentMno(reqParams))
+  }, [])
+
+  useEffect(() => {
+
+    const reqParams = {
+      payload: {
+        mobile_no: parseInt(localStorage.getItem("mobile"))
+      },
+      endPoint: GET_ROLE_URL
+    }
+
+    dispatch(getRoleList(reqParams)).then((res) => {
+      if (res?.payload?.message === "success") {
+        setRole(res?.payload.data.list);
+      }
+    });
+  }, [])
   const handleSelectChange = async (event, selectedValue) => {
 
     if (selectedValue === 'Mobile') {
@@ -97,7 +129,11 @@ const RoleMapping = () => {
         }
       });
     } else if (selectedValue === 'Role') {
-      setSelectedRole(event.target.value);
+
+      const selectedRoleData = JSON.parse(event.target.value);
+
+      setSelectedRole(selectedRoleData?.roleCode);
+      setSelectedRoleID(selectedRoleData?.roleId)
 
       // console.log(event.target.value, 'sdsdsddsdRole')
       if (event.target.value == 'CPO') {
@@ -222,11 +258,14 @@ const RoleMapping = () => {
         // });
       }
     })
-    dispatch(fetchPosts(ROLE_SEARCH_API)).then((res) => {
-      if (res?.payload?.message === "success") {
-        setRole(res?.payload.data.list);
-      }
-    });
+
+    // ****old role api*****
+    // dispatch(fetchPosts(ROLE_SEARCH_API)).then((res) => {
+    //   if (res?.payload?.message === "success") {
+    //     setRole(res?.payload.data.list);
+    //   }
+    // });
+
 
     //  setElectionNames(data.data.list)
   }, []);
@@ -234,6 +273,7 @@ const RoleMapping = () => {
 
   const handleSubmit = () => {
     // Check if all required parameters are selected
+    console.log(selectedRole, "sfesd", selectedRoleID)
     if (
       selectedElection &&
       selectedstate &&
@@ -241,11 +281,13 @@ const RoleMapping = () => {
       selectedDivision &&
       selectedBooth &&
       selectedRole &&
+      selectedRoleID &&
       mobile_no
     ) {
       const userData = {
         payload: {
           agent_mobile_no: parseInt(mobile_no, 10),
+          role_id: parseInt(selectedRoleID),
           role_code: selectedRole,
           election_code: selectedElection,
           state_code: selectedstate,
@@ -268,6 +310,7 @@ const RoleMapping = () => {
           setSelectedDivision("");
           setSelectedBooth("");
           setSelectedRole("");
+          setSelectedRoleID("")
           setSelectedMobile("");
         } else {
           toast.error("Error", {
@@ -291,7 +334,8 @@ const RoleMapping = () => {
 
       <div className="rolemapping_data">
         <div className="addAgent_datapoints">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
+
+          {/* <label htmlFor="exampleFormControlInput1" className="form-label">
             Agent
           </label>
           <input
@@ -301,7 +345,26 @@ const RoleMapping = () => {
             placeholder="Agent Mobile No."
             onChange={(event) => handleSelectChange(event, 'Mobile')}
             value={mobile_no}
-          />
+          /> */}
+          <label htmlFor="roleType" className="form-label">
+            Agent
+          </label>
+          <select
+            id="Mobile"
+            className="form-select"
+            aria-label="Mobile"
+            onChange={(event) => handleSelectChange(event, 'Mobile')}
+            value={mobile_no}
+
+          >
+            <option value="">Select Agent Mno</option>
+            {agentMno?.data?.list?.map((mno, index) => (
+              <option key={index} value={mno.mobileNo}>
+                {mno.mobileNo}
+              </option>
+            ))}
+          </select>
+
         </div>
 
         <div className="addAgent_datapoints">
@@ -313,12 +376,13 @@ const RoleMapping = () => {
             className="form-select"
             aria-label="Role Type"
             onChange={(event) => handleSelectChange(event, 'Role')}
-            value={selectedRole}
+            // value={selectedRole}
             disabled={roleDisable}
           >
             <option value="">Select Role</option>
             {role.map((role, index) => (
-              <option key={index} value={role.roleCode}>
+              <option key={index} value={JSON.stringify(role)}>
+
                 {role.roleName}
               </option>
             ))}

@@ -11,7 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { agentSearch, createAgent } from "../../Common/redux/slices/agentSlice";
 import { useNavigate } from "react-router-dom";
-
+import * as Yup from "yup";
 
 const AddAgents = () => {
   const navigate = useNavigate();
@@ -19,7 +19,9 @@ const AddAgents = () => {
   const posts = useSelector((state) => state.agent.agentCreateData);
   const searchData = useSelector((state) => state.agent.agentSearchData);
 
+  console.log("adasda", searchData?.data?.list)
   const initialValues = {
+    agent_type: "",
     voter_id: "",
     name: "",
     father_name: "",
@@ -32,6 +34,10 @@ const AddAgents = () => {
 
   const [formValues, setFormValues] = useState(initialValues);
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
+
   const {
     handleSubmit,
     handleChange,
@@ -48,7 +54,22 @@ const AddAgents = () => {
       ...formValues,
     },
 
-    // validationSchema,
+    validationSchema: Yup.object({
+      // mobile_no: Yup.number()
+      //   .required("Mobile no is required")
+      //   .min(10, "Enter the valid Mobile Number"),
+
+
+      mobile_no: Yup.string().matches(phoneRegExp, 'Phone number is not valid'),
+      // .equals(["admin"], "Invalid username"),
+      agent_type: Yup.string()
+        .required("Agent type is required"),
+      name: Yup.string()
+        .required("Name is required"),
+      gender: Yup.string()
+        .required("Gender is required")
+    }),
+
 
 
     onSubmit: (values) => {
@@ -71,7 +92,8 @@ const AddAgents = () => {
       const basePayload = {
         ...values,
         mobile_no: parseInt(values?.mobile_no),
-        alternate_no: parseInt(values?.alternate_no)
+        alternate_no: parseInt(values?.alternate_no),
+        ref_mobile_no: parseInt(localStorage.getItem("mobile"))
       };
 
       const userData = {
@@ -112,6 +134,18 @@ const AddAgents = () => {
     setPhoneNumber(truncatedPhoneNumber);
     setFieldValue("mobile_no", truncatedPhoneNumber);
   };
+
+  useEffect(() => {
+
+    if (searchData?.data?.list?.length > 0) {
+      toast.error("Already agent created with this mobile Number", {
+        position: "top-right",
+
+      });
+      setFieldValue("mobile_no", "")
+    }
+
+  }, [searchData])
   return (
     <div className="container p-0">
       <Header />
@@ -132,24 +166,40 @@ const AddAgents = () => {
             max="10"
             onChange={handlePhoneNumberChange}
           />
+          {errors.mobile_no ? (
+            <div style={{ marginLeft: "20px" }} className="text-danger">
+              {errors.mobile_no}
+            </div>
+          ) : null}
         </div>
         <div className="addAgent_datapoints">
           <label for="exampleFormControlInput1" class="form-label">
-            Voter ID
+            Agent Type
           </label>
-          <input
-            name="voter_id"
-            type="text"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Voter ID"
+          <select
+            name="agent_type"
+            className="form-select menu-select "
+            aria-label="Default select example"
+            placeholder="Please Select"
             onChange={handleChange}
             value={
-              searchData?.data?.list
-                ? values.voter_id
-                : searchData?.data?.list?.[0]?.voter_id
+              !searchData?.data?.list
+                ? values.agent_type
+                : searchData?.data?.list?.[0]?.agent_type
             }
-          />
+          >
+            <option className="border-none" value="" selected disabled>
+              Please select
+            </option>
+
+            <option value={"agent"}>{"agent"}</option>
+            <option value={"non_agent"}>{"non-agent"}</option>
+          </select>
+          {errors.agent_type ? (
+            <div style={{ marginLeft: "20px" }} className="text-danger">
+              {errors.agent_type}
+            </div>
+          ) : null}
         </div>
         <div className="addAgent_datapoints">
           <label for="exampleFormControlInput1" class="form-label">
@@ -164,6 +214,11 @@ const AddAgents = () => {
             onChange={handleChange}
             value={values?.name}
           />
+          {errors.name ? (
+            <div style={{ marginLeft: "20px" }} className="text-danger">
+              {errors.name}
+            </div>
+          ) : null}
         </div>
         <div className="addAgent_datapoints">
           <label for="exampleFormControlInput1" class="form-label">
@@ -195,7 +250,7 @@ const AddAgents = () => {
             onChange={handleChange}
             value={
               !searchData?.data?.list
-                ? values.gender
+                ? values?.gender
                 : searchData?.data?.list?.[0]?.gender
             }
           >
@@ -206,6 +261,11 @@ const AddAgents = () => {
             <option value={"male"}>{"male"}</option>
             <option value={"female"}>{"female"}</option>
           </select>
+          {errors.gender ? (
+            <div style={{ marginLeft: "20px" }} className="text-danger">
+              {errors.gender}
+            </div>
+          ) : null}
         </div>
         <div className="addAgent_datapoints">
           <label for="exampleFormControlInput1" class="form-label">
@@ -225,7 +285,24 @@ const AddAgents = () => {
             }
           />
         </div>
-
+        <div className="addAgent_datapoints">
+          <label for="exampleFormControlInput1" class="form-label">
+            Voter ID
+          </label>
+          <input
+            name="voter_id"
+            type="text"
+            class="form-control"
+            id="exampleFormControlInput1"
+            placeholder="Voter ID"
+            onChange={handleChange}
+            value={
+              searchData?.data?.list
+                ? values.voter_id
+                : searchData?.data?.list?.[0]?.voter_id
+            }
+          />
+        </div>
         <div className="addAgent_datapoints">
           <label for="exampleFormControlInput1" class="form-label">
             Alternate Mobile Number
@@ -262,30 +339,7 @@ const AddAgents = () => {
             }
           />
         </div>
-        <div className="addAgent_datapoints">
-          <label for="exampleFormControlInput1" class="form-label">
-            Agent Type
-          </label>
-          <select
-            name="agent_type"
-            className="form-select menu-select "
-            aria-label="Default select example"
-            placeholder="Please Select"
-            onChange={handleChange}
-            value={
-              !searchData?.data?.list
-                ? values.agent_type
-                : searchData?.data?.list?.[0]?.agent_type
-            }
-          >
-            <option className="border-none" value="" selected disabled>
-              Please select
-            </option>
 
-            <option value={"agent"}>{"agent"}</option>
-            <option value={"non_agent"}>{"non-agent"}</option>
-          </select>
-        </div>
       </div>
       <button className="submit_btn " onClick={handleSubmit}>
         Submit

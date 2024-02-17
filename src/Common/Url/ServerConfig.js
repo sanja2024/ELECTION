@@ -110,6 +110,14 @@ export const ASSIGN_VOTER_URL = BASE_API_URL + "transaction/poll/add";
 export const GET_POLL_STATUS_URL = BASE_API_URL + "mapping/agent/voter/search";
 
 export const PERCENTAGE_URL = BASE_API_URL + "topic/dashboard";
+export const GET_AGENT_MNO_URL = BASE_API_URL + "agent/search";
+
+export const GET_ROLE_URL = BASE_API_URL + "role/search/level";
+
+
+
+
+
 
 
 
