@@ -82,7 +82,7 @@ const PollStatus = () => {
             position: "top-right",
           });
           setShowModal(!showModal)
-      
+
           const reqParams = {
             payload: "",
             endpoint: GET_POLL_STATUS_URL
@@ -98,6 +98,8 @@ const PollStatus = () => {
     }
   }, [pollStatus])
 
+  const totalFemaleCount = pollResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F").length ?? 0;
+  const totalMaleCount = pollResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M").length ?? 0;
 
   return (
     <>
@@ -175,6 +177,12 @@ const PollStatus = () => {
             </div>
           </div> */}
           <div className='votedOrNot'>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <div style={{  marginRight: '1px' }}>Male: {totalMaleCount}</div>
+              <div style={{ marginLeft: '25px' }}>Female: {totalFemaleCount}</div>
+            </div>
+
+
             <div className='allvoterDetail'>
               {
                 pollResp?.data?.list?.[0]?.data?.map((item) => {
@@ -185,7 +193,8 @@ const PollStatus = () => {
                         setShowModal(true)
                         setVoterId(item?.TrnsPollDetailsInfo?.voterId)
                       }}>
-                        <img src={female_icon} alt="Female"></img>
+
+                        <img src={item?.VoterDetailInfo?.gender == "F" ? female_icon : male_icon} alt="Female"></img>
                         <span className='vote_number'>{item?.slnoinpart}</span>
                       </div>
                     </>
