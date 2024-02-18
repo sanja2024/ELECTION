@@ -232,8 +232,12 @@ const RoleMapping = () => {
       dispatch(createUser(constituencyUserData)).then((res) => {
         if (res?.payload?.message === "success") {
 
+          // const resultt = res?.payload?.data?.list?.filter(el1 => {
+          //   return agentDetails.some(el2 => el2?.divisionCode === el1?.divisionCode.toString());
+          // });
+          const divisionCodes = agentDetails[0].map(agent => agent.divisionCode);
           const resultt = res?.payload?.data?.list?.filter(el1 => {
-            return agentDetails.some(el2 => el2?.divisionCode === el1?.divisionCode.toString());
+              return divisionCodes.includes(el1?.divisionCode.toString());
           });
 
           setDivision(resultt?.length > 0 ? resultt : res?.payload?.data?.list);
@@ -256,10 +260,13 @@ const RoleMapping = () => {
       dispatch(createUser(divisionUserData)).then((res) => {
         if (res?.payload?.message === "success") {
 
+          // const resultt = res?.payload?.data?.list?.filter(el1 => {
+          //   return agentDetails.some(el2 => el2?.boothCode === el1?.boothCode.toString());
+          // });
+          const boothCodes = agentDetails[0].map(agent => agent.boothCode);
           const resultt = res?.payload?.data?.list?.filter(el1 => {
-            return agentDetails.some(el2 => el2?.boothCode === el1?.boothCode.toString());
+              return boothCodes.includes(el1?.boothCode.toString());
           });
-          // setBooth(res?.payload.data.list);
           setBooth(resultt?.length > 0 ? resultt : res?.payload?.data?.list)
         }
       });

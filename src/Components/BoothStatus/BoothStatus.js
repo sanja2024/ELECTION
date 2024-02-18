@@ -16,8 +16,8 @@ const BoothStatus = () => {
 
         const reqParams = {
             payload: {
-                ac_no: "7",
-                section_no: '1'
+                ac_no: "201",//division
+                part_no: '1'  //booth
             },
             endpoint: GET_BOOTH_STATUS_URL
         }

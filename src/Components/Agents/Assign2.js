@@ -15,7 +15,7 @@ const Assign2 = () => {
     const [selectedAgentType, setSelectedAgentType] = useState('');
     const [selectedRoleID, setSelectedRoleID] = useState("");
     const [agentDetails, setAgentDetails] = useState("");
-  
+
     const [state, setState] = useState([]);
     const [constituency, setConstituency] = useState([]);
     const [booth, setBooth] = useState([]);
@@ -81,46 +81,46 @@ const Assign2 = () => {
         if (selectedValue === 'Mobile') {
 
             const finalselectedMob = JSON.parse(event.target.value);
-      
-          
+
+
             setSelectedMobile(finalselectedMob?.mobileNo);
             setAgentDetails(finalselectedMob?.mappingresult);
-      
-            if(finalselectedMob?.agentType=="agent"){
-              // console.log(finalselectedMob,'finalselectedMob')
-              setSelectedAgentType(finalselectedMob?.agentType);
-              // const selectedRoleData = JSON.parse(event.target.value);
-              setSelectedRole("AGENT");
-              setSelectedRoleID("6")
-            }else{
-              setSelectedAgentType("");
-              setSelectedRole("");
-              setSelectedRoleID("")
+
+            if (finalselectedMob?.agentType == "agent") {
+                // console.log(finalselectedMob,'finalselectedMob')
+                setSelectedAgentType(finalselectedMob?.agentType);
+                // const selectedRoleData = JSON.parse(event.target.value);
+                setSelectedRole("AGENT");
+                setSelectedRoleID("6")
+            } else {
+                setSelectedAgentType("");
+                setSelectedRole("");
+                setSelectedRoleID("")
             }
-           
-      
+
+
             if (event.target.value.length == 10) {
-      
-              const userData = {
-                payload: event.target.value,
-                endPoint: ADD_AGENT_SEARCH_URL,
-              };
-              dispatch(agentSearch(userData)).then((res) => {
-                if (res?.payload?.message === "success") {
-                  // setState(res?.payload.data.list);
-                  //  console.log(res?.payload?.data.list[0].agentType,'wwewewe')
-                  if (res?.payload?.data.list[0]?.agentType == 'AGENT') {
-                    setSelectedRole("AGENT")
-                    setRoleDisable(true)
-                  } else {
-                    setRoleDisable(false)
-                  }
-      
-                }
-              });
-      
+
+                const userData = {
+                    payload: event.target.value,
+                    endPoint: ADD_AGENT_SEARCH_URL,
+                };
+                dispatch(agentSearch(userData)).then((res) => {
+                    if (res?.payload?.message === "success") {
+                        // setState(res?.payload.data.list);
+                        //  console.log(res?.payload?.data.list[0].agentType,'wwewewe')
+                        if (res?.payload?.data.list[0]?.agentType == 'AGENT') {
+                            setSelectedRole("AGENT")
+                            setRoleDisable(true)
+                        } else {
+                            setRoleDisable(false)
+                        }
+
+                    }
+                });
+
             }
-          }
+        }
         else if (selectedValue === 'election') {
             setSelectedElection(event.target.value);
 
@@ -210,11 +210,18 @@ const Assign2 = () => {
 
             dispatch(createUser(constituencyUserData)).then((res) => {
                 if (res?.payload?.message === "success") {
+
+                    const divisionCodes = agentDetails[0].map(agent => agent.divisionCode);
                     const resultt = res?.payload?.data?.list?.filter(el1 => {
-                        return agentDetails.some(el2 => el2?.divisionCode === el1?.divisionCode.toString());
-                      });
-            
-                      setDivision(resultt?.length > 0 ? resultt : res?.payload?.data?.list);
+                        return divisionCodes.includes(el1?.divisionCode.toString());
+                    });
+
+                    // const resultt = res?.payload?.data?.list?.filter(el1 => {
+                    //     // console.log(el1,'dkkmskmdm')
+                    //     return agentDetails.some(el2 => el2?.divisionCode === el1?.divisionCode.toString());
+                    // });
+
+                    setDivision(resultt?.length > 0 ? resultt : res?.payload?.data?.list);
                     // setDivision(res?.payload.data.list);
                 }
             });
@@ -234,11 +241,21 @@ const Assign2 = () => {
 
             dispatch(createUser(divisionUserData)).then((res) => {
                 if (res?.payload?.message === "success") {
+
+                    const boothCodes = agentDetails[0].map(agent => agent.boothCode);
                     const resultt = res?.payload?.data?.list?.filter(el1 => {
-                        return agentDetails.some(el2 => el2?.boothCode === el1?.boothCode.toString());
-                      });
-                      // setBooth(res?.payload.data.list);
-                      setBooth(resultt?.length > 0 ? resultt : res?.payload?.data?.list)
+                        return boothCodes.includes(el1?.boothCode.toString());
+                    });
+
+
+                    // const resultt = res?.payload?.data?.list?.filter(el1 => {
+                    //     return agentDetails.some(el2 => el2?.boothCode === el1?.boothCode.toString());
+                    // });
+                    // const resultt = res?.payload?.data?.list?.filter((el1) => {
+                    //   return agentDetails.some((el2) => array.includes(el2?.boothCode));
+                    // });
+                    // setBooth(res?.payload.data.list);
+                    setBooth(resultt?.length > 0 ? resultt : res?.payload?.data?.list)
                     // setBooth(res?.payload.data.list);
                 }
             });
@@ -282,7 +299,8 @@ const Assign2 = () => {
                     part_no: selectedBooth,//booth no
                     from_slnoinpart: voteFromNo,
                     to_slnoinpart: voteToNo,
-                    agent_mobile_no: agentMobileNo
+                    // agent_mobile_no: parseInt(mobile_no, 10),
+                    agent_mobile_no: mobile_no.toString(),
                 },
                 endPoint: VOTER_SEARCH_URL,
             };
@@ -351,14 +369,14 @@ const Assign2 = () => {
     useEffect(() => {
 
         const reqParams = {
-          payload: {
-            mobile_no: parseInt(localStorage.getItem("mobile"))
-          },
-          endPoint: GET_AGENT_MNO_URL
+            payload: {
+                mobile_no: parseInt(localStorage.getItem("mobile"))
+            },
+            endPoint: GET_AGENT_MNO_URL
         }
-    
+
         dispatch(getAgentMno(reqParams))
-      }, [])
+    }, [])
 
     return (
         <div>

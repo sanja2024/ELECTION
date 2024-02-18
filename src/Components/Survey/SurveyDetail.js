@@ -48,7 +48,7 @@ const SurveyDetail = ({ data }) => {
             ...formValues,
             voter_id: data?.item?.epicNo,
             name: data?.item?.fmNameEn,
-            mobile_no: data?.item?.mobileNo,
+            mobile_no: data?.item?.mobile_no,
         } :
             {
                 ...formValues,
@@ -68,14 +68,13 @@ const SurveyDetail = ({ data }) => {
 
 
         onSubmit: (values) => {
-
             const finaldata =
                 data?.item ?
                     {
                         ...values,
                         voter_id: data?.item?.epicNo,
                         name: data?.item?.fmNameEn,
-                        mobile_no: data?.item?.mobileNo,
+                        mobile_no: values.mobile_no,
                     } :
                     values
 
