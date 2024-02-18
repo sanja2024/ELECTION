@@ -69,8 +69,8 @@ const VoterPage = () => {
         };
         dispatch(createUser(userData)).then((res) => {
             if (res?.payload?.message === "success") {
-                setCardList(res?.payload?.data.list);
-                console.log(res?.payload?.data.list, 'wwewewe')
+                setCardList(res?.payload?.data?.list);
+    
 
             }
         });
@@ -159,7 +159,7 @@ const VoterPage = () => {
                                         <div>
                                             <div className="d-flex justify-content-evenly">
                                                 <div>
-                                                    <button
+                                                  {!item?.TrnsPollDetailsInfo?.surveyStatus &&  <button
                                                         onClick={() => {
                                                             navigate("/Survey", {
                                                                 state: {
@@ -170,7 +170,7 @@ const VoterPage = () => {
                                                                 },
                                                             })
                                                         }}
-                                                        className="searched_status">SURVEY</button>
+                                                        className="searched_status">SURVEY</button>}
                                                 </div>
                                                 {/* <div>
                                                     <button

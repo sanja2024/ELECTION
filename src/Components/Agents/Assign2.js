@@ -35,7 +35,7 @@ const Assign2 = () => {
 
     const [stateRole, setStateRole] = useState("Select State");
     const [constituencyRole, setConstituencyRole] = useState("Select Constituency");
-    const [divisionRole, setDivisionRole] = useState("Select Division");
+    const [divisionRole, setDivisionRole] = useState("Select Assembly");
     const [boothRole, setBoothRole] = useState("Select Booth");
 
     const [electionNames, setElectionNames] = useState([]);
@@ -465,7 +465,7 @@ const Assign2 = () => {
                 </div>
                 <div className="addAgent_datapoints dropdown">
                     <label htmlFor="exampleFormControlInput1" className="form-label">
-                        Division
+                    Assembly
                     </label>
                     <select
                         className="form-control"
