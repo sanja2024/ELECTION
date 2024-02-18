@@ -100,6 +100,16 @@ const PollStatus = () => {
 
   const totalFemaleCount = pollResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F").length ?? 0;
   const totalMaleCount = pollResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M").length ?? 0;
+  const totalotherCount = pollResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender !== "M" && item?.VoterDetailInfo?.gender !== "F").length ?? 0;
+
+
+  const votedFemaleCount = pollResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F").length ?? 0;
+  const votedMaleCount = pollResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M").length ?? 0;
+  const votedotherCount = pollResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender !== "M" && item?.VoterDetailInfo?.gender !== "F").length ?? 0;
+
+  const pickedFemaleCount = pollResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F" && item?.TrnsPollDetailsInfo?.pollStatus == "true" && item?.TrnsPollDetailsInfo?.visitCode == "1").length ?? 0;
+  const pickedMaleCount = pollResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M" && item?.TrnsPollDetailsInfo?.pollStatus == "true" && item?.TrnsPollDetailsInfo?.visitCode == "1").length ?? 0;
+  const pickedotherCount = pollResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender !== "F"&& item?.VoterDetailInfo?.gender !== "F" && item?.TrnsPollDetailsInfo?.pollStatus == "true" && item?.TrnsPollDetailsInfo?.visitCode == "1").length ?? 0;
 
   return (
     <>
@@ -133,25 +143,33 @@ const PollStatus = () => {
                   </thead>
                   <tbody>
                     <tr className='polledVote1'>
-                      <td >As per Electrol</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
+                      <td >Assigned Voter</td>
+                      <td>{totalMaleCount}</td>
+                      <td>{totalFemaleCount}</td>
+                      <td>{totalotherCount}</td>
+                      <td>{totalMaleCount + totalFemaleCount + totalotherCount}</td>
                     </tr>
                     <tr className='polledVote2'>
                       <td >Total Polled Vote</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
+                      <td>{votedMaleCount}</td>
+                      <td>{votedFemaleCount}</td>
+                      <td>{votedotherCount}</td>
+                      <td>{votedMaleCount + votedFemaleCount + votedotherCount}</td>
+                    </tr>
+                    <tr className='polledVote2'>
+                      <td >Total Picked Vote</td>
+                      <td>{pickedMaleCount}</td>
+                      <td>{pickedFemaleCount}</td>
+                      <td>{pickedotherCount}</td>
+                      <td>{pickedMaleCount + pickedFemaleCount + pickedotherCount}</td>
                     </tr>
                   </tbody>
                 </table>
               </p>
               <div className='votepercentage1'>
                 <span className='votepercentage'>
-                  PICKUP VOTE : 0%
+
+                  PICKUP VOTE : { parseInt((pickedMaleCount + pickedFemaleCount + pickedotherCount)/(totalMaleCount + totalFemaleCount + totalotherCount)*100)}%
                 </span>
               </div>
             </div>
@@ -177,10 +195,10 @@ const PollStatus = () => {
             </div>
           </div> */}
           <div className='votedOrNot'>
-            <div style={{ display: 'flex', flexDirection: 'row' }}>
+            {/* <div style={{ display: 'flex', flexDirection: 'row' }}>
               <div style={{  marginRight: '1px' }}>Male: {totalMaleCount}</div>
               <div style={{ marginLeft: '25px' }}>Female: {totalFemaleCount}</div>
-            </div>
+            </div> */}
 
 
             <div className='allvoterDetail'>

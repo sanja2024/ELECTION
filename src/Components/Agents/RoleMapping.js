@@ -51,6 +51,8 @@ const RoleMapping = () => {
   const [electionNames, setElectionNames] = useState([]);
   const [role, setRole] = useState([]);
 
+  const [selectedAgentType, setSelectedAgentType] = useState('');
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -85,14 +87,30 @@ const RoleMapping = () => {
     });
   }, [])
   const handleSelectChange = async (event, selectedValue) => {
+    // console.log('agenttype',event.target.value)
+    // const selectedRoleData = JSON.parse(event.target.value);
+    // const selectedRoleData = JSON.parse(event.target.value);
 
     if (selectedValue === 'Mobile') {
 
       const finalselectedMob = JSON.parse(event.target.value);
 
-      console.log("SFsds", finalselectedMob?.mobileNo)
+    
       setSelectedMobile(finalselectedMob?.mobileNo);
       setAgentDetails(finalselectedMob?.mappingresult);
+
+      if(finalselectedMob?.agentType=="agent"){
+        // console.log(finalselectedMob,'finalselectedMob')
+        setSelectedAgentType(finalselectedMob?.agentType);
+        // const selectedRoleData = JSON.parse(event.target.value);
+        setSelectedRole("AGENT");
+        setSelectedRoleID("6")
+      }else{
+        setSelectedAgentType("");
+        setSelectedRole("");
+        setSelectedRoleID("")
+      }
+     
 
       if (event.target.value.length == 10) {
 
@@ -140,36 +158,36 @@ const RoleMapping = () => {
     } else if (selectedValue === 'Role') {
 
       const selectedRoleData = JSON.parse(event.target.value);
-
+      // console.log("SFsds", selectedRoleData?.roleCode)
       setSelectedRole(selectedRoleData?.roleCode);
       setSelectedRoleID(selectedRoleData?.roleId)
 
       // console.log(event.target.value, 'sdsdsddsdRole')
-      if (event.target.value == 'CPO') {
+      if (selectedRoleData?.roleCode == 'CPO') {
         setSelectedstate("All")
         setSelectedConstituency('All')
         setSelectedDivision("All")
         setSelectedBooth("All")
       }
-      else if (event.target.value == 'SCO') {
+      else if (selectedRoleData?.roleCode == 'SCO') {
         setSelectedstate("")
         setSelectedConstituency('All')
         setSelectedDivision("All")
         setSelectedBooth("All")
       }
-      else if (event.target.value == 'CCO') {
+      else if (selectedRoleData?.roleCode == 'CCO') {
         setSelectedstate("")
         setSelectedConstituency('')
         setSelectedDivision("All")
         setSelectedBooth("All")
       }
-      else if (event.target.value == 'DCO') {
+      else if (selectedRoleData?.roleCode == 'DCO') {
         setSelectedstate("")
         setSelectedConstituency('')
         setSelectedDivision("")
         setSelectedBooth("All")
       }
-      else if (event.target.value == 'BLO') {
+      else if (selectedRoleData?.roleCode == 'BLO') {
         setSelectedstate("")
         setSelectedConstituency('')
         setSelectedDivision("")
@@ -237,10 +255,16 @@ const RoleMapping = () => {
 
       dispatch(createUser(divisionUserData)).then((res) => {
         if (res?.payload?.message === "success") {
-          setBooth(res?.payload.data.list);
+
+          const resultt = res?.payload?.data?.list?.filter(el1 => {
+            return agentDetails.some(el2 => el2?.boothCode === el1?.boothCode.toString());
+          });
+          // setBooth(res?.payload.data.list);
+          setBooth(resultt?.length > 0 ? resultt : res?.payload?.data?.list)
         }
       });
     } else if (selectedValue === 'Booth') {
+      
       setSelectedBooth(event.target.value);
     }
   };
@@ -287,7 +311,6 @@ const RoleMapping = () => {
 
   const handleSubmit = () => {
     // Check if all required parameters are selected
-    console.log(selectedRole, "sfesd", selectedRoleID)
     if (
       selectedElection &&
       selectedstate &&
@@ -342,6 +365,8 @@ const RoleMapping = () => {
     }
   };
 
+{/* <option key={index} value={JSON.stringify(mno)} onChange={()=>{JSON.stringify(mno.agentType)}}> */}
+
   return (
     <div className="container p-0">
       <Header />
@@ -373,7 +398,7 @@ const RoleMapping = () => {
           >
             <option value="">Select Agent Mno</option>
             {agentMno?.data?.list?.map((mno, index) => (
-              <option key={index} value={JSON.stringify(mno)}>
+              <option key={index} value={JSON.stringify(mno)}  onChange={(event) => handleSelectChange(event, 'agenttype')}>
                 {mno.mobileNo}
               </option>
             ))}
@@ -391,9 +416,9 @@ const RoleMapping = () => {
             aria-label="Role Type"
             onChange={(event) => handleSelectChange(event, 'Role')}
             // value={selectedRole}
-            disabled={roleDisable}
+            disabled={selectedAgentType=="agent"?true: roleDisable}
           >
-            <option value="">Select Role</option>
+            <option value="">{selectedAgentType == "agent" ? "Agent" : "Select Role"}</option>
             {role.map((role, index) => (
               <option key={index} value={JSON.stringify(role)}>
 

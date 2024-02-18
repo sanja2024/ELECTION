@@ -8,6 +8,7 @@ import center_icon from "../../Common/asset/images/voteimg/center_icon.svg";
 import Survey from "../../Common/asset/images/voteimg/Survey.svg";
 import Voters from "../../Common/asset/images/voteimg/Voters.svg";
 import { useNavigate } from "react-router-dom";
+import { Survey_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
 const Footer = () => {
   const navigate = useNavigate();
   return (
@@ -31,11 +32,15 @@ const Footer = () => {
         </div>
         <div className="d-flex flex-column align-items-center" >
           <img className="Footer_icon " src={Voters}></img>
-          <span className="footer_text">Voters</span>
+          <span className="footer_text"  onClick={() => {
+                        navigate(VoterSearch_ROUTE);
+                      }} >Voters</span>
         </div>
         <div className="d-flex flex-column align-items-center">
           <img className="Footer_icon" src={Survey}></img>
-          <span className="footer_text">Survey</span>
+          <span className="footer_text" nClick={() => {
+                        navigate(Survey_ROUTE);
+                      }} >Survey</span>
         </div>
       </div>
     </div>
