@@ -181,7 +181,7 @@ const Rating = () => {
   ))}
 </div> */}
 
-<div className="m-4" >
+<div className="m-4 ratingscroll" >
   {surveyQuestions?.map((question, index) => (
     <div key={question?._id}>
       {index === 0 || surveyQuestions[index - 1]?.topicName !== question?.topicName ? (
