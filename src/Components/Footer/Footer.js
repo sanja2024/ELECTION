@@ -5,6 +5,8 @@ import Profile_icon from "../../Common/asset/images/voteimg/Profile_icon.svg";
 import setting_icon from "../../Common/asset/images/voteimg/setting_icon.svg";
 import Helpline_icon from "../../Common/asset/images/voteimg/Helpline_icon.svg";
 import center_icon from "../../Common/asset/images/voteimg/center_icon.svg";
+import Survey from "../../Common/asset/images/voteimg/Survey.svg";
+import Voters from "../../Common/asset/images/voteimg/Voters.svg";
 import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const navigate = useNavigate();
@@ -28,12 +30,12 @@ const Footer = () => {
           {/* <span>Home</span> */}
         </div>
         <div className="d-flex flex-column align-items-center" >
-          <img className="Footer_icon " src={setting_icon}></img>
-          <span className="footer_text">Setting</span>
+          <img className="Footer_icon " src={Voters}></img>
+          <span className="footer_text">Voters</span>
         </div>
         <div className="d-flex flex-column align-items-center">
-          <img className="Footer_icon" src={Helpline_icon}></img>
-          <span className="footer_text">Helpline</span>
+          <img className="Footer_icon" src={Survey}></img>
+          <span className="footer_text">Survey</span>
         </div>
       </div>
     </div>
