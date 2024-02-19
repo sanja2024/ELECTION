@@ -8,24 +8,25 @@ import center_icon from "../../Common/asset/images/voteimg/center_icon.svg";
 import Survey from "../../Common/asset/images/voteimg/Survey.svg";
 import Voters from "../../Common/asset/images/voteimg/Voters.svg";
 import { useNavigate } from "react-router-dom";
+import { ProfilePage_ROUTE } from "../../Common/Route/Routes";
 const Footer = () => {
   const navigate = useNavigate();
   return (
     <div className="footer">
       <div className="footer_tag">
-        <div className="d-flex flex-column align-items-center"   onClick={() => {
-                        navigate('/');
-                      }}>
+        <div className="d-flex flex-column align-items-center" onClick={() => {
+          navigate('/');
+        }}>
           <img className="Footer_icon" src={Home_icon}></img>
           <span className="footer_text">Home</span>
         </div>
-        <div className="d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center" onClick={() => { navigate(ProfilePage_ROUTE); }}>
           <img className="Footer_icon" src={Profile_icon}></img>
           <span className="footer_text">Profile</span>
         </div>
-        <div className="d-flex flex-column align-items-center"  onClick={() => {
-                        navigate('/');
-                      }}>
+        <div className="d-flex flex-column align-items-center" onClick={() => {
+          navigate('/');
+        }}>
           <img className="Footer_iconS" src={center_icon}></img>
           {/* <span>Home</span> */}
         </div>

@@ -22,7 +22,8 @@ import {
   NonVoterPage_ROUTE,
   PollStatus_ROUTE,
   Popup_ROUTE,
-Rating_ROUTE
+Rating_ROUTE,
+ProfilePage_ROUTE
 
 } from "../Route/Routes";
 import Dashboard from "../../Components/Dashboard/Dashboard";
@@ -44,6 +45,7 @@ import CompleteSurvey from "../../Components/Survey/CompleteSurvey";
 import BoothStatus from "../../Components/BoothStatus/BoothStatus";
 import ComingSoon from "../../Components/Survey/ComingSoon";
 import PollStatus from "../../Components/PollStatus/PollStatus";
+import ProfilePage from "../../Components/ProfilePage/ProfilePage";
 
 
 import Header from "../../Components/Header/Header";
@@ -116,6 +118,7 @@ const Layout = () => {
           <Route path={PollStatus_ROUTE} element={<PollStatus />} />
           <Route path={Popup_ROUTE} element={<Popup />} />
           <Route path={Rating_ROUTE} element={<Rating />} />
+          <Route path={ProfilePage_ROUTE} element={<ProfilePage />} />
         </>)}
 
 
