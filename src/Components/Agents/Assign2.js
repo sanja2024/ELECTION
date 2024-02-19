@@ -297,8 +297,8 @@ const Assign2 = () => {
                 payload: {
                     ac_no: selectedDivision, //Constituency
                     part_no: selectedBooth,//booth no
-                    from_slnoinpart: voteFromNo,
-                    to_slnoinpart: voteToNo,
+                    from_slnoinpart: parseInt(voteFromNo),
+                    to_slnoinpart: parseInt(voteToNo),
                     // agent_mobile_no: parseInt(mobile_no, 10),
                     agent_mobile_no: mobile_no.toString(),
                 },

@@ -114,6 +114,7 @@ export const GET_AGENT_MNO_URL = BASE_API_URL + "agent/search";
 
 export const GET_ROLE_URL = BASE_API_URL + "role/search/level";
 
+export const AGENTSTATUS_ROLE_URL = BASE_API_URL + "dashboard/poll/count";
 
 
 

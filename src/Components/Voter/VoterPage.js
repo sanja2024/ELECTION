@@ -100,13 +100,33 @@ const VoterPage = () => {
         }
 
     }, [voterResp])
+
+    const totalFemaleCount = voterResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F").length ?? 0;
+    const totalMaleCount = voterResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M").length ?? 0;
+    const totalotherCount = voterResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender !== "M" && item?.VoterDetailInfo?.gender !== "F").length ?? 0;
+
+
+    const votedFemaleCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F").length ?? 0;
+    const votedMaleCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M").length ?? 0;
+    const votedotherCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender !== "M" && item?.VoterDetailInfo?.gender !== "F").length ?? 0;
+
+    const pickedFemaleCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F" && item?.TrnsPollDetailsInfo?.pollStatus == "true" && item?.TrnsPollDetailsInfo?.visitCode == "1").length ?? 0;
+    const pickedMaleCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M" && item?.TrnsPollDetailsInfo?.pollStatus == "true" && item?.TrnsPollDetailsInfo?.visitCode == "1").length ?? 0;
+    const pickedotherCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender !== "F" && item?.VoterDetailInfo?.gender !== "F" && item?.TrnsPollDetailsInfo?.pollStatus == "true" && item?.TrnsPollDetailsInfo?.visitCode == "1").length ?? 0;
+
+    const surveyF = voterResp?.data?.list[0]?.data?.filter(item => item?.TrnsPollDetailsInfo.surveyStatus === true && item?.VoterDetailInfo?.gender === "F")
+    const surveyM = voterResp?.data?.list[0]?.data?.filter(item => item?.TrnsPollDetailsInfo.surveyStatus === true && item?.VoterDetailInfo?.gender === "M")
+    const surveyO = voterResp?.data?.list[0]?.data?.filter(item => item?.TrnsPollDetailsInfo.surveyStatus === true && item?.VoterDetailInfo?.gender === "O")
+   
+    // console.log(survey.length, 'surveysurvey')
+    // console.log(voterResp?.data?.list[0].TrnsPollDetailsInfo , 'pickedMaleCount')
     return (
         <div className="container p-0">
             <Header />
             <div className="PS_scroll">
                 <div className="VP">
-                    <p className="VpHeading">Polling Sheet 05:00 PM</p>
-                    <p className="vpsubHeading">Thiyagi Natesan Street 1</p>
+                    {/* <p className="VpHeading">Polling Sheet 05:00 PM</p> */}
+                    {/* <p className="vpsubHeading">Thiyagi Natesan Street 1</p> */}
                     <p className="Vp_content mb-0">
                         <table class="table table-sm">
                             <thead class="table-light">
@@ -121,25 +141,40 @@ const VoterPage = () => {
                             </thead>
                             <tbody>
                                 <tr className='polledVote1'>
-                                    <td >As per Electrol</td>
-                                    <td>12</td>
-                                    <td>12</td>
-                                    <td>12</td>
-                                    <td>12</td>
+                                    <td >Assigned Voter</td>
+                                    <td>{totalMaleCount}</td>
+                                    <td>{totalFemaleCount}</td>
+                                    <td>{totalotherCount}</td>
+                                    <td>{totalMaleCount + totalFemaleCount + totalotherCount}</td>
                                 </tr>
                                 <tr className='polledVote2'>
                                     <td >Total Polled Vote</td>
-                                    <td>12</td>
-                                    <td>12</td>
-                                    <td>12</td>
-                                    <td>12</td>
+                                    <td>{votedMaleCount}</td>
+                                    <td>{votedFemaleCount}</td>
+                                    <td>{votedotherCount}</td>
+                                    <td>{votedMaleCount + votedFemaleCount + votedotherCount}</td>
+                                </tr>
+                                <tr className='polledVote2'>
+                                    <td >Total Picked Vote</td>
+                                    <td>{pickedMaleCount}</td>
+                                    <td>{pickedFemaleCount}</td>
+                                    <td>{pickedotherCount}</td>
+                                    <td>{pickedMaleCount + pickedFemaleCount + pickedotherCount}</td>
+                                </tr>
+                                <tr className='polledVote2'>
+                                    <td >Survey</td>
+                                    <td>{surveyM?.length}</td>
+                                    <td>{surveyF?.length}</td>
+                                    <td>{surveyO?.length}</td>
+                                    <td>{surveyM?.length + surveyF?.length + surveyO?.length}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </p>
                     <div className='Vpvotepercentage1'>
                         <span className='VPvotepercentage'>
-                            PICKUP VOTE : 15%
+                            PICKUP VOTE : {parseInt((pickedMaleCount + pickedFemaleCount + pickedotherCount) / (totalMaleCount + totalFemaleCount + totalotherCount) * 100)}%
+
                         </span>
                     </div>
 

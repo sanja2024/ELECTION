@@ -27,7 +27,7 @@ import PollStatus from "../../Common/asset/images/voteimg/PollStatus.svg";
 
 
 import Footer from "../Footer/Footer";
-import { AddAgents_ROUTE, Assign2_ROUTE, BoothStatus_ROUTE, ComingSoon_ROUTE, NonVoterPage_ROUTE, PollStatus_ROUTE, Rating_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterPage_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
+import { AGENTSTATUSPage_ROUTE, AddAgents_ROUTE, Assign2_ROUTE, BoothStatus_ROUTE, ComingSoon_ROUTE, NonVoterPage_ROUTE, PollStatus_ROUTE, Rating_ROUTE, RoleMapping_ROUTE, SearchAgent_ROUTE, Survey_ROUTE, VoterPage_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
 import { useNavigate } from "react-router-dom";
 import SearchVoter from "../Agents/SearchVoter";
 import { AgentAccessCode } from "../../Common/Route/ConfigRoute";
@@ -332,12 +332,12 @@ const MainDashboard = () => {
                       <img className="AddAgentIcons2" src={BoothStatus}></img>
                       <span className="KeyfeatureVal">Booth Status</span>
                     </div>
-                    <div className="KeyfeatureBox" onClick={() => {
+                    {/* <div className="KeyfeatureBox" onClick={() => {
                       navigate(Rating_ROUTE);
                     }} >
                       <img className="AddAgentIcons2" src={Report}></img>
                       <span className="KeyfeatureVal">Report</span>
-                    </div>
+                    </div> */}
                     <div className="KeyfeatureBox" onClick={() => {
                       navigate(PollStatus_ROUTE);
                     }}>
@@ -345,13 +345,13 @@ const MainDashboard = () => {
                       <span className="KeyfeatureVal">Poll Status</span>
                     </div>
                     <div className="KeyfeatureBox" onClick={() => {
-                      navigate(PollStatus_ROUTE);
+                      navigate(AGENTSTATUSPage_ROUTE);
                     }}>
                       <img className="AddAgentIcons2" src={AgentReport}></img>
                       <span className="KeyfeatureVal">Agent Report</span>
                     </div>
                     <div className="KeyfeatureBox" onClick={() => {
-                      navigate(PollStatus_ROUTE);
+                      navigate(Rating_ROUTE);
                     }}>
                       <img className="AddAgentIcons2" src={SurveyReport}></img>
                       <span className="KeyfeatureVal">Survey Report</span>
