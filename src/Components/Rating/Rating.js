@@ -197,8 +197,8 @@ const Rating = () => {
       </div>
       <div className="d-flex flex-column">
         {question?.answers.map((answer) => (
-          <div key={answer?.answer} className="d-flex align-items-center">
-            <div style={{ width: '100px' }}>{answer?.answer}</div>
+          <div key={answer?.answer} className="d-flex align-items-center p-2">
+            <div  style={{ width: '100px', fontSize:'12px' }}>{answer?.answer}</div>
             <div className="progress" style={{ height: '20px', width: '200px', marginLeft: '10px', position: 'relative' }}>
               <div
                 className={`progress-bar ${getProgressBarColor(answer?.avg)}`}
