@@ -37,7 +37,7 @@ const MainDashboard = () => {
       <div className="bgImgMmain ">
         <div className="d-flex justify-content-between align-items-top p-2" style={{ width: "100%", zIndex: "2 !important" }}>
           <div className="mt-1 ">
-            <img className="logot" src={logo}></img>
+            <img className="logot" src={logo}  onClick={() => {navigate('/');}}></img>
           </div>
           <div className="mt-3 me-4" >
 
@@ -49,7 +49,7 @@ const MainDashboard = () => {
 
           </div>
         </div>
-        <div className="blog_scroll">
+        {/* <div className="blog_scroll">
           <div className="blog">
             <p className="blogHeading">Right To Vote</p>
             <p className="blog_content">
@@ -82,7 +82,7 @@ const MainDashboard = () => {
               is not only....
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="welcomebackmd">
@@ -301,7 +301,7 @@ const MainDashboard = () => {
                 <div className="Agent_detail">
                   <div className="Agent_detailBoxTop">
                     <div className="KeyfeatureBox ">
-                      <img className="AddAgentIcons" src={Voters}></img>
+                      <img className="AddAgentIcons2" src={Voters}></img>
                       <span
                         className="KeyfeatureVal"
                         onClick={() => {
@@ -314,7 +314,7 @@ const MainDashboard = () => {
                     <div className="KeyfeatureBox" onClick={() => {
                       navigate(NonVoterPage_ROUTE);
                     }}>
-                      <img className="AddAgentIcons" src={NonVoters}></img>
+                      <img className="AddAgentIcons2" src={NonVoters}></img>
                       <span
                         className="KeyfeatureVal"
 
@@ -325,19 +325,19 @@ const MainDashboard = () => {
                     <div className="KeyfeatureBox" onClick={() => {
                       navigate(BoothStatus_ROUTE);
                     }} >
-                      <img className="AddAgentIcons" src={BoothStatus}></img>
+                      <img className="AddAgentIcons2" src={BoothStatus}></img>
                       <span className="KeyfeatureVal">Booth Status</span>
                     </div>
                     <div className="KeyfeatureBox" onClick={() => {
                       navigate(Rating_ROUTE);
                     }} >
-                      <img className="AddAgentIcons" src={Report}></img>
+                      <img className="AddAgentIcons2" src={Report}></img>
                       <span className="KeyfeatureVal">Report</span>
                     </div>
                     <div className="KeyfeatureBox" onClick={() => {
                       navigate(PollStatus_ROUTE);
                     }}>
-                      <img className="AddAgentIcons" src={PollStatus}></img>
+                      <img className="AddAgentIcons2" src={PollStatus}></img>
                       <span className="KeyfeatureVal">Poll Status</span>
                     </div>
                   </div>

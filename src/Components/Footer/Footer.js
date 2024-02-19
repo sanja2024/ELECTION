@@ -27,7 +27,7 @@ const Footer = () => {
         </div>
         <div className="d-flex flex-column align-items-center" onClick={() => {
           navigate('/');
-        }}>
+        }} >
           <img className="Footer_iconS" src={center_icon}></img>
           {/* <span>Home</span> */}
         </div>

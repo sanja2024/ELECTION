@@ -70,7 +70,7 @@ const VoterPage = () => {
         dispatch(createUser(userData)).then((res) => {
             if (res?.payload?.message === "success") {
                 setCardList(res?.payload?.data?.list);
-    
+
 
             }
         });
@@ -103,6 +103,49 @@ const VoterPage = () => {
     return (
         <div className="container p-0">
             <Header />
+            <div className="PS_scroll">
+                <div className="VP">
+                    <p className="VpHeading">Polling Sheet 05:00 PM</p>
+                    <p className="vpsubHeading">Thiyagi Natesan Street 1</p>
+                    <p className="Vp_content mb-0">
+                        <table class="table table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <td></td>
+                                    <td>M</td>
+                                    <td>F</td>
+                                    <td>Others</td>
+                                    <td>Total</td>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr className='polledVote1'>
+                                    <td >As per Electrol</td>
+                                    <td>12</td>
+                                    <td>12</td>
+                                    <td>12</td>
+                                    <td>12</td>
+                                </tr>
+                                <tr className='polledVote2'>
+                                    <td >Total Polled Vote</td>
+                                    <td>12</td>
+                                    <td>12</td>
+                                    <td>12</td>
+                                    <td>12</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
+                    <div className='Vpvotepercentage1'>
+                        <span className='VPvotepercentage'>
+                            PICKUP VOTE : 15%
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
             {(!Array.isArray(voterResp?.data?.list)) ?
                 <>LOADING....</> :
                 <div className="searchedcardHead mt-3">
@@ -159,7 +202,7 @@ const VoterPage = () => {
                                         <div>
                                             <div className="d-flex justify-content-evenly">
                                                 <div>
-                                                  {!item?.TrnsPollDetailsInfo?.surveyStatus &&  <button
+                                                    {!item?.TrnsPollDetailsInfo?.surveyStatus && <button
                                                         onClick={() => {
                                                             navigate("/Survey", {
                                                                 state: {

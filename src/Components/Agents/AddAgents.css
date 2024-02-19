@@ -36,6 +36,7 @@
   margin: 10px 16px;
   /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
 }
+
 .assign_datas {
   z-index: 1;
   /* background-color: white; */
@@ -49,6 +50,7 @@
   margin: 10px 16px;
   /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
 }
+
 .rolemapping_data {
   z-index: 1;
   /* background-color: white; */
@@ -62,21 +64,25 @@
   margin: 10px 16px;
   /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
 }
+
 .rolemapping_data::-webkit-scrollbar {
-  height: 1px;             
-  width: 1px;                
+  height: 1px;
+  width: 1px;
   color: transparent;
 }
+
 .assign_datas::-webkit-scrollbar {
-  height: 1px;             
-  width: 1px;                
+  height: 1px;
+  width: 1px;
   color: transparent;
 }
+
 .agentadd_datas::-webkit-scrollbar {
-  height: 1px;             
-  width: 1px;                
+  height: 1px;
+  width: 1px;
   color: transparent;
 }
+
 .addAgent_datapoints {
   margin-bottom: 10px;
 }
@@ -91,6 +97,7 @@
   color: rgba(0, 0, 0, 0.8);
   margin-bottom: 10px;
 }
+
 .rolemapping_data label {
   font-family: Lato;
   font-size: 10px;
@@ -101,6 +108,7 @@
   color: rgba(0, 0, 0, 0.8);
   margin-bottom: 10px;
 }
+
 .agentadd_datas label {
   font-family: Lato;
   font-size: 10px;
@@ -177,20 +185,21 @@
 
 
 }
-.sbmit_btn{
+
+.sbmit_btn {
   background-color: rgba(204, 55, 91, 1);
   color: white;
   /* font-family: Lato; */
-font-size: 18px;
-font-weight: 500;
-line-height: 22px;
-letter-spacing: 0em;
-text-align: center;
-padding: 14px  24px;
-width: 90vw;
-border: none;
-border-radius: 6px;
-margin: 20px!important;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 14px 24px;
+  width: 90vw;
+  border: none;
+  border-radius: 6px;
+  margin: 20px !important;
 }
 
 
@@ -252,9 +261,10 @@ margin: 20px!important;
   overflow-y: scroll;
   margin: 10px;
 }
+
 .searchedcardHead::-webkit-scrollbar {
-  height: 1px;             
-  width: 1px;                
+  height: 1px;
+  width: 1px;
   color: transparent;
 }
 
@@ -266,15 +276,18 @@ margin: 20px!important;
   overflow-y: scroll;
   margin: 10px;
 }
+
 .searchedcardHeadassign::-webkit-scrollbar {
-  height: 1px;             
-  width: 1px;                
+  height: 1px;
+  width: 1px;
   color: transparent;
 }
-.c{
+
+.c {
   display: flex;
   padding: 10px 16px;
 }
+
 .searchedimg {
   width: 35px !important;
   height: 35px !important;
@@ -282,6 +295,7 @@ margin: 20px!important;
   aspect-ratio: 1/1;
   border-radius: 4px;
 }
+
 .VoteNo1 {
   display: flex;
   flex-direction: column;
@@ -290,7 +304,7 @@ margin: 20px!important;
   background-color: rgba(2, 44, 88, 0.122);
   padding: 10px;
   border-radius: 0px 0px 0px 10px;
-  width:50px;
+  width: 50px;
   height: 50px;
 }
 
@@ -304,6 +318,7 @@ margin: 20px!important;
   text-align: center;
 
 }
+
 .searchedAgentName {
   font-family: Lato;
   font-size: 12px;
@@ -386,6 +401,7 @@ margin: 20px!important;
   margin-bottom: 24px;
   /* margin-right: 24px; */
 }
+
 .saerched_dataCard1 {
   width: 85vw;
   margin: auto;
@@ -408,9 +424,10 @@ margin: 20px!important;
   width: 70px !important;
 
 }
+
 .scrollvisit_status::-webkit-scrollbar {
-  height: 1px;             
-  width: 1px;                
+  height: 1px;
+  width: 1px;
   color: transparent;
 }
 
@@ -523,9 +540,118 @@ input:checked+.slider:before {
 .scroll_cards .form-check-input:focus {
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
   content: "✔";
   color: blue;
 }
 
 
+
+
+
+
+
+
+
+
+
+.VP {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+
+  /* background: rgba( 61, 101, 139, 0.45 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+
+
+
+  padding: 12px;
+  margin: 10px 24px;
+  width: 80%;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  margin: auto;
+}
+
+
+.vpsubHeading {
+  font-family: Raleway;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.02em;
+  text-align: left;
+
+
+  color: rgb(0, 0, 0);
+}
+
+.VpHeading {
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  margin-bottom: 8px;
+  color: rgb(0, 0, 0);
+}
+
+
+.Vp_content tr{
+  /* background: rgba( 61, 101, 139, 0.45 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  border-radius: 0px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+}
+
+
+.Vp_content {
+  font-family: Raleway;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  height: 180px;
+  /* background: rgba( 61, 101, 139, 0.45 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 20px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 ); */
+
+  /* background-color:rgba(255, 255, 255, 0.2) ; */
+}
+
+.Vpvotepercentage1 {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+.VPvotepercentage {
+
+  font-family: Lato;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0.02em;
+  text-align: end;
+  color: rgb(0, 0, 0);
+
+}
