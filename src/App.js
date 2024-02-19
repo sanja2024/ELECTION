@@ -6,6 +6,19 @@ import { ToastContainer } from "react-toastify";
 import './App.css'; 
 function App() {
 
+  // useEffect(() => {
+  //   const handleTabClose = (event) => {
+  //     localStorage.clear();
+  //     event.preventDefault();
+  //     event.returnValue = ''; 
+  //   };
+
+  //   window.addEventListener('beforeunload', handleTabClose);
+
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleTabClose);
+  //   };
+  // }, []);
   
   return (
     <div className="App custom-bg">

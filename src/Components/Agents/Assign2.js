@@ -3,14 +3,18 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ADD_AGENT_SEARCH_URL, BOOTH_API, VOTER_SEARCH_URL } from "../../Common/Url/ServerConfig";
-import { agentSearch } from "../../Common/redux/slices/agentSlice";
+import { ADD_AGENT_SEARCH_URL, BOOTH_API, GET_AGENT_MNO_URL, VOTER_SEARCH_URL } from "../../Common/Url/ServerConfig";
+import { agentSearch, getAgentMno } from "../../Common/redux/slices/agentSlice";
 import { createUser } from "../../Common/redux/slices/usersSlice";
 import { toast } from "react-toastify";
 import { Assign_ROUTE, MainDashboard_ROUTE } from "../../Common/Route/Routes";
 const Assign2 = () => {
+    const agentMno = useSelector((state) => state.agent.agentMnoData);
     const [selectedElection, setSelectedElection] = useState([]);
     const [selectedstate, setSelectedstate] = useState([]);
+    const [selectedAgentType, setSelectedAgentType] = useState('');
+    const [selectedRoleID, setSelectedRoleID] = useState("");
+    const [agentDetails, setAgentDetails] = useState("");
 
     const [state, setState] = useState([]);
     const [constituency, setConstituency] = useState([]);
@@ -31,7 +35,7 @@ const Assign2 = () => {
 
     const [stateRole, setStateRole] = useState("Select State");
     const [constituencyRole, setConstituencyRole] = useState("Select Constituency");
-    const [divisionRole, setDivisionRole] = useState("Select Division");
+    const [divisionRole, setDivisionRole] = useState("Select Assembly");
     const [boothRole, setBoothRole] = useState("Select Booth");
 
     const [electionNames, setElectionNames] = useState([]);
@@ -50,8 +54,51 @@ const Assign2 = () => {
 
     const handleSelectChange = async (event, selectedValue) => {
 
+        // if (selectedValue === 'Mobile') {
+        //     setSelectedMobile(event.target.value);
+        //     if (event.target.value.length == 10) {
+
+        //         const userData = {
+        //             payload: event.target.value,
+        //             endPoint: ADD_AGENT_SEARCH_URL,
+        //         };
+        //         dispatch(agentSearch(userData)).then((res) => {
+        //             if (res?.payload?.message === "success") {
+        //                 // setState(res?.payload.data.list);
+        //                 //  console.log(res?.payload?.data.list[0].agentType,'wwewewe')
+        //                 if (res?.payload?.data.list[0]?.agentType == 'AGENT') {
+        //                     setSelectedRole("AGENT")
+        //                     setRoleDisable(true)
+        //                 } else {
+        //                     setRoleDisable(false)
+        //                 }
+
+        //             }
+        //         });
+
+        //     }
+        // }
         if (selectedValue === 'Mobile') {
-            setSelectedMobile(event.target.value);
+
+            const finalselectedMob = JSON.parse(event.target.value);
+
+
+            setSelectedMobile(finalselectedMob?.mobileNo);
+            setAgentDetails(finalselectedMob?.mappingresult);
+
+            if (finalselectedMob?.agentType == "agent") {
+                // console.log(finalselectedMob,'finalselectedMob')
+                setSelectedAgentType(finalselectedMob?.agentType);
+                // const selectedRoleData = JSON.parse(event.target.value);
+                setSelectedRole("AGENT");
+                setSelectedRoleID("6")
+            } else {
+                setSelectedAgentType("");
+                setSelectedRole("");
+                setSelectedRoleID("")
+            }
+
+
             if (event.target.value.length == 10) {
 
                 const userData = {
@@ -163,7 +210,19 @@ const Assign2 = () => {
 
             dispatch(createUser(constituencyUserData)).then((res) => {
                 if (res?.payload?.message === "success") {
-                    setDivision(res?.payload.data.list);
+
+                    const divisionCodes = agentDetails[0].map(agent => agent.divisionCode);
+                    const resultt = res?.payload?.data?.list?.filter(el1 => {
+                        return divisionCodes.includes(el1?.divisionCode.toString());
+                    });
+
+                    // const resultt = res?.payload?.data?.list?.filter(el1 => {
+                    //     // console.log(el1,'dkkmskmdm')
+                    //     return agentDetails.some(el2 => el2?.divisionCode === el1?.divisionCode.toString());
+                    // });
+
+                    setDivision(resultt?.length > 0 ? resultt : res?.payload?.data?.list);
+                    // setDivision(res?.payload.data.list);
                 }
             });
         } else if (selectedValue === 'Division') {
@@ -182,7 +241,22 @@ const Assign2 = () => {
 
             dispatch(createUser(divisionUserData)).then((res) => {
                 if (res?.payload?.message === "success") {
-                    setBooth(res?.payload.data.list);
+
+                    const boothCodes = agentDetails[0].map(agent => agent.boothCode);
+                    const resultt = res?.payload?.data?.list?.filter(el1 => {
+                        return boothCodes.includes(el1?.boothCode.toString());
+                    });
+
+
+                    // const resultt = res?.payload?.data?.list?.filter(el1 => {
+                    //     return agentDetails.some(el2 => el2?.boothCode === el1?.boothCode.toString());
+                    // });
+                    // const resultt = res?.payload?.data?.list?.filter((el1) => {
+                    //   return agentDetails.some((el2) => array.includes(el2?.boothCode));
+                    // });
+                    // setBooth(res?.payload.data.list);
+                    setBooth(resultt?.length > 0 ? resultt : res?.payload?.data?.list)
+                    // setBooth(res?.payload.data.list);
                 }
             });
         } else if (selectedValue === 'Booth') {
@@ -225,7 +299,8 @@ const Assign2 = () => {
                     part_no: selectedBooth,//booth no
                     from_slnoinpart: voteFromNo,
                     to_slnoinpart: voteToNo,
-                    agent_mobile_no: agentMobileNo
+                    // agent_mobile_no: parseInt(mobile_no, 10),
+                    agent_mobile_no: mobile_no.toString(),
                 },
                 endPoint: VOTER_SEARCH_URL,
             };
@@ -290,6 +365,19 @@ const Assign2 = () => {
 
     }, []);
 
+
+    useEffect(() => {
+
+        const reqParams = {
+            payload: {
+                mobile_no: parseInt(localStorage.getItem("mobile"))
+            },
+            endPoint: GET_AGENT_MNO_URL
+        }
+
+        dispatch(getAgentMno(reqParams))
+    }, [])
+
     return (
         <div>
             <Header />
@@ -298,14 +386,29 @@ const Assign2 = () => {
                     <label for="exampleFormControlInput1" class="form-label">
                         Agent
                     </label>
-                    <input
+                    <select
+                        id="Mobile"
+                        className="form-select"
+                        aria-label="Mobile"
+                        onChange={(event) => handleSelectChange(event, 'Mobile')}
+                    // value={mobile_no}
+
+                    >
+                        <option value="">Select Agent Mno</option>
+                        {agentMno?.data?.list?.map((mno, index) => (
+                            <option key={index} value={JSON.stringify(mno)} onChange={(event) => handleSelectChange(event, 'agenttype')}>
+                                {mno.mobileNo}
+                            </option>
+                        ))}
+                    </select>
+                    {/* <input
                         type="text"
                         class="form-control p-3"
                         id="exampleFormControlInput1"
                         placeholder="Agent Mobile No."
                         value={agentMobileNo}
                         onChange={(e) => { setAgentMobileNo(e.target.value) }}
-                    />
+                    /> */}
                 </div>
                 <div className="addAgent_datapoints dropdown">
                     <label htmlFor="exampleFormControlInput1" className="form-label">
@@ -362,7 +465,7 @@ const Assign2 = () => {
                 </div>
                 <div className="addAgent_datapoints dropdown">
                     <label htmlFor="exampleFormControlInput1" className="form-label">
-                        Division
+                    Assembly
                     </label>
                     <select
                         className="form-control"
