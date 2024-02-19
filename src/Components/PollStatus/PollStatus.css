@@ -43,12 +43,12 @@
     color: transparent;
   }
   .PS_scroll {
-    position: absolute;
+    position: relative;
     /* overflow-x: scroll; */
     display: flex;
     margin-top: 10px;
     width: 100%;
-    height: 200px;
+    height: 180px;
     top: 9%;
   }
   .PS_scroll::-webkit-scrollbar {

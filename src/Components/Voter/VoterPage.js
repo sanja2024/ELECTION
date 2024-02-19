@@ -148,7 +148,7 @@ const VoterPage = () => {
             </div>
             {(!Array.isArray(voterResp?.data?.list)) ?
                 <>LOADING....</> :
-                <div className="searchedcardHead mt-3">
+                <div className="searchedcardHeadvp mt-3">
                     <div className="scroll_cards">
                         {console.log("DSfcadas", totalData)}
                         {totalData ? totalData?.map((item) => {

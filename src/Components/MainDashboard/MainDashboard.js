@@ -12,6 +12,8 @@ import Mapping from "../../Common/asset/images/voteimg/Mapping.svg";
 import searchstatus from "../../Common/asset/images/voteimg/searchstatus.svg";
 import Assign from "../../Common/asset/images/voteimg/Assign.svg";
 import Survey from "../../Common/asset/images/voteimg/Survey.svg";
+import AgentReport from "../../Common/asset/images/voteimg/agentReport.svg";
+import SurveyReport from "../../Common/asset/images/voteimg/SurveyReport.svg";
 
 import Home_icon from "../../Common/asset/images/voteimg/Home_icon.svg";
 import center_icon from "../../Common/asset/images/voteimg/center_icon.svg";
@@ -341,6 +343,18 @@ const MainDashboard = () => {
                     }}>
                       <img className="AddAgentIcons2" src={PollStatus}></img>
                       <span className="KeyfeatureVal">Poll Status</span>
+                    </div>
+                    <div className="KeyfeatureBox" onClick={() => {
+                      navigate(PollStatus_ROUTE);
+                    }}>
+                      <img className="AddAgentIcons2" src={AgentReport}></img>
+                      <span className="KeyfeatureVal">Agent Report</span>
+                    </div>
+                    <div className="KeyfeatureBox" onClick={() => {
+                      navigate(PollStatus_ROUTE);
+                    }}>
+                      <img className="AddAgentIcons2" src={SurveyReport}></img>
+                      <span className="KeyfeatureVal">Survey Report</span>
                     </div>
                   </div>
                 </div>

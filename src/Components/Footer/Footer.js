@@ -5,8 +5,11 @@ import Profile_icon from "../../Common/asset/images/voteimg/Profile_icon.svg";
 import setting_icon from "../../Common/asset/images/voteimg/setting_icon.svg";
 import Helpline_icon from "../../Common/asset/images/voteimg/Helpline_icon.svg";
 import center_icon from "../../Common/asset/images/voteimg/center_icon.svg";
-import Survey from "../../Common/asset/images/voteimg/Survey.svg";
-import Voters from "../../Common/asset/images/voteimg/Voters.svg";
+import Survey from "../../Common/asset/images/voteimg/Survey2.svg";
+import search from "../../Common/asset/images/voteimg/search.svg";
+
+
+
 import { useNavigate } from "react-router-dom";
 import { ProfilePage_ROUTE } from "../../Common/Route/Routes";
 import { Survey_ROUTE, VoterPage_ROUTE, VoterSearch_ROUTE } from "../../Common/Route/Routes";
@@ -32,10 +35,10 @@ const Footer = () => {
           {/* <span>Home</span> */}
         </div>
         <div className="d-flex flex-column align-items-center" >
-          <img className="Footer_icon " src={Voters}></img>
+          <img className="Footer_icon " src={search}></img>
           <span className="footer_text" onClick={() => {
             navigate(VoterPage_ROUTE);
-          }} >Voters</span>
+          }} >Search</span>
         </div>
         <div className="d-flex flex-column align-items-center" >
           <img className="Footer_icon " src={Survey}></img>
