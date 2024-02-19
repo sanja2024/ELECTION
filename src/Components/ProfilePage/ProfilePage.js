@@ -14,6 +14,9 @@ import profilelogo from "../../Common/asset/images/voteimg/profilelogo.svg"
 
 
 const ProfilePage = () => {
+    const sData = localStorage.getItem("userData");
+    const userData = JSON.parse(sData)
+
     return (
         <div>
             <div className="container p-0">
@@ -28,15 +31,15 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="welcomebackprofile pt-5 p-3">
-                <div className="prof_logo">
-          <img className='proflogo' src={profilelogo}></img>
-        </div>
+                    <div className="prof_logo">
+                        <img className='proflogo' src={profilelogo}></img>
+                    </div>
                     <div className='profile_info'>
                         <div>
                             <img src={userprofile}></img>
                         </div>
                         <div className='profilename'>
-                            <span >U Namasaivayam Vadivelan</span>
+                            <span >{userData?.name || "-"}</span>
                         </div>
                     </div>
                     <div className='profile_info'>
@@ -44,7 +47,7 @@ const ProfilePage = () => {
                             <img src={phone}></img>
                         </div>
                         <div className='profilename'>
-                            <span >+91 9856743678</span>
+                            <span >{userData?.mobileNo || "-"}</span>
                         </div>
                     </div>
                     <div className='profile_info'>
@@ -52,7 +55,7 @@ const ProfilePage = () => {
                             <img src={vid}></img>
                         </div>
                         <div className='profilename'>
-                            <span >UTC654237</span>
+                            <span >{userData?.voterId || "-"}</span>
                         </div>
                     </div>
                     <div className='profile_info'>
@@ -60,7 +63,7 @@ const ProfilePage = () => {
                             <img src={email}></img>
                         </div>
                         <div className='profilename'>
-                            <span >namasivayam@gmail.com</span>
+                            <span >{userData?.mailId || "-"}</span>
                         </div>
                     </div>
 

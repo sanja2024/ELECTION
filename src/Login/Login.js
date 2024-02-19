@@ -57,12 +57,15 @@ const LoginPage = () => {
     dispatch(createUser(userData)).then((res) => {
       if (res?.payload?.message == 'success') {
         // console.log(res.payload.data.list.agentType,'dddddd' )
-      const  typeUser = res?.payload?.data?.list?.agentType?.toUpperCase();
+        const typeUser = res?.payload?.data?.list?.agentType?.toUpperCase();
 
         localStorage.setItem("CUSTOMTOKEN", 'coSkKDoSS70Cu6RUsDRKnKQUlXvmzyvoSEBS3WpRd6/4gEtZ39STlENqKRjDRFKew69PE6RyGN');
         localStorage.setItem("product_code", 'EL');
         localStorage.setItem("User", typeUser);
         localStorage.setItem("mobile", username);
+
+        localStorage.setItem("userData", JSON.stringify(res?.payload?.data?.list));
+
 
         toast.success("Login Successful!", {
           position: "top-right",
