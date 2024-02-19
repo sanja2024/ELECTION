@@ -12,7 +12,8 @@
   background-color: (0, 0, 0, 1);
   /* clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%); */
   /* clip-path: circle(50% at 50% 0); */
-  clip-path: circle(50% at 50% 20%);
+  /* clip-path: circle(50% at 50% 20%); */
+  clip-path: polygon(38% 0%, 100% 0%, 101% 40%, 0% 40%, 0% 0%);
 }
 .bgImg3::before {
   content: '';

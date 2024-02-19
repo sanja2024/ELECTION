@@ -12,10 +12,12 @@ import Mapping from "../../Common/asset/images/voteimg/Mapping.svg";
 import searchstatus from "../../Common/asset/images/voteimg/searchstatus.svg";
 import Assign from "../../Common/asset/images/voteimg/Assign.svg";
 import Survey from "../../Common/asset/images/voteimg/Survey.svg";
-import Voters from "../../Common/asset/images/voteimg/Voters.svg";
+
 import Home_icon from "../../Common/asset/images/voteimg/Home_icon.svg";
 import center_icon from "../../Common/asset/images/voteimg/center_icon.svg";
 
+
+import Voters from "../../Common/asset/images/voteimg/Voters.svg";
 import NonVoters from "../../Common/asset/images/voteimg/NonVoters.svg";
 import BoothStatus from "../../Common/asset/images/voteimg/BoothStatus.svg";
 import Report from "../../Common/asset/images/voteimg/Report.svg";
