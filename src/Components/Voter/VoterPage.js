@@ -92,11 +92,12 @@ const VoterPage = () => {
     useEffect(() => {
         if (voterResp?.data?.list?.length > 0) {
 
+            if (Array.isArray(voterResp?.data?.list)) {
             const falseData = voterResp?.data?.list?.filter(item => item._id === false);
             const trueData = voterResp?.data?.list?.filter(item => item._id === true);
-            console.log(trueData, "Dasdas", falseData)
 
             setTotalData([...(trueData?.[0]?.data || []), ...(falseData?.[0]?.data || [])])
+            }
         }
 
     }, [voterResp])
@@ -173,7 +174,7 @@ const VoterPage = () => {
                     </p>
                     <div className='Vpvotepercentage1'>
                         <span className='VPvotepercentage'>
-                            PICKUP VOTE : {parseInt((pickedMaleCount + pickedFemaleCount + pickedotherCount) / (totalMaleCount + totalFemaleCount + totalotherCount) * 100)}%
+                            PICKUP VOTE : { isNaN(parseInt((pickedMaleCount + pickedFemaleCount + pickedotherCount) / (totalMaleCount + totalFemaleCount + totalotherCount) * 100)) ? 0 : parseInt((pickedMaleCount + pickedFemaleCount + pickedotherCount) / (totalMaleCount + totalFemaleCount + totalotherCount) * 100) + '%'}%
 
                         </span>
                     </div>

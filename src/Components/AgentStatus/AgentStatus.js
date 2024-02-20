@@ -223,7 +223,7 @@ const AgentStatus = () => {
 
                     >
                         <option value="">Select Agent Mno</option>
-                        <option value="All">All</option>
+                        {/* <option value="All">All</option> */}
                         {agentMno?.data?.list?.map((mno, index) => (
                             <option key={index} value={JSON.stringify(mno)} onChange={(event) => handleSelectChange(event, 'agenttype')}>
                                 {mno.mobileNo}

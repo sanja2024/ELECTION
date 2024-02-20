@@ -12,12 +12,14 @@ import { createUser } from "../../Common/redux/slices/usersSlice";
 import { useNavigate } from "react-router-dom";
 const NonVoterPage = () => {
     const [expand, setExpand] = useState("");
-    const [totalData, setTotalData] = useState([]);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [searchList, setSearchList] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
+    const [totalData, setTotalData] = useState([]);
+
+
     const [cardList, setCardList] = useState([]);
 
     const visitorResp = useSelector((state) => state.agent.visitorData);
@@ -33,6 +35,7 @@ const NonVoterPage = () => {
     };
 
     useEffect(() => {
+
         const mNo = localStorage.getItem("mobile");
 
         const userData = {
@@ -66,8 +69,8 @@ const NonVoterPage = () => {
         };
         dispatch(createUser(userData)).then((res) => {
             if (res?.payload?.message === "success") {
-                setCardList(res?.payload?.data.list);
-                console.log(res?.payload?.data.list, 'wwewewe')
+                setCardList(res?.payload?.data?.list);
+
 
             }
         });
@@ -85,27 +88,117 @@ const NonVoterPage = () => {
         //     }
         //   });
     };
+
     useEffect(() => {
         if (voterResp?.data?.list?.length > 0) {
 
-            const falseData = voterResp?.data?.list?.filter(item => item._id === false);
-            const trueData = voterResp?.data?.list?.filter(item => item._id === true);
+            if (Array.isArray(voterResp?.data?.list)) {
+                const falseData = voterResp?.data?.list.filter(item => item._id === false);
+                setTotalData([...(falseData?.[0]?.data || []) ])
+                // Use falseData as needed
+            } else {
+                console.error("_voterResp$data2$list is not an array");
+                // Handle the error gracefully
+            }
 
+            // const falseData = voterResp?.data?.list?.filter(item => item._id === false);
+            // // const trueData = voterResp?.data?.list?.filter(item => item._id === true);
+            // console.log("Dasdas", falseData)
 
-            setTotalData(falseData?.[0]?.data || [])
+            // setTotalData([...(falseData?.[0]?.data || []) ])
         }
 
     }, [voterResp])
 
+
+    // console.log(voterResp,'totalData')
+
+    const totalFemaleCount = voterResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F").length ?? 0;
+    const totalMaleCount = voterResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M").length ?? 0;
+    const totalotherCount = voterResp?.data?.list?.[0]?.data?.filter(item => item?.VoterDetailInfo?.gender !== "M" && item?.VoterDetailInfo?.gender !== "F").length ?? 0;
+
+
+    const votedFemaleCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F").length ?? 0;
+    const votedMaleCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M").length ?? 0;
+    const votedotherCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender !== "M" && item?.VoterDetailInfo?.gender !== "F").length ?? 0;
+
+    const pickedFemaleCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "F" && item?.TrnsPollDetailsInfo?.pollStatus == "true" && item?.TrnsPollDetailsInfo?.visitCode == "1").length ?? 0;
+    const pickedMaleCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender === "M" && item?.TrnsPollDetailsInfo?.pollStatus == "true" && item?.TrnsPollDetailsInfo?.visitCode == "1").length ?? 0;
+    const pickedotherCount = voterResp?.data?.list?.[1]?.data?.filter(item => item?.VoterDetailInfo?.gender !== "F" && item?.VoterDetailInfo?.gender !== "F" && item?.TrnsPollDetailsInfo?.pollStatus == "true" && item?.TrnsPollDetailsInfo?.visitCode == "1").length ?? 0;
+
+    const surveyF = voterResp?.data?.list[0]?.data?.filter(item => item?.TrnsPollDetailsInfo.surveyStatus === true && item?.VoterDetailInfo?.gender === "F")
+    const surveyM = voterResp?.data?.list[0]?.data?.filter(item => item?.TrnsPollDetailsInfo.surveyStatus === true && item?.VoterDetailInfo?.gender === "M")
+    const surveyO = voterResp?.data?.list[0]?.data?.filter(item => item?.TrnsPollDetailsInfo.surveyStatus === true && item?.VoterDetailInfo?.gender === "O")
+   
+    // console.log(survey.length, 'surveysurvey')
+    // console.log(voterResp?.data?.list[0].TrnsPollDetailsInfo , 'pickedMaleCount')
     return (
         <div className="container p-0">
             <Header />
+            <div className="vp_scroll">
+                <div className="VP">
+                    {/* <p className="VpHeading">Polling Sheet 05:00 PM</p> */}
+                    {/* <p className="vpsubHeading">Thiyagi Natesan Street 1</p> */}
+                    <p className="Vp_content mb-0">
+                        <table class="table table-sm">
+                            <thead class="table-light">
+                                <tr>
+                                    <td></td>
+                                    <td>M</td>
+                                    <td>F</td>
+                                    <td>Others</td>
+                                    <td>Total</td>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr className='polledVote1'>
+                                    <td >Assigned Voter</td>
+                                    <td>{totalMaleCount}</td>
+                                    <td>{totalFemaleCount}</td>
+                                    <td>{totalotherCount}</td>
+                                    <td>{totalMaleCount + totalFemaleCount + totalotherCount}</td>
+                                </tr>
+                                <tr className='polledVote2'>
+                                    <td >Total Polled Vote</td>
+                                    <td>{votedMaleCount}</td>
+                                    <td>{votedFemaleCount}</td>
+                                    <td>{votedotherCount}</td>
+                                    <td>{votedMaleCount + votedFemaleCount + votedotherCount}</td>
+                                </tr>
+                                <tr className='polledVote2'>
+                                    <td >Total Picked Vote</td>
+                                    <td>{pickedMaleCount}</td>
+                                    <td>{pickedFemaleCount}</td>
+                                    <td>{pickedotherCount}</td>
+                                    <td>{pickedMaleCount + pickedFemaleCount + pickedotherCount}</td>
+                                </tr>
+                                <tr className='polledVote2'>
+                                    <td >Survey</td>
+                                    <td>{surveyM?.length}</td>
+                                    <td>{surveyF?.length}</td>
+                                    <td>{surveyO?.length}</td>
+                                    <td>{surveyM?.length + surveyF?.length + surveyO?.length}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </p>
+                    <div className='Vpvotepercentage1'>
+                        <span className='VPvotepercentage'>
+                            PICKUP VOTE : {isNaN(parseInt((pickedMaleCount + pickedFemaleCount + pickedotherCount) / (totalMaleCount + totalFemaleCount + totalotherCount) * 100))}%
+
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
             {(!Array.isArray(voterResp?.data?.list)) ?
                 <>LOADING....</> :
-                <div className="searchedcardHead mt-3">
+                <div className="searchedcardHeadvp mt-3">
                     <div className="scroll_cards">
-
-                        {totalData.length > 0 ? totalData?.map((item) => {
+                        {console.log("DSfcadas", totalData)}
+                        {totalData ? totalData?.map((item) => {
                             return (<div className="card saerched_dataCard1" >
 
                                 <div className="card-body pb-1 p-0">
@@ -156,7 +249,7 @@ const NonVoterPage = () => {
                                         <div>
                                             <div className="d-flex justify-content-evenly">
                                                 <div>
-                                                    <button
+                                                    {!item?.TrnsPollDetailsInfo?.surveyStatus && <button
                                                         onClick={() => {
                                                             navigate("/Survey", {
                                                                 state: {
@@ -167,7 +260,7 @@ const NonVoterPage = () => {
                                                                 },
                                                             })
                                                         }}
-                                                        className="searched_status">SURVEY</button>
+                                                        className="searched_status">SURVEY</button>}
                                                 </div>
                                                 {/* <div>
                                                     <button
@@ -267,10 +360,8 @@ const NonVoterPage = () => {
                             </div>)
 
                         })
-
                             :
                             "No data"
-
                         }
                     </div>
                 </div>
