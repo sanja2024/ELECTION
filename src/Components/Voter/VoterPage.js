@@ -123,7 +123,7 @@ const VoterPage = () => {
     return (
         <div className="container p-0">
             <Header />
-            <div className="PS_scroll">
+            <div className="vp_scroll">
                 <div className="VP">
                     {/* <p className="VpHeading">Polling Sheet 05:00 PM</p> */}
                     {/* <p className="vpsubHeading">Thiyagi Natesan Street 1</p> */}
