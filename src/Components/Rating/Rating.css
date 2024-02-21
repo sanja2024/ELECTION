@@ -93,3 +93,9 @@ border: 1px solid transparent !important;
   overflow-x: scroll;
   height: 65vh;
 }
+
+.ratingscroll::-webkit-scrollbar {
+  height: 0px;             
+  width: 0px;                
+  color: transparent;
+}

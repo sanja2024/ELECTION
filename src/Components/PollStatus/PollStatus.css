@@ -38,8 +38,8 @@
   }
   
   .PollStatusmain::-webkit-scrollbar {
-    height: 1px;             
-    width: 1px;                
+    height: 0px;             
+    width: 0px;                
     color: transparent;
   }
   .PS_scroll {
@@ -64,6 +64,11 @@
   .PS_scroll::-webkit-scrollbar {
     height: 1px;             
     width: 1px;                
+    color: transparent;
+  }
+  .vp_scroll::-webkit-scrollbar {
+    height: 0px;             
+    width: 0px;                
     color: transparent;
   }
   
