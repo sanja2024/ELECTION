@@ -3,13 +3,14 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ADD_AGENT_SEARCH_URL, BOOTH_API, GET_AGENT_MNO_URL, VOTER_SEARCH_URL } from "../../Common/Url/ServerConfig";
-import { agentSearch, getAgentMno } from "../../Common/redux/slices/agentSlice";
+import { ADD_AGENT_SEARCH_URL, AGENTASSIGN_ROLE_URL, BOOTH_API, GET_AGENT_MNO_URL, VOTER_SEARCH_URL } from "../../Common/Url/ServerConfig";
+import { agentSearch, getAgentMno,getAssignAgent } from "../../Common/redux/slices/agentSlice";
 import { createUser } from "../../Common/redux/slices/usersSlice";
 import { toast } from "react-toastify";
 import { Assign_ROUTE, MainDashboard_ROUTE } from "../../Common/Route/Routes";
 const Assign2 = () => {
     const agentMno = useSelector((state) => state.agent.agentMnoData);
+    const [selectedBoothName, setSelectedBoothName] = useState('');
     const [selectedElection, setSelectedElection] = useState([]);
     const [selectedstate, setSelectedstate] = useState([]);
     const [selectedAgentType, setSelectedAgentType] = useState('');
@@ -80,11 +81,29 @@ const Assign2 = () => {
         // }
         if (selectedValue === 'Mobile') {
 
+
             const finalselectedMob = JSON.parse(event.target.value);
 
 
             setSelectedMobile(finalselectedMob?.mobileNo);
             setAgentDetails(finalselectedMob?.mappingresult);
+
+
+            const reqParams = {
+                payload: {
+                    // mobile_no: parseInt(localStorage.getItem("mobile")),
+                    // user_mobile_no: mobile_no,
+                    mobile_no: finalselectedMob?.mobileNo,
+                    agent_mobile_no: parseInt(localStorage.getItem("mobile")),
+                },
+                endPoint: AGENTASSIGN_ROLE_URL
+            }
+
+            dispatch(getAssignAgent(reqParams)).then((res) => { 
+                // console.log(res.payload.data.list[0].mappingresult,'dsdsds')
+                setAgentDetails(res.payload.data.list[0].mappingresult);
+            });
+
 
             if (finalselectedMob?.agentType == "agent") {
                 // console.log(finalselectedMob,'finalselectedMob')
@@ -261,6 +280,11 @@ const Assign2 = () => {
             });
         } else if (selectedValue === 'Booth') {
             setSelectedBooth(event.target.value);
+            // console.log(booth[0].boothName[0],'selectedBooth')
+            // const selectedBooth = booth.filter(booth => booth.boothCode === event.target.value);
+
+            // Update the state with the selected booth name
+            setSelectedBoothName(booth[0].boothName[0] ? booth[0].boothName[0] : '');
 
             const UserData = {
                 payload: {
@@ -289,6 +313,7 @@ const Assign2 = () => {
 
 
     const handleSubmit = () => {
+   
         if (
             voteFromNo && voteToNo
 
@@ -297,6 +322,7 @@ const Assign2 = () => {
                 payload: {
                     ac_no: selectedDivision, //Constituency
                     part_no: selectedBooth,//booth no
+                    booth_name:selectedBoothName,
                     from_slnoinpart: parseInt(voteFromNo),
                     to_slnoinpart: parseInt(voteToNo),
                     // agent_mobile_no: parseInt(mobile_no, 10),
@@ -370,14 +396,14 @@ const Assign2 = () => {
 
         const reqParams = {
             payload: {
-                mobile_no: parseInt(localStorage.getItem("mobile"))
+                mobile_no: parseInt(localStorage.getItem("mobile")),
+                // user_mobile_no:mobile_no,
             },
             endPoint: GET_AGENT_MNO_URL
         }
 
         dispatch(getAgentMno(reqParams))
     }, [])
-
     return (
         <div>
             <Header />
@@ -465,7 +491,7 @@ const Assign2 = () => {
                 </div>
                 <div className="addAgent_datapoints dropdown">
                     <label htmlFor="exampleFormControlInput1" className="form-label">
-                    Assembly
+                        Assembly
                     </label>
                     <select
                         className="form-control"

@@ -174,6 +174,51 @@ export const getVisitor = createAsyncThunk(
   }
 );
 
+export const getAssignAgent = createAsyncThunk(
+  "agent/getAssignAgent",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const end = userData;
+
+      let getApiUrl = end?.endPoint;
+      const objString =
+        "?" +
+        new URLSearchParams(end?.payload).toString();
+      getApiUrl += objString;
+
+      const response = await axios.get(getApiUrl);
+
+      const user = response.data;
+      const currentToken = user.current_token;
+      const loginToken = localStorage.getItem("CUSTOMTOKEN");
+
+      if (currentToken !== loginToken) {
+      }
+
+      if (user) {
+        return user;
+      }
+
+      if (response.data.error === "authError") {
+        window.location.href = "/session";
+      } else {
+        console.error("errorMsg");
+      }
+    } catch (error) {
+      if (
+        error?.response?.status === 401 &&
+        error.response.data.message == "Unauthorized"
+      ) {
+        localStorage.clear();
+        window.location.reload();
+      } else {
+        return rejectWithValue(error?.response?.data);
+      }
+      throw error;
+    }
+  }
+);
+
 
 export const getAgentMno = createAsyncThunk(
   "agent/getAgentMno",
@@ -182,13 +227,10 @@ export const getAgentMno = createAsyncThunk(
       const end = userData;
 
       let getApiUrl = end?.endPoint;
-
       const objString =
         "?" +
         new URLSearchParams(end?.payload).toString();
       getApiUrl += objString;
-
-      console.log(getApiUrl, "getApiUrlgetApiUrl");
 
       const response = await axios.get(getApiUrl);
 
@@ -279,6 +321,7 @@ const initialState = {
   visitorData: [],
   agentMnoData: [],
   roleRepData: [],
+  assignAgentData:[],
 
 };
 
@@ -293,6 +336,8 @@ const agentSlice = createSlice({
       state.visitorData = [];
       state.agentMnoData = [];
       state.roleRepData = [];
+      state.assignAgentData = [];
+      
 
 
     },
@@ -332,6 +377,18 @@ const agentSlice = createSlice({
         state.visitorData = action.payload;
       })
       .addCase(getVisitor.rejected, (state, action) => {
+        state.loading = "rejected";
+        state.error = action.error.message;
+      })
+      // getAssignAgent
+      .addCase(getAssignAgent.pending, (state) => {
+        state.loading = "pending";
+      })
+      .addCase(getAssignAgent.fulfilled, (state, action) => {
+        state.loading = "fulfilled";
+        state.assignAgentData = action.payload;
+      })
+      .addCase(getAssignAgent.rejected, (state, action) => {
         state.loading = "rejected";
         state.error = action.error.message;
       })

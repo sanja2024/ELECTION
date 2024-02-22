@@ -244,6 +244,15 @@ const NonVoterPage = () => {
                                         </div>
 
                                     </div>
+                                    <div className="searched_data">
+                                        <div className="d-flex flex-column pb-2">
+                                            <span className="searchedTitle">Booth Name</span>
+                                            <span className="searchedData">{item?.TrnsPollDetailsInfo?.boothName}</span>
+                                  
+                                        </div>
+                                       
+
+                                    </div>
 
                                     <div className="">
                                         <div>

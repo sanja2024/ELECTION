@@ -330,6 +330,7 @@ const RoleMapping = () => {
     ) {
       const userData = {
         payload: {
+          mobile_no:parseInt(localStorage.getItem("mobile")),
           agent_mobile_no: parseInt(mobile_no, 10),
           role_id: parseInt(selectedRoleID),
           role_code: selectedRole,
