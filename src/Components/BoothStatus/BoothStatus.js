@@ -10,7 +10,7 @@ import { createUser } from "../../Common/redux/slices/usersSlice";
 
 const BoothStatus = () => {
     const boothResp = useSelector((state) => state.booth.boothData);
-    
+
     const [boothStatus, setBoothStatus] = useState(false);
     const [selectedElection, setSelectedElection] = useState([]);
     const [selectedstate, setSelectedstate] = useState([]);
@@ -29,6 +29,9 @@ const BoothStatus = () => {
     const [selectedConstituency, setSelectedConstituency] = useState("");
     const [selectedDivision, setSelectedDivision] = useState("");
     const [selectedBooth, setSelectedBooth] = useState("");
+    const [selectedBoothName, setSelectedBoothName] = useState("");
+
+
 
     const [voteToNo, setVoteToNo] = useState("");
     const [agentMobileNo, setAgentMobileNo] = useState("");
@@ -69,7 +72,7 @@ const BoothStatus = () => {
 
     // useEffect(() => {
 
-      
+
     // }, [])
     const handleSelectChange = async (event, selectedValue) => {
 
@@ -99,7 +102,7 @@ const BoothStatus = () => {
         // }
         if (selectedValue === 'Mobile') {
 
-         
+
         }
         else if (selectedValue === 'election') {
             setSelectedElection(event.target.value);
@@ -118,7 +121,7 @@ const BoothStatus = () => {
                     setState(res?.payload.data.list);
                 }
             });
-        } 
+        }
 
         else if (selectedValue === 'state') {
             setSelectedstate(event.target.value);
@@ -200,12 +203,17 @@ const BoothStatus = () => {
                 }
             });
         } else if (selectedValue === 'Booth') {
-            setSelectedBooth(event.target.value);
 
+
+            const selectedVal = JSON.parse(event.target.value);
+
+            console.log("sdcas", selectedVal);
+            setSelectedBooth(selectedVal?.boothCode);
+            setSelectedBoothName(selectedVal?.boothName?.[0])
             const reqParams = {
                 payload: {
                     ac_no: selectedDivision,//division
-                    part_no: event.target.value  //booth
+                    part_no: selectedVal?.boothCode.toString()  //booth
                 },
                 endpoint: GET_BOOTH_STATUS_URL
             }
@@ -215,7 +223,7 @@ const BoothStatus = () => {
                     // toast.success(res?.payload?.data?.message, {
                     //     position: toast.POSITION.TOP_RIGHT,
                     // });
-    
+
                 } else {
                     toast.error(res?.payload?.message, {
                         position: toast.POSITION.TOP_RIGHT,
@@ -228,22 +236,24 @@ const BoothStatus = () => {
     const totalVoteCount = boothResp?.data?.list?.[0]?.count + boothResp?.data?.list?.[1]?.count + boothResp?.data?.list?.[2]?.count;
 
     // const totalVoteCount =boothResp?.data?.list[0]?.genderCounts.M + boothResp?.data?.list[0]?.genderCounts.F + boothResp?.data?.list[0]?.genderCounts.O+boothResp?.data?.list[1]?.genderCounts.M + boothResp?.data?.list[1]?.genderCounts.F + boothResp?.data?.list[1]?.genderCounts.O;
-    
+
     return (
         <div>
             <Header />
             <div className='BoothStatus'>
-            { boothStatus?  ( <div className='boothdatanew'>
+
+                {boothStatus ? (<div className='boothdatanew'>
                     <div className='boothscroll'>
                         <div className='card border m-2 p-0 pb-2'>
                             <div className='card-body p-0'>
                                 <div className='BoothName'>
                                     <div className='d-flex flex-column justify-content-start pt-2'>
                                         <span className='boothName'>
-                                            Panchayat Union Elementary School
+
+                                            {selectedBoothName}
                                         </span>
                                         <span className='boothAdd'>
-                                            Ayanvaram, Tamilnadu, Chennai, India
+                                            {/* {constituency}, {division}, {state} */}
 
                                         </span>
                                     </div>
@@ -268,7 +278,7 @@ const BoothStatus = () => {
 
 
                                 </div>
-                                  {/* <div className='boothdata'>
+                                {/* <div className='boothdata'>
                                     <div className='data1 d-flex flex-column justify-content-center align-items-start'>
                                         <span className='boothname'>Male</span>
                                         <span className='booth_val'>{totalMaleVoteCount}</span>
@@ -352,100 +362,100 @@ const BoothStatus = () => {
                         } */}
 
                     </div>
-                    <button className="wb_login mt-4 mb-4" onClick={()=>{setBoothStatus(false)}}>Back</button>
+                    <button className="wb_login mt-4 mb-4" onClick={() => { setBoothStatus(false) }}>Back</button>
 
-                </div>):(<>
+                </div>) : (<>
                     <div className="addAgent_datapoints dropdown">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">
-                        Election Type
-                    </label>
-                    <select
-                        className="form-control"
-                        onChange={(event) => handleSelectChange(event, 'election')}
-                        value={selectedElection}
-                    >
-                        <option value="">Select Election</option>
-                        {electionNames?.map((election, index) => (
-                            <option key={index} value={election.electionCode}>
-                                {election.electionName}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="addAgent_datapoints dropdown">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">
-                        State
-                    </label>
-                    <select
-                        className="form-control"
-                        onChange={(event) => handleSelectChange(event, 'state')}
-                        value={selectedstate}
-                        disabled={selectedstate == "All" ? true : false}
-                    >
-                        <option value="">{selectedstate == "All" ? selectedstate : stateRole}</option>
-                        {state?.map((state, index) => (
-                            <option key={index} value={state.stateCode}>
-                                {state.stateName}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="addAgent_datapoints dropdown">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">
-                        Constituency
-                    </label>
-                    <select
-                        className="form-control"
-                        onChange={(event) => handleSelectChange(event, 'Constituency')}
-                        value={selectedConstituency}
-                        disabled={selectedConstituency == "All" ? true : false}
-                    >
-                        <option value="">{selectedConstituency == "All" ? selectedConstituency : constituencyRole}</option>
-                        {constituency?.map((constituency, index) => (
-                            <option key={index} value={constituency?.constituencyCode}>
-                                {constituency?.constituencyName}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="addAgent_datapoints dropdown">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">
-                    Assembly
-                    </label>
-                    <select
-                        className="form-control"
-                        onChange={(event) => handleSelectChange(event, 'Division')}
-                        value={selectedDivision}
-                        disabled={selectedDivision == "All" ? true : false}
-                    >
-                        <option value="">{selectedDivision == "All" ? selectedDivision : divisionRole}</option>
-                        {division?.map((division, index) => (
-                            <option key={index} value={division.divisionCode}>
-                                {division.divisionName}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className="addAgent_datapoints dropdown">
-                    <label htmlFor="exampleFormControlInput1" className="form-label">
-                        Booth
-                    </label>
-                    <select
-                        className="form-control"
-                        onChange={(event) => handleSelectChange(event, 'Booth')}
-                        value={selectedBooth}
-                        disabled={selectedBooth == "All" ? true : false}
-                    >
-                        <option value="">{selectedBooth == "All" ? "All" : boothRole}</option>
-                        {booth?.map((booth, index) => (
-                            <option key={index} value={booth.boothCode}>
-                                {booth.boothName}
-                            </option>
-                        ))}
-                    </select>
-                </div></>)}
-           
-         
+                        <label htmlFor="exampleFormControlInput1" className="form-label">
+                            Election Type
+                        </label>
+                        <select
+                            className="form-control"
+                            onChange={(event) => handleSelectChange(event, 'election')}
+                            value={selectedElection}
+                        >
+                            <option value="">Select Election</option>
+                            {electionNames?.map((election, index) => (
+                                <option key={index} value={election.electionCode}>
+                                    {election.electionName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="addAgent_datapoints dropdown">
+                        <label htmlFor="exampleFormControlInput1" className="form-label">
+                            State
+                        </label>
+                        <select
+                            className="form-control"
+                            onChange={(event) => handleSelectChange(event, 'state')}
+                            value={selectedstate}
+                            disabled={selectedstate == "All" ? true : false}
+                        >
+                            <option value="">{selectedstate == "All" ? selectedstate : stateRole}</option>
+                            {state?.map((state, index) => (
+                                <option key={index} value={state.stateCode}>
+                                    {state.stateName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="addAgent_datapoints dropdown">
+                        <label htmlFor="exampleFormControlInput1" className="form-label">
+                            Constituency
+                        </label>
+                        <select
+                            className="form-control"
+                            onChange={(event) => handleSelectChange(event, 'Constituency')}
+                            value={selectedConstituency}
+                            disabled={selectedConstituency == "All" ? true : false}
+                        >
+                            <option value="">{selectedConstituency == "All" ? selectedConstituency : constituencyRole}</option>
+                            {constituency?.map((constituency, index) => (
+                                <option key={index} value={constituency?.constituencyCode}>
+                                    {constituency?.constituencyName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="addAgent_datapoints dropdown">
+                        <label htmlFor="exampleFormControlInput1" className="form-label">
+                            Assembly
+                        </label>
+                        <select
+                            className="form-control"
+                            onChange={(event) => handleSelectChange(event, 'Division')}
+                            value={selectedDivision}
+                            disabled={selectedDivision == "All" ? true : false}
+                        >
+                            <option value="">{selectedDivision == "All" ? selectedDivision : divisionRole}</option>
+                            {division?.map((division, index) => (
+                                <option key={index} value={division.divisionCode}>
+                                    {division.divisionName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="addAgent_datapoints dropdown">
+                        <label htmlFor="exampleFormControlInput1" className="form-label">
+                            Booth
+                        </label>
+                        <select
+                            className="form-control"
+                            onChange={(event) => handleSelectChange(event, 'Booth')}
+                            value={selectedBooth}
+                            disabled={selectedBooth == "All" ? true : false}
+                        >
+                            <option value="">{selectedBooth == "All" ? "All" : boothRole}</option>
+                            {booth?.map((booth, index) => (
+                                <option key={index} value={JSON.stringify(booth)}>
+                                    {booth.boothName}
+                                </option>
+                            ))}
+                        </select>
+                    </div></>)}
+
+
             </div>
             <Footer />
         </div>
