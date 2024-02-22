@@ -19,7 +19,7 @@ export function getProduct() {
   return name;
 }
 
- 
+
 
 export function getMenu() {
   const name = JSON.parse(localStorage.getItem("MENU") || "[]");
@@ -71,7 +71,7 @@ export function PublicRoute({ children }) {
   // const location = useLocation();
   // const employeeTitle = localStorage.getItem("emp_title");
   // const product = employeeCode();
-  return !token ? children : <Navigate to={MainDashboard_ROUTE} />;
+  // return !token ? children : <Navigate to={MainDashboard_ROUTE} />;
   // return !token ? children : <Navigate to={'/homepage'} />;
 }
 
@@ -80,7 +80,7 @@ export function PrivateRoute({ children }) {
   // const employeeTitle = localStorage.getItem("emp_title");
   // const product = employeeCode();
 
-  return token ? children : <Navigate to={DASHBOARD_ROUTE} />;
+  // return token ? children : <Navigate to={DASHBOARD_ROUTE} />;
   // return token ? children : <Navigate to={'/login'} />;
 }
 
