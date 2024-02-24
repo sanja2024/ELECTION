@@ -145,6 +145,20 @@ const SearchAgent = () => {
                     <span className="searchedData">{item.mobileNo}</span>
                   </div> */}
                 </div>
+                <div className="searched_data2 border-0">
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Constituency</span>
+                    <span className="searchedData">asdasda</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">Division</span>
+                    <span className="searchedData">dafad</span>
+                  </div>
+                  <div className="d-flex flex-column">
+                    <span className="searchedTitle">State</span>
+                    <span className="searchedData">dscsdcsd</span>
+                  </div>
+                </div>
                 {/* <div className="searched_data  ">
                   <div className="d-flex flex-column">
                     <span className="searchedTitle">Booth Address</span>

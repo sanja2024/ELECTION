@@ -52,7 +52,7 @@ const RoleMapping = () => {
   const [role, setRole] = useState([]);
 
   const [selectedAgentType, setSelectedAgentType] = useState('');
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -95,22 +95,22 @@ const RoleMapping = () => {
 
       const finalselectedMob = JSON.parse(event.target.value);
 
-    
+
       setSelectedMobile(finalselectedMob?.mobileNo);
       setAgentDetails(finalselectedMob?.mappingresult);
 
-      if(finalselectedMob?.agentType=="agent"){
+      if (finalselectedMob?.agentType == "agent") {
         // console.log(finalselectedMob,'finalselectedMob')
         setSelectedAgentType(finalselectedMob?.agentType);
         // const selectedRoleData = JSON.parse(event.target.value);
         setSelectedRole("AGENT");
         setSelectedRoleID("6")
-      }else{
+      } else {
         setSelectedAgentType("");
         setSelectedRole("");
         setSelectedRoleID("")
       }
-     
+
 
       if (event.target.value.length == 10) {
 
@@ -237,7 +237,7 @@ const RoleMapping = () => {
           // });
           const divisionCodes = agentDetails[0].map(agent => agent.divisionCode);
           const resultt = res?.payload?.data?.list?.filter(el1 => {
-              return divisionCodes.includes(el1?.divisionCode.toString());
+            return divisionCodes.includes(el1?.divisionCode.toString());
           });
 
           setDivision(resultt?.length > 0 ? resultt : res?.payload?.data?.list);
@@ -265,13 +265,13 @@ const RoleMapping = () => {
           // });
           const boothCodes = agentDetails[0].map(agent => agent.boothCode);
           const resultt = res?.payload?.data?.list?.filter(el1 => {
-              return boothCodes.includes(el1?.boothCode.toString());
+            return boothCodes.includes(el1?.boothCode.toString());
           });
           setBooth(resultt?.length > 0 ? resultt : res?.payload?.data?.list)
         }
       });
     } else if (selectedValue === 'Booth') {
-      
+
       setSelectedBooth(event.target.value);
     }
   };
@@ -330,7 +330,7 @@ const RoleMapping = () => {
     ) {
       const userData = {
         payload: {
-          mobile_no:parseInt(localStorage.getItem("mobile")),
+          mobile_no: parseInt(localStorage.getItem("mobile")),
           agent_mobile_no: parseInt(mobile_no, 10),
           role_id: parseInt(selectedRoleID),
           role_code: selectedRole,
@@ -373,7 +373,7 @@ const RoleMapping = () => {
     }
   };
 
-{/* <option key={index} value={JSON.stringify(mno)} onChange={()=>{JSON.stringify(mno.agentType)}}> */}
+  {/* <option key={index} value={JSON.stringify(mno)} onChange={()=>{JSON.stringify(mno.agentType)}}> */ }
 
   return (
     <div className="container p-0">
@@ -406,7 +406,7 @@ const RoleMapping = () => {
           >
             <option value="">Select Agent Mno</option>
             {agentMno?.data?.list?.map((mno, index) => (
-              <option key={index} value={JSON.stringify(mno)}  onChange={(event) => handleSelectChange(event, 'agenttype')}>
+              <option key={index} value={JSON.stringify(mno)} onChange={(event) => handleSelectChange(event, 'agenttype')}>
                 {mno.mobileNo}
               </option>
             ))}
@@ -424,7 +424,7 @@ const RoleMapping = () => {
             aria-label="Role Type"
             onChange={(event) => handleSelectChange(event, 'Role')}
             // value={selectedRole}
-            disabled={selectedAgentType=="agent"?true: roleDisable}
+            disabled={selectedAgentType == "agent" ? true : roleDisable}
           >
             <option value="">{selectedAgentType == "agent" ? "Agent" : "Select Role"}</option>
             {role.map((role, index) => (
@@ -522,7 +522,7 @@ const RoleMapping = () => {
             <option value="">{selectedBooth == "All" ? "All" : boothRole}</option>
             {booth.map((booth, index) => (
               <option key={index} value={booth.boothCode}>
-                {booth.boothName}
+                {booth.boothCode}- {booth.boothName}
               </option>
             ))}
           </select>

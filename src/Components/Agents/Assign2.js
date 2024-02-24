@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer'
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ADD_AGENT_SEARCH_URL, AGENTASSIGN_ROLE_URL, BOOTH_API, GET_AGENT_MNO_URL, VOTER_SEARCH_URL } from "../../Common/Url/ServerConfig";
-import { agentSearch, getAgentMno,getAssignAgent } from "../../Common/redux/slices/agentSlice";
+import { agentSearch, getAgentMno, getAssignAgent } from "../../Common/redux/slices/agentSlice";
 import { createUser } from "../../Common/redux/slices/usersSlice";
 import { toast } from "react-toastify";
 import { Assign_ROUTE, MainDashboard_ROUTE } from "../../Common/Route/Routes";
@@ -99,7 +99,7 @@ const Assign2 = () => {
                 endPoint: AGENTASSIGN_ROLE_URL
             }
 
-            dispatch(getAssignAgent(reqParams)).then((res) => { 
+            dispatch(getAssignAgent(reqParams)).then((res) => {
                 // console.log(res.payload.data.list[0].mappingresult,'dsdsds')
                 setAgentDetails(res.payload.data.list[0].mappingresult);
             });
@@ -313,7 +313,7 @@ const Assign2 = () => {
 
 
     const handleSubmit = () => {
-   
+
         if (
             voteFromNo && voteToNo
 
@@ -322,7 +322,7 @@ const Assign2 = () => {
                 payload: {
                     ac_no: selectedDivision, //Constituency
                     part_no: selectedBooth,//booth no
-                    booth_name:selectedBoothName,
+                    booth_name: selectedBoothName,
                     from_slnoinpart: parseInt(voteFromNo),
                     to_slnoinpart: parseInt(voteToNo),
                     // agent_mobile_no: parseInt(mobile_no, 10),
@@ -520,7 +520,7 @@ const Assign2 = () => {
                         <option value="">{selectedBooth == "All" ? "All" : boothRole}</option>
                         {booth.map((booth, index) => (
                             <option key={index} value={booth.boothCode}>
-                                {booth.boothName}
+                                {booth.boothCode}- {booth.boothName}
                             </option>
                         ))}
                     </select>

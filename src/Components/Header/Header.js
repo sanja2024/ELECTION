@@ -36,7 +36,7 @@ const Header = () => {
     "/VoterPage": "Voter",
     "/NonSearchVoter": "Non Voter",
     "/Rating": "Survey Dashboard",
-    "/AgentStatus": "Agent Status",
+    "/AgentStatus": "Agent Report",
 
   };
 

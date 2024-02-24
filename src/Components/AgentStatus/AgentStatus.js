@@ -14,7 +14,8 @@ const AgentStatus = () => {
     // const boothResp = useSelector((state) => state.booth.boothData);
     const [boothResp, setBoothResp] = useState([]);
     const [trueCount, setTrueCount] = useState([]);
-    
+    const [agentName, setAgentName] = useState([]);
+
     const [boothStatus, setBoothStatus] = useState(true);
     const [selectedElection, setSelectedElection] = useState([]);
     const [selectedstate, setSelectedstate] = useState([]);
@@ -111,6 +112,7 @@ const AgentStatus = () => {
 
             } else {
 
+
                 const finalselectedMob = JSON.parse(event.target.value);
 
 
@@ -154,6 +156,24 @@ const AgentStatus = () => {
 
                     }
                 });
+
+
+                const reqParams = {
+                    payload: {
+                        name: parseInt(finalselectedMob?.mobileNo, 10),
+                    },
+                    endPoint: ADD_AGENT_SEARCH_URL,
+                };
+                dispatch(agentSearch(reqParams)).then((res) => {
+                    if (res?.payload?.message === "success") {
+                        //   setCardList(res?.payload?.data.list);
+                        console.log(res?.payload?.data?.list?.[0]?.name, 'wwewewe')
+
+                        setAgentName(res?.payload?.data?.list?.[0]?.name)
+
+                    }
+                });
+
             }
             // }
         }
@@ -194,14 +214,14 @@ const AgentStatus = () => {
 
         dispatch(getAgentMno(reqParams))
     }, [])
-    const totalVoteCount =boothResp[0]?.genderCounts.M + boothResp[0]?.genderCounts.F + boothResp[0]?.genderCounts.O+boothResp[1]?.genderCounts.M + boothResp[1]?.genderCounts.F + boothResp[1]?.genderCounts.O;
-    const totalMaleVoteCount =boothResp[0]?.genderCounts.M +boothResp[1]?.genderCounts.M ;
-    const totalFeMaleVoteCount =boothResp[0]?.genderCounts.F +boothResp[1]?.genderCounts.F ;
-    const totalOtherVoteCount =boothResp[0]?.genderCounts.O +boothResp[1]?.genderCounts.O ;
-   
-    const totalPerc = parseInt(boothResp[0]?.genderCounts.M +boothResp[0]?.genderCounts.F +boothResp[0]?.genderCounts.O)/(totalVoteCount*100) ;
+    const totalVoteCount = boothResp[0]?.genderCounts.M + boothResp[0]?.genderCounts.F + boothResp[0]?.genderCounts.O + boothResp[1]?.genderCounts.M + boothResp[1]?.genderCounts.F + boothResp[1]?.genderCounts.O;
+    const totalMaleVoteCount = boothResp[0]?.genderCounts.M + boothResp[1]?.genderCounts.M;
+    const totalFeMaleVoteCount = boothResp[0]?.genderCounts.F + boothResp[1]?.genderCounts.F;
+    const totalOtherVoteCount = boothResp[0]?.genderCounts.O + boothResp[1]?.genderCounts.O;
+
+    const totalPerc = parseInt(boothResp[0]?.genderCounts.M + boothResp[0]?.genderCounts.F + boothResp[0]?.genderCounts.O) / (totalVoteCount * 100);
     // boothResp[0]?.genderCounts?.M
-//    console.log(boothResp[0].genderCounts.O,'boothRespboothResp')
+    //    console.log(boothResp[0].genderCounts.O,'boothRespboothResp')
     return (
         <div>
             <Header />
@@ -233,14 +253,14 @@ const AgentStatus = () => {
 
                 </div>
 
-               {boothResp.length>0&& <div className='boothdatanew'>
+                {boothResp.length > 0 && <div className='boothdatanew'>
                     <div className='boothscroll'>
                         <div className='card border m-2 p-0 pb-2'>
                             <div className='card-body p-0'>
                                 <div className='BoothName'>
                                     <div className='d-flex flex-column justify-content-start pt-2'>
                                         <span className='boothName'>
-                                            Panchayat Union Elementary School
+                                            {agentName || "-"}
                                         </span>
                                         <span className='boothAdd'>
                                             Ayanvaram, Tamilnadu, Chennai, India

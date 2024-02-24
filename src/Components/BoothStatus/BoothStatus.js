@@ -449,7 +449,7 @@ const BoothStatus = () => {
                             <option value="">{selectedBooth == "All" ? "All" : boothRole}</option>
                             {booth?.map((booth, index) => (
                                 <option key={index} value={JSON.stringify(booth)}>
-                                    {booth.boothName}
+                                    {booth.boothCode}- {booth.boothName}
                                 </option>
                             ))}
                         </select>
