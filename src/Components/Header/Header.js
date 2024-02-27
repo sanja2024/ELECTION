@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <div>
             <nav class="navbar navbar-expand-xl bg-body-tertiary">
-                <div class="container-fluid">
+                <div class="container-fluid p-0">
                     <a class="navbar-brand" href="#"><img src={mainlogo}></img></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -42,12 +42,12 @@ const Header = () => {
                         </form>
 
                     </div>
-
-                </div>
-                <div className='d-flex flex-column align-items-center'>
+                    <div className='d-flex flex-column align-items-center'>
                 <button class="btn mb-0 pb-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <img src={profile}></img> </button>
                 <span>Profile</span>
                 </div>
+                </div>
+                
             </nav>
            
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
