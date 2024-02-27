@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from 'react'
+import Header from '../Header/Header'
 
 const Dashboard = () => {
-  return (<>
-    {console.log("sdfasds")}
-    <p>hloooo</p>
-  </>)
-};
+  return (
+    <div className='container-fluid'>
+      <Header/>
+    </div>
+  )
+}
 
-export default Dashboard;
+export default Dashboard
