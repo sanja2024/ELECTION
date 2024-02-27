@@ -6,8 +6,8 @@ import profile from "../../Common/asset/images/voteimg/profile.svg"
 
 const Header = () => {
     return (
-        <div>
-            <nav class="navbar navbar-expand-xl bg-body-tertiary">
+        <div className='d-flex justify-content-between '>
+            <nav class="navbar navbar-expand-md bg-body-tertiary">
                 <div class="container-fluid p-0">
                     <a class="navbar-brand" href="#"><img src={mainlogo}></img></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@ const Header = () => {
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                                <a class="nav-link" >Next</a>
                             </li>
                         </ul>
                         <form class="d-flex" role="search">
@@ -42,23 +42,23 @@ const Header = () => {
                         </form>
 
                     </div>
-                    <div className='d-flex flex-column align-items-center'>
-                <button class="btn mb-0 pb-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <img src={profile}></img> </button>
-                <span>Profile</span>
+                   
                 </div>
-                </div>
-                
+
             </nav>
-           
+            <div className='d-flex flex-column align-items-center'>
+                        <button class="btn mb-0 pb-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <img src={profile}></img> </button>
+                        <span>Profile</span>
+                    </div>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasRightLabel">Profile</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                   <div >
-<button className='btn btn-danger'> Logout</button>
-                   </div>
+                    <div >
+                        <button className='btn btn-danger'> Logout</button>
+                    </div>
                 </div>
             </div>
         </div>
