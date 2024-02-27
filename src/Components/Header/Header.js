@@ -45,7 +45,7 @@ const Header = () => {
 
                 </div>
                 <div className='d-flex flex-column align-items-center'>
-                <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <img src={profile}></img> </button>
+                <button class="btn mb-0 pb-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <img src={profile}></img> </button>
                 <span>Profile</span>
                 </div>
             </nav>
