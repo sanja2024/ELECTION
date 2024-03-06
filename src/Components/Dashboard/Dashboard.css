@@ -39,7 +39,7 @@
     background-color: rgba(2, 44, 88, .4); /* Adjust the color and transparency as needed */
   }
 .bgImgdash {
-  background-image: url(../../Common/asset/images/voteimg/login_background.svg);
+  background-image: url(../../Common/asset/images/voteimg/new_login_background.svg);
   background-position: center;
   background-size: cover;
   width: 100%;
@@ -183,8 +183,8 @@
 
 /* WELCOME BACK  */
 .bgImg2 {
-    background-image: url(../../Common/asset/images/voteimg/login_background.svg);
-    background-position: center;
+    background-image: url(../../Common/asset/images/voteimg/new.svg);
+    background-position: left;
     background-size: cover;
     background-repeat: no-repeat;
     width: 100vw;

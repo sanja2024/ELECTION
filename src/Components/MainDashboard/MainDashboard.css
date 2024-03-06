@@ -166,8 +166,8 @@ width: 90vw;
 
 .bgImgMmain {
     background-image: url(../../Common/asset/images/voteimg/login_background.svg);
-    background-position: center;
-    background-size: cover;
+    /* background-position: center; */
+    background-size: contain;
     background-repeat: no-repeat;
     width: 100vw;
     height: 90vh;
