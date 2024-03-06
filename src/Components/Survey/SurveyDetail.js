@@ -55,8 +55,8 @@ const SurveyDetail = ({ data }) => {
             },
 
         validationSchema: Yup.object({
-            voter_id: Yup.string()
-                .required("Voter-id is required"),
+            // voter_id: Yup.string()
+            //     .required("Voter-id is required"),
 
             name: Yup.string()
                 .required("Name is required"),

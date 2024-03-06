@@ -55,7 +55,7 @@ const LoginPage = () => {
     };
     // dispatch(createUser(userData));
     dispatch(createUser(userData)).then((res) => {
-      if (res?.payload?.message == 'success') {
+      if (res?.payload?.data?.message == 'Login SuccessFull') {
         // console.log(res.payload.data.list.agentType,'dddddd' )
         const typeUser = res?.payload?.data?.list?.agentType?.toUpperCase();
 
@@ -76,7 +76,7 @@ const LoginPage = () => {
           // dispatch(clearUserData())
         }, 1000);
       } else {
-        toast.error(res?.payload?.message, {
+        toast.error("Something Went Wrong!", {
           position: "top-right",
 
         });

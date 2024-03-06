@@ -18,10 +18,10 @@ const SurveyForm = ({ questions, onSubmit }) => {
     const [error, setError] = useState("");
 
     const handleNextPage = () => {
-        if (!selectedOptions[questions[currentPage].topicCode]) {
-            setError("Please select an option before moving to the next question.");
-            return;
-        }
+        // if (!selectedOptions[questions[currentPage].topicCode]) {
+        //     setError("Please select an option before moving to the next question.");
+        //     return;
+        // }
         setCurrentPage(currentPage + 1);
         setError("");
     };

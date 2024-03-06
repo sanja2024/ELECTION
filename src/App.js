@@ -19,6 +19,20 @@ function App() {
   //     window.removeEventListener('beforeunload', handleTabClose);
   //   };
   // }, []);
+  useEffect(() => {
+    const handleLogout = (event) => {
+     
+      localStorage.clear();
+ 
+      event.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', handleLogout);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleLogout);
+    };
+  }, []);
   
   return (
     <div className="App custom-bg">

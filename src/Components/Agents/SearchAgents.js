@@ -148,15 +148,15 @@ const SearchAgent = () => {
                 <div className="searched_data2 border-0">
                   <div className="d-flex flex-column">
                     <span className="searchedTitle">Constituency</span>
-                    <span className="searchedData">asdasda</span>
+                    <span className="searchedData"></span>
                   </div>
                   <div className="d-flex flex-column">
                     <span className="searchedTitle">Division</span>
-                    <span className="searchedData">dafad</span>
+                    <span className="searchedData"></span>
                   </div>
                   <div className="d-flex flex-column">
                     <span className="searchedTitle">State</span>
-                    <span className="searchedData">dscsdcsd</span>
+                    <span className="searchedData"></span>
                   </div>
                 </div>
                 {/* <div className="searched_data  ">

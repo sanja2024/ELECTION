@@ -263,7 +263,7 @@ const AgentStatus = () => {
                                             {agentName || "-"}
                                         </span>
                                         <span className='boothAdd'>
-                                            Ayanvaram, Tamilnadu, Chennai, India
+                                            {/* Ayanvaram, Tamilnadu, Chennai, India */}
 
                                         </span>
                                     </div>

@@ -20,10 +20,10 @@ const SurveyForm = ({ questions, onSubmit }) => {
   const [error, setError] = useState("");
 
   const handleNextPage = () => {
-    if (!selectedOptions[questions[currentPage].topicCode]) {
-      setError("Please select an option before moving to the next question.");
-      return;
-    }
+    // if (!selectedOptions[questions[currentPage].topicCode]) {
+    //   setError("Please select an option before moving to the next question.");
+    //   return;
+    // }
     setCurrentPage(currentPage + 1);
     setError("");
   };
@@ -241,7 +241,7 @@ const Survey = ({ finalResp }) => {
 
                 marginLeft: "16px"
               }} className="d-flex flex-column mb-3">
-                {console.log(topics?.data?.list, "asdasda")}
+
                 <span className="QuestoinHead">{topics?.data?.list?.[0]?.topicCode}</span>
 
               </div>
