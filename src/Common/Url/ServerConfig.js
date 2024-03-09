@@ -15,7 +15,7 @@ export const BASE_API_URL =
           : ENV_FILE === "DEVELOPMENT_DIRECT"
             ? ""
             : ENV_FILE === "IP_URL"
-              ? "http://votertrends.tech:3001/"
+              ? "http://votertrends.in:3001/"
               : "";
 
 //based on condition Token Will  change
